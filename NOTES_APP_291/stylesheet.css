@@ -1,0 +1,31 @@
+body {
+    padding: 20px;
+  }
+
+  folder_button {
+    display: grid;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 15px;
+    line-height: 50px;
+    font-weight: bold;
+    padding: 0 40px;
+    background: #ADDFFF;
+    border: none;
+  }
+
+  note_button {
+    display: grid;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 15px;
+    line-height: 50px;
+    font-weight: bold;
+    padding: 0 50px;
+    background: #ADDFFF;
+    border: none;
+  }
+
+  button:hover {
+background: #ADDFFF;
+  }
