@@ -1,8 +1,16 @@
-var express = require('express');
+var express = require("express");
+
 var app = express();
 
-// define routes here..
+app.get("/", function (req, res) {
+    res.send("Simple Web Application is UP");
 
-var server = app.listen(3000, function () {
-    console.log('Node server is running..');
 });
+
+app.listen(8081, function () {
+
+console.log("Simple Web Application running on port 8081!");
+});
+
+
+//https://www.digitalocean.com/community/tutorials/use-expressjs-to-deliver-html-files
