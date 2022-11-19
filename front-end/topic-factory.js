@@ -59,7 +59,7 @@ class TopicFactory {
         this.newTweetBtn.onclick = () => {
         	this.tweets.push(new TweetFactory(
                 'place_holder_id',
-                'place_holder_db_callback',
+                db,
                 this.notesDiv)
             );
             // add tweet to db

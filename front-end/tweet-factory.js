@@ -4,6 +4,8 @@ class TweetFactory {
     constructor(title, db, container, tweetid=null) {
         this.tweetid = (tweetid) ? tweetid : TWEET_ID++;
         this.container = container;
+        this.db = db;
+        this.contentManager = new ContentManagemnt(this.db);
         
         this.initializeHTML();
         this.initializeDB();
@@ -26,6 +28,10 @@ class TweetFactory {
         this.tweet.onclick = () => {
             console.log('test')
         }
+
+        this.contentManager.createTweet(this.tweetid, "Dummy text", "General", console.log);
+
     }
+
     getId() {}
 }
