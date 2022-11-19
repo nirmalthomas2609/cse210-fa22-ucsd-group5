@@ -13,6 +13,8 @@ request.onerror = (event) => {
 
 request.onsuccess = (event) => {
     db = event.target.result;
+    console.log("DB created successfully!");
+    return;
 }
 
 request.onupgradeneeded = (event) => {

@@ -38,7 +38,7 @@
             if(name) { // check for valid names!!!!!!
                 welcomeContainer.classList.add('hidden');
                 userContainer.classList.remove('hidden');
-                user = new User(name, userContainer);
+                user = new User(name, userContainer, db);
             }
 
             // display user page

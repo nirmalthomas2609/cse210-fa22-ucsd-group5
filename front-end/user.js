@@ -1,5 +1,5 @@
 class User {
-    constructor(name, container) {
+    constructor(name, container, db) {
         this.name = name;
         this.container = container;
         this.tweets = [];
@@ -7,7 +7,6 @@ class User {
         // this.noteFactory = new NoteFactory();
         // this.noteFactory = new FolderFactor();
         // this.noteFactory.registerObserver(this);
-        
         this.createUserScreen();
         this.notes = [];
         this.folders = [];
@@ -16,7 +15,7 @@ class User {
 
     _newNote(container) {
         // add new note
-        this.tweets.push(new TweetFactory('', this.container));
+
         // instantiate note object
         // add note object to user screen
         console.log('create note');
@@ -67,7 +66,6 @@ class User {
         newNodeBtn.onclick = () => {
             let noteDiv = document.createElement('div');
             noteDiv.style = 'display: flex; flex-direction: row;'
-
             let noteCheck = document.createElement('input');
             noteCheck.setAttribute('type', 'checkbox');
             noteCheck.onclick = () => {
@@ -118,7 +116,6 @@ class User {
 
         this.noteDiv = document.createElement('div');
         this.newNoteBtn = document.createElement('button');
-        this.newNoteBtn.classList.add('menu-item')
         this.noteDiv.appendChild(this.newNoteBtn);
         this.newNoteBtn.innerHTML ="New Note        📝";
         this.newNoteBtn.classList.add("note_button");
@@ -126,11 +123,7 @@ class User {
 
         let scope = this;
         this.newNoteBtn.onclick = () => {
-            this.tweets.push(new TweetFactory(
-                'place_holder_id',
-                'place_holder_db_callback',
-                this.container)
-            );
+            scope._newNote(this.container);
         }
 
         this.folderDiv = document.createElement('div');
@@ -141,11 +134,7 @@ class User {
         this.container.appendChild(this.folderDiv);
 
         this.newFolderBtn.onclick = () => {
-            this.topics.push(new TopicFactory(
-                'place_holder_id',
-                'place_holder_db_callback',
-                this.container)
-            );
+            scope._newFolder();
         }
 
         this.delMovDiv = document.createElement('div');
