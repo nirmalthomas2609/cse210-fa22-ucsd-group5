@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:content-management.js","content-management.js");NDSummary.OnSummaryLoaded("File:content-management.js",[["JavaScript","JavaScript"]],[["Functions","Function"],["Groups","Group"]],[[1,0,1,"Functions","Functions"],[3,0,0,"createTweet","createTweet"]]);
