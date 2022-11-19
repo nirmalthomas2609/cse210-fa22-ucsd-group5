@@ -2,6 +2,35 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+    background-color: rgb(200, 200, 200);
+    margin: 0px;
+}
+
+#menu {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item {
+    color:  white;
+    font-size: clamp(3rem, 8vw, 8rem);
+    font-family: "Ibarra Real Nova", serif;
+
+    display: block;
+    text-decoration: none;
+    padding: clamp(0.25rem, 0.5vw, 1rem) 0rem;
+}
+
+#user-screen {
+    margin-left: clamp(4rem, 20vw, 40rem);
+}
+
+#user-screen:hover > .menu-item {
+    opacity: 0.3;
+}
+#user-screen:hover > .menu-item:hover {
+    opacity: 1;
 }
 
 .hidden {
@@ -32,7 +61,8 @@ body {
     width: 100%;
 }
 
-.user-screen {
+
+./*user-screen {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,7 +72,7 @@ body {
     width: 100vw;
     text-align: left;
     font-size: 4rem;
-}
+}*/
 
 /* .user-screen div button {
     display: block;
@@ -50,7 +80,7 @@ body {
     padding: none;
 } */
 
-.note_button {
+/*.note_button {
     width: 95vw;
     text-align: center;
     font-family: 'Roboto', sans-serif;
@@ -64,4 +94,4 @@ body {
 
 button:hover {
 background: #ADDDDD;
-  }
+  }*/
