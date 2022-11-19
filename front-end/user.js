@@ -3,6 +3,8 @@ class User {
         this.name = name;
         this.container = container;
 
+        
+
         // this.noteFactory = new NoteFactory();
         // this.noteFactory = new FolderFactor();
         // this.noteFactory.registerObserver(this);
