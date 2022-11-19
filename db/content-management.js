@@ -18,7 +18,7 @@ class ContentManagemnt {
 
     createTweet(tweetId, tweetText, topicName, statusCallback) {
         const tweetObj = {tweetId: tweetId, textContent: tweetText, topicName: topicName};
-        const objStore = this.db.transaction([tweetStoreName], "readWrite").objectStore(tweetStoreName);
+        const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const request = objStore.add(tweetObj);
 
         request.onsuccess = (_) => {
