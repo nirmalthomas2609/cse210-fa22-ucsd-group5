@@ -22,10 +22,17 @@ request.onupgradeneeded = (event) => {
     const db = event.target.result;
 
     const tweetStore = db.createObjectStore("tweets", {"keyPath": "tweetId"});
-    tweetStore.createIndex("topic", "topicName", {unique: false});
+    tweetStore.createIndex("topic", "topicId", {unique: false});
+
+    const topicStore = db.createObjectStore("topics", {"keyPath": "topicId"});
 
     tweetStore.transaction.onerror = (event) => {
-        console.error(`Object store creation failed: ${event.target.errorCode}`);
+        console.error(`Tweets object store creation failed: ${event.target.errorCode}`);
         return;
     };
+
+    topicStore.transaction.onerrror = (event) => {
+        console.error(`Topics object store creation failed: ${event.target.errorCode}`);
+        return;
+    }
 }
