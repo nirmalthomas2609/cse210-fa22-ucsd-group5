@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("cre",["Function"],[["createTweet",,[[,,,,0,"File:content-management.js:createTweet"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("cre",["Function"],[["createTweet",,[["ContentManagement",,,,0,"File:content-management.js:ContentManagement.createTweet","JavaScriptClass:ContentManagement:createTweet"]]]]);

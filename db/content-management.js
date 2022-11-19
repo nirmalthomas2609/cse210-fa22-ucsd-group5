@@ -1,20 +1,32 @@
 let tweetStoreName = "tweets";
 let topicStoreName = "topics";
 
+// Class: ContentManagement
+// A class that manages the tweets and topics by interfacing with indexedDB.
+
 class ContentManagemnt {
+
+    // Constructor: constructor
+    //  Initializes the db object.
+
     constructor(db) {
         this.db = db;
     }
 
     // Function: createTweet
     //
-    // Creates a tweet entry in the database
+    // Creates an entry corresponding to a tweer in the database
     //
     // Parameters:
     //
-    //  tweetId     - The unique id of the tweet.
-    //  tweetText   - The text contained in the tweet.
-    //  topicName   - Name of the topic to file the tweet under.
+    //  tweetId         - The unique id of the tweet.
+    //  tweetText       - The text contained in the tweet.
+    //  topicName       - Name of the topic to file the tweet under.
+    //  statusCallback  - Listener function from frontend to be executed on success
+    // 
+    // Returns:
+    //
+    //      Nothing
 
     createTweet(tweetId, tweetText, topicName, statusCallback) {
         const tweetObj = {tweetId: tweetId, textContent: tweetText, topicName: topicName};
@@ -119,7 +131,34 @@ class ContentManagemnt {
 
     }
 
+    // Function: getAllTopics
+    //
+    // Gets a list of all topics in the topics store
+    //
+    // Parameters:
+    //
+    //  displayTopicsCallback   - Listener fucntion from fontend to be executed on success
+    // 
+    // Returns:
+    //
+
     getAllTopics(displayTopicsCallback) {
+
+        const topicStore = this.db.transaction([topicStoreName], "readonly").objectStore(topicStoreName);
+
+        var allRecords = topicStore.getAll();
+
+        allRecords.onsuccess = (event) => {
+            console.log(`Retrieved all topics`);
+            const returnObj = {status: true, topicsList: allRecords};
+            displayTopicsCallback(returnObj);
+        }
+
+        allRecords.onerror = (event) => {
+            console.log(`Could not load topics from database. Failed with ${event.target.errorCode}`);
+            const returnObj = {status: false, topicsList: []};
+            displayTopicsCallback(returnObj);
+       }
 
     }
 }

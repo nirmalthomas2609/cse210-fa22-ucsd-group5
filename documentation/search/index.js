@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixIndexLoaded(["cre"]);
+﻿NDSearch.OnPrefixIndexLoaded(["con","cre"]);
