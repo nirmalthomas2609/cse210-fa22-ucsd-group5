@@ -21,7 +21,7 @@ request.onupgradeneeded = (event) => {
     const db = event.target.result;
 
     const tweetStore = db.createObjectStore("tweets", {"keyPath": "tweetId"});
-    tweetStore.createIndex("topic", "topicId", {unique: false});
+    tweetStore.createIndex("topicIndex", "topicId", {unique: false});
 
     const topicStore = db.createObjectStore("topics", {"keyPath": "topicId"});
 
