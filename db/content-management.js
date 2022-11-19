@@ -33,7 +33,7 @@ class ContentManagemnt {
     }
 
     updateTweet(tweetId, tweetText, topicId, statusCallback) {
-        const objStore = this.db.transaction([tweetStoreName], "readWrite").objectStore(tweetStoreName);
+        const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const fetchRequest = objStore.get(tweetId);
 
         fetchRequest.onsuccess = (event) => {
@@ -75,7 +75,7 @@ class ContentManagemnt {
 
     createTopic(topicId, topicName, statusCallback) {
         const topicObj = {topicId: topicId, topicName: topicName};
-        const objStore = this.db.transaction([topicStoreName], "readWrite").objectStore(topic);
+        const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topic);
         const request = objStore.add(topicObj);
 
         request.onsuccess = (_) => {
@@ -90,7 +90,7 @@ class ContentManagemnt {
     }
 
     updateTopic(topicId, topicName, statusCallback) {
-        const objStore = this.db.transaction([topicStoreName], "readWrite").objectStore(topicStoreName);
+        const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
         const fetchRequest = objStore.get(topicId);
 
         fetchRequest.onsuccess = (event) => {
