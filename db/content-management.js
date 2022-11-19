@@ -1,4 +1,5 @@
 let tweetStoreName = "tweets";
+let topicStoreName = "topics";
 
 class ContentManagemnt {
     constructor(db) {
@@ -10,13 +11,13 @@ class ContentManagemnt {
         const objStore = this.db.transaction([tweetStoreName], "readWrite").objectStore(tweetStoreName);
         const request = objStore.add(tweetObj);
 
-        request.onsuccess = (event) => {
+        request.onsuccess = (_) => {
             console.log(`Tweet ${tweetId} added to store`);
             statusCallback(true);
         }
 
         request.onerror = (event) => {
-            console.log(`Failed adding tweet ${tweetId} to store`);
+            console.log(`Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`);
             statusCallback(false);
         }
     }
@@ -31,7 +32,7 @@ class ContentManagemnt {
             tweet.topicId = topicId;
 
             const updateReq = objStore.update(tweet);
-            updateReq.onsuccess = (event) => {
+            updateReq.onsuccess = (_) => {
                 console.log(`Tweet ${tweetId} updated in store`);
                 statusCallback(true);
             }
@@ -52,7 +53,7 @@ class ContentManagemnt {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const request = objStore.delete(tweetId);
 
-        request.onsuccess = (event) => {
+        request.onsuccess = (_) => {
             console.log(`Tweet ${tweetId} deleted from store`);
             statusCallback(true);
         }
@@ -62,11 +63,49 @@ class ContentManagemnt {
         }
     }
 
-    createTopic(topicId, statusCallback) {
+    createTopic(topicId, topicName, statusCallback) {
+        const topicObj = {topicId: topicId, topicName: topicName};
+        const objStore = this.db.transaction([topicStoreName], "readWrite").objectStore(topic);
+        const request = objStore.add(topicObj);
 
+        request.onsuccess = (_) => {
+            console.log(`Topic ${topicId} added to store`);
+            statusCallback(true);
+        }
+
+        request.onerror = (_) => {
+            console.log(`Failed adding topic ${topicId} to store`);
+            statusCallback(false);
+        }
     }
 
-    getTweetsByTopicId(topicId, displayTweetsCallback) {
+    updateTopic(topicId, topicName, statusCallback) {
+        const objStore = this.db.transaction([topicStoreName], "readWrite").objectStore(topicStoreName);
+        const fetchRequest = objStore.get(topicId);
+
+        fetchRequest.onsuccess = (event) => {
+            const topic = event.target.result;
+            topic.topicName = topicName;
+
+            const updateReq = objStore.update(topic);
+            updateReq.onsuccess = (_) => {
+                console.log(`Topic ${topicId} updated in store`);
+                statusCallback(true);
+            }
+
+            updateReq.onerror = (event) => {
+                console.log(`Failed to update ${topicId} in store with error code ${event.target.errorCode}`);
+                statusCallback(false);
+            }
+        }
+
+        fetchRequest.onerror = (event) => {
+            console.log(`Failed to fetch ${topicId} from store with error code ${event.target.errorCode}`);
+            statusCallback(false);
+        }
+    }
+
+    getTweetsByTopicId(topicId, topicName, statusCallback) {
 
     }
 
