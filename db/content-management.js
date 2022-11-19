@@ -23,7 +23,7 @@ class ContentManagemnt {
     //  tweetId         - The unique id of the tweet.
     //  tweetText       - The text contained in the tweet.
     //  topicName       - Name of the topic to file the tweet under.
-    //  statusCallback  - Listener function from frontend to be executed on success
+    //  statusCallback  - Listener function from frontend to be executed
     // 
     // Returns:
     //
@@ -156,7 +156,7 @@ class ContentManagemnt {
     //
     // Parameters:
     //
-    //  displayTopicsCallback   - Listener fucntion from fontend to be executed on success
+    //  displayTopicsCallback   - Listener fucntion from fontend to be executed
     // 
     // Returns:
     //
