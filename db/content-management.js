@@ -5,6 +5,16 @@ class ContentManagemnt {
         this.db = db;
     }
 
+    // Function: createTweet
+    //
+    // Creates a tweet entry in the database
+    //
+    // Parameters:
+    //
+    //  tweetId     - The unique id of the tweet.
+    //  tweetText   - The text contained in the tweet.
+    //  topicName   - Name of the topic to file the tweet under.
+
     createTweet(tweetId, tweetText, topicName = "") {
         const tweetObj = {tweetId: tweetId, textContent: tweetText, topicName: topicName};
         const objStore = this.db.transaction([tweetStoreName], "readWrite").objectStore(tweetStoreName);
