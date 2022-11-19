@@ -1,4 +1,4 @@
-let TWEET_ID = 0;
+let TWEET_ID = 1;
 
 class TweetFactory {
     constructor(title, db, container, tweetid=null) {

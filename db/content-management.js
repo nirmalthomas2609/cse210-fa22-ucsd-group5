@@ -29,10 +29,11 @@ class ContentManagemnt {
     //
     //      Nothing
 
-    createTweet(tweetId, tweetText, topicName, statusCallback) {
-        const tweetObj = {tweetId: tweetId, textContent: tweetText, topicName: topicName};
+    createTweet(tweetId, tweetText, topicId, statusCallback) {
+        const tweetObj = {tweetId: tweetId, textContent: tweetText, topicId: topicId};
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const request = objStore.add(tweetObj);
+        console.log(`Tweet Id - ${tweetId}, topicId - ${topicId}, textContent - ${tweetText}`);
 
         request.onsuccess = (_) => {
             console.log(`Tweet ${tweetId} added to store`);
@@ -40,7 +41,7 @@ class ContentManagemnt {
         }
 
         request.onerror = (event) => {
-            console.log(`Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`);
+            console.log(`Failed adding tweet ${tweetId} to store with error code ${event}`);
             statusCallback({status: 500, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
         }
     }
