@@ -167,7 +167,7 @@ class ContentManagemnt {
 
         var allRecords = topicStore.getAll();
 
-        allRecords.onsuccess = (event) => {
+        allRecords.onsuccess = (_) => {
             console.log(`Retrieved all topics`);
             const returnObj = {
                 status: 200,
