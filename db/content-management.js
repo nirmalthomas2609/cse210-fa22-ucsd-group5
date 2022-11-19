@@ -150,13 +150,21 @@ class ContentManagemnt {
 
         allRecords.onsuccess = (event) => {
             console.log(`Retrieved all topics`);
-            const returnObj = {status: true, topicsList: allRecords};
+            const returnObj = {
+                status: 200,
+                data: {
+                    allTopics: allRecords
+                }
+            };
             displayTopicsCallback(returnObj);
         }
 
         allRecords.onerror = (event) => {
             console.log(`Could not load topics from database. Failed with ${event.target.errorCode}`);
-            const returnObj = {status: false, topicsList: []};
+            const returnObj = {
+                status: 500,
+                errorMsg: "Unable to load topics from database"
+            };
             displayTopicsCallback(returnObj);
        }
 
