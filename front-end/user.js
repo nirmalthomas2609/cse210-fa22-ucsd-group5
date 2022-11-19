@@ -2,9 +2,8 @@ class User {
     constructor(name, container) {
         this.name = name;
         this.container = container;
-
-        
-
+        this.tweets = [];
+        this.topics = [];
         // this.noteFactory = new NoteFactory();
         // this.noteFactory = new FolderFactor();
         // this.noteFactory.registerObserver(this);
@@ -17,7 +16,7 @@ class User {
 
     _newNote(container) {
         // add new note
-
+        this.tweets.push(new TweetFactory('', this.container));
         // instantiate note object
         // add note object to user screen
         console.log('create note');
@@ -119,6 +118,7 @@ class User {
 
         this.noteDiv = document.createElement('div');
         this.newNoteBtn = document.createElement('button');
+        this.newNoteBtn.classList.add('menu-item')
         this.noteDiv.appendChild(this.newNoteBtn);
         this.newNoteBtn.innerHTML ="New Note        📝";
         this.newNoteBtn.classList.add("note_button");
@@ -126,7 +126,11 @@ class User {
 
         let scope = this;
         this.newNoteBtn.onclick = () => {
-            scope._newNote(this.container);
+            this.tweets.push(new TweetFactory(
+                'place_holder_id',
+                'place_holder_db_callback',
+                this.container)
+            );
         }
 
         this.folderDiv = document.createElement('div');
@@ -137,7 +141,11 @@ class User {
         this.container.appendChild(this.folderDiv);
 
         this.newFolderBtn.onclick = () => {
-            scope._newFolder();
+            this.topics.push(new TopicFactory(
+                'place_holder_id',
+                'place_holder_db_callback',
+                this.container)
+            );
         }
 
         this.delMovDiv = document.createElement('div');
