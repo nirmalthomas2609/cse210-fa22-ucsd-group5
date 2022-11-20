@@ -1,69 +1,55 @@
 let TOPIC_ID = 0;
-class TopicFactory {
+class TopicFactory extends AbstractUserMenu {
     constructor(title, db, container, topicid=null) {
+        super();
+
+        this.title = title;
     	this.tweets = [];
     	this.topicid = topicid ? topicid : TOPIC_ID++;
     	this.container = container;
 
     	this.initializeHTML();
-    	this.initializeDB();
+    	// this.initializeDB();
 	}
 
 	initializeHTML() {
 		// add folder to folder object
-       // create folder container
-        this.folderContainer = document.createElement('div');
-
-        this.topic = document.createElement('div');
-        this.folderContainer.append(this.topic);
-        this.topic.style = 'display: flex; flex-direction: row;'
-
-        this.title = document.createElement('h1');
-        this.title.innerHTML = `new_folder`;
-
-        this.renameTxt = document.createElement('input');
-        this.renameTxt.classList.add('hidden');
-
-                
-        this.newTweetBtn = document.createElement('button');
-        this.newTweetBtn.innerHTML ="New Note        📝";
-
-        // add it to our panel
-        this.topic.append(this.title);
-        this.topic.append(this.renameTxt);
-        this.topic.append(this.newTweetBtn);
-        this.notesDiv = document.createElement('div');
-
-        this.folderContainer.append(this.notesDiv);
-        this.container.append(this.folderContainer);
-	}
-
-	initializeDB() {
-		// double click to change folder name
-        this.title.ondblclick = (e) => {
-            this.title.classList.add('hidden');
-            this.renameTxt.classList.remove('hidden');
-            this.renameTxt.focus();
-        }
-        this.renameTxt.addEventListener('focusout', () => {
-            if (this.renameTxt.value){
-                this.title.innerHTML = this.renameTxt.value;
-            }
-            this.title.classList.remove('hidden');
-            this.renameTxt.classList.add('hidden');
-            this.renameTxt.value = '';
-            console.log(this.renameTxt)
-
-            // add code to rename topic in database here 
-        });
-        this.newTweetBtn.onclick = () => {
-        	this.tweets.push(new TweetFactory(
-                'place_holder_id',
+        this.topicContainer = document.createElement('div');
+        this.topicContainer.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS, TOPIC_ITEM_CLASS);
+        this.topicContainer.innerHTML = this.title;
+        this.htmlElements.push(this.topicContainer);
+        
+        // New Note
+        this.newNoteBtn = document.createElement('button');
+        this.newNoteBtn.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS);
+        this.newNoteBtn.innerHTML ="New Note";
+        this.topicContainer.appendChild(this.newNoteBtn);
+        this.newNoteBtn.onclick = () => {
+            let tweet = new TweetFactory(
+                'New Tweet!',
                 db,
-                this.notesDiv)
+                this.topicContainer
             );
-            // add tweet to db
+            this.tweets.push(tweet);
         }
+        
+        this.container.append(this.topicContainer);
 
+        this._toggleSubItems();
 	}
+
+    newTweet(title) {
+        let tweet = new TweetFactory(
+            title,
+            db,
+            this.topicContainer
+        );
+        this.tweets.push(tweet);
+    }
+	initializeDB() {
+	}
+
+    getTopicDiv() {
+        return this.topicContainer;
+    }
 }

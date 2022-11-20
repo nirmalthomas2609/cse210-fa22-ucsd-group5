@@ -1,47 +1,83 @@
-(
-    function app() {
-        let welcomeContainer = document.getElementById('welcome-screen');
-        let nameText = document.createElement('input');
-        let loginBtn = document.createElement('button');
-
-        function buildLogin() {
-            let h1 = document.createElement('h1');
-            let welcomeLbl = document.createElement('label');
-            welcomeLbl.innerText = 'Welocome!';
-            h1.appendChild(welcomeLbl);
-            welcomeContainer.appendChild(h1);
-
-
-            let loginContainer = document.createElement('div');
-            nameText.placeholder = 'Enter user name...';
-            loginContainer.appendChild(nameText);
-            loginBtn.innerHTML = 'Go';
-            loginContainer.appendChild(loginBtn);
-
-            let nameLbl  = document.createElement('h2');
-            nameLbl.innerHTML = "What's your name?";
-            nameLbl.style = 'width: 100%;'
-            welcomeContainer.appendChild(nameLbl);
-            welcomeContainer.appendChild(loginContainer);
-        }
-
-        buildLogin();
-
-        let userContainer = document.getElementById('user-screen');
-        let user = null;
-        loginBtn.onclick = () => {
-            // check to see if user exists
-            let name = nameText.value.trim();
-            // if exist then load their page
-
-            // else create class new user
-            if(name) { // check for valid names!!!!!!
-                welcomeContainer.classList.add('hidden');
-                userContainer.classList.remove('hidden');
-                user = new User(name, userContainer, db);
-            }
-
-            // display user page
+function hideItems(items, hide=true) {
+    for(let item of items) {
+        if(hide) {
+            item.classList.add('hidden')
+        } else {
+            item.classList.remove('hidden')
         }
     }
-)();
+}
+
+function fadeInOut(items, fadein=true) {
+    let fadeTime = 500;
+    let fadeDelta = .10;
+    for(let item of items) {
+        let opacity = (fadein) ? 0 : 1;
+        item.style.opacity = opacity;
+
+        let fadesLeft = fadeTime * fadeDelta;
+        let fade = function() {
+            opacity += (fadein) ? fadeDelta : -fadeDelta;
+            item.style.opacity = opacity;
+            fadesLeft--;
+            if(fadesLeft > 0) {
+                setTimeout(fade, fadeTime * fadeDelta);
+            }
+        }
+        fade();
+    }
+}
+
+function lauchUser(userName) {
+    // check to see if user exists
+    let userScreen = document.getElementById('user-div');
+    let name = userName.trim();
+
+    // else create class new user
+    if(name) { // check for valid names!!!!!!
+        user = new User(name, userScreen, db);
+        let userItems = user.getHTMLElements();
+        hideItems(userItems);
+        setTimeout(() =>{
+            hideItems(userItems, false);
+            fadeInOut(userItems, true);
+        }, 500);
+    }
+}
+
+(function app() {
+    // parameters for login screen
+    let LOGIN_SCREEN_ID = 'login-div';
+    let WELCOME_TEXT = 'Welcome';
+    let ENTER_TEXT = 'Enter Name';
+    let LOGIN_INPUT = '__input__';
+    let PLACE_HOLDER_TEXT = 'Enter name...';
+    let LOGIN_LABLES = [WELCOME_TEXT, ENTER_TEXT, LOGIN_INPUT];
+    let LOGIN_ITEM_CLASS = 'login-item';
+
+    // create login screen
+    let startScreen = document.getElementById(LOGIN_SCREEN_ID);
+    let loginItems = [];
+    for(let itemText of LOGIN_LABLES) {
+        let item;
+        if(itemText === LOGIN_INPUT) {
+            item = document.createElement('input');
+            item.placeholder = PLACE_HOLDER_TEXT;
+            item.onkeyup = (e) => {
+                if(e.key === 'Enter') {
+                    fadeInOut(loginItems, false)
+                    lauchUser(item.value);
+                    item.disabled = true;
+                }
+            }
+
+        } else {
+            item = document.createElement('div');
+            item.innerHTML = itemText;
+        }
+        item.classList.add(LOGIN_ITEM_CLASS);
+        startScreen.appendChild(item);
+        loginItems.push(item);
+    }
+    fadeInOut(loginItems, true);
+})();
