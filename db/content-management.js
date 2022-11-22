@@ -133,7 +133,7 @@ class ContentManagemnt {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const keyRange = IDBKeyRange.only(topicId);
         // const request = objStore.index(topicIndexName).openKeyCursor(keyRange);
-        const request = objStore.index(topicIndexName).get(topicId);
+        const request = objStore.index(topicIndexName).getAll(topicId);
 
         request.onsuccess = (event) => {
             const data = event.target.result;
