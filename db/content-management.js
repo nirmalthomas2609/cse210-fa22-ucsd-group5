@@ -138,7 +138,7 @@ class ContentManagemnt {
             const cursor = event.target.result;
             let listTweets = [];
             if (cursor) {
-                listTweets.push(cursor);
+                listTweets.push(cursor.value);
                 cursor.continue();
             }
             console.log(`Completed fetch tweets request by topic ID ${topicId}`);
