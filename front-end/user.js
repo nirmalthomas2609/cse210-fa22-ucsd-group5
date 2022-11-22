@@ -80,8 +80,7 @@ class User extends AbstractUserMenu {
         this.tweets= this.contentManager.getTweetsByTopicId(topic_id, function (topicList) {scope.displayTweetsByTopics(topicList)} )
     }
 
-    displayTweetsByTopics(tweetList){
-        console.log("Tweet List - ", tweetList.data);
+    displayTweetsByTopics(tweetList) {
         this.htmlElements.push(tweetList.data.getHTMLElements())
     }
 }
