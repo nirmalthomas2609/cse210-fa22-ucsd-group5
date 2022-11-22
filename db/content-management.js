@@ -131,18 +131,10 @@ class ContentManagemnt {
 
     getTweetsByTopicId(topicId, displayTweetsCallback) {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
-        const keyRange = IDBKeyRange.only(topicId);
-        // const request = objStore.index(topicIndexName).openKeyCursor(keyRange);
         const request = objStore.index(topicIndexName).getAll(topicId);
 
         request.onsuccess = (event) => {
             const data = event.target.result;
-            // let listTweets = [];
-            // if (cursor) {
-            //     listTweets.push(cursor.value);
-            //     cursor.continue();
-            // }
-            // console.log(`Completed fetch tweets request by topic ID ${topicId}`);
             displayTweetsCallback({status: 200, data: data});
           };
 
@@ -165,13 +157,17 @@ class ContentManagemnt {
 
     getAllTopics(displayTopicsCallback) {
 
-        const topicStore = this.db.transaction([topicStoreName], "readonly").objectStore(topicStoreName);
+        const topicStore = this.db.transaction([tweetStoreName], "readonly").objectStore(tweetStoreName);
 
         var allRecords = topicStore.getAll();
 
         allRecords.onsuccess = (event) => {
-            console.log(`Retrieved all topics`);
-            const returnObj = {status: true, topicsList: allRecords};
+            let data = event.target.result;
+            let topicList = new Set();
+            for (var tweet of data) {
+                topicList.add(tweet.topicId);
+            }
+            const returnObj = {status: true, topicsList: [...topicList]};
             displayTopicsCallback(returnObj);
         }
 

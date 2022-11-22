@@ -75,15 +75,13 @@ class User extends AbstractUserMenu {
         console.log(topics);
     }
 
-    readTweetsPerTopic(topic_id){
-        console.log(this.htmlElements);
-
-        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, this.displayTweetsByTopics)
+    readTweetsPerTopic(topic_id) {
+        let scope = this;
+        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, function (topicList) {scope.displayTweetsByTopics(topicList)} )
     }
 
-    displayTweetsByTopics(topicList){
-//        console.log(this.htmlElements);
-        console.log(this.name);
-        this.htmlElements.push(topicList.data.getHTMLElements())
+    displayTweetsByTopics(tweetList){
+        console.log("Tweet List - ", tweetList.data);
+        this.htmlElements.push(tweetList.data.getHTMLElements())
     }
 }
