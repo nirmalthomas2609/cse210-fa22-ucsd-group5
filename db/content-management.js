@@ -89,7 +89,7 @@ class ContentManagemnt {
 
     createTopic(topicId, topicName, statusCallback) {
         const topicObj = {topicId: topicId, topicName: topicName};
-        const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topic);
+        const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
         const request = objStore.add(topicObj);
 
         request.onsuccess = (_) => {
@@ -130,7 +130,7 @@ class ContentManagemnt {
     }
 
     getTweetsByTopicId(topicId, displayTweetsCallback) {
-        const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
+        const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const keyRange = IDBKeyRange.only(topicId);
         const request = objStore.index(topicIndexName).openKeyCursor(keyRange);
 
