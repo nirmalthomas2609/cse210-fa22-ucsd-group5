@@ -132,17 +132,18 @@ class ContentManagemnt {
     getTweetsByTopicId(topicId, displayTweetsCallback) {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const keyRange = IDBKeyRange.only(topicId);
-        const request = objStore.index(topicIndexName).openKeyCursor(keyRange);
+        // const request = objStore.index(topicIndexName).openKeyCursor(keyRange);
+        const request = objStore.index(topicIndexName).get(topicId);
 
         request.onsuccess = (event) => {
-            const cursor = event.target.result;
-            let listTweets = [];
-            if (cursor) {
-                listTweets.push(cursor.value);
-                cursor.continue();
-            }
-            console.log(`Completed fetch tweets request by topic ID ${topicId}`);
-            displayTweetsCallback({status: 200, data: listTweets});
+            const data = event.target.result;
+            // let listTweets = [];
+            // if (cursor) {
+            //     listTweets.push(cursor.value);
+            //     cursor.continue();
+            // }
+            // console.log(`Completed fetch tweets request by topic ID ${topicId}`);
+            displayTweetsCallback({status: 200, data: data});
           };
 
           request.onerror = (event) => {
