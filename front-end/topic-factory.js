@@ -1,4 +1,4 @@
-let TOPIC_ID = 0;
+let TOPIC_ID = 1;
 class TopicFactory extends AbstractUserMenu {
     constructor(title, db, container, topicid=null) {
         super();
@@ -7,9 +7,11 @@ class TopicFactory extends AbstractUserMenu {
     	this.tweets = [];
     	this.topicid = topicid ? topicid : TOPIC_ID++;
     	this.container = container;
+        this.db = db;
+        this.contentManager = new ContentManagemnt(this.db);
 
     	this.initializeHTML();
-    	// this.initializeDB();
+    	//this.initializeDB();
 	}
 
 	initializeHTML() {
@@ -32,6 +34,7 @@ class TopicFactory extends AbstractUserMenu {
             );
             this.tweets.push(tweet);
         }
+        TOPIC_ID += 1;
         
         this.container.append(this.topicContainer);
 
@@ -46,8 +49,10 @@ class TopicFactory extends AbstractUserMenu {
         );
         this.tweets.push(tweet);
     }
-	initializeDB() {
-	}
+	//initializeDB() {
+        //this.contentManager.createTopic(TOPIC_ID, "ExampleTopic", console.log);
+   // }
+	
 
     getTopicDiv() {
         return this.topicContainer;

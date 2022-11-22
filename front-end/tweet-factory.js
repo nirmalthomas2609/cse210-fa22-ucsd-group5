@@ -21,9 +21,6 @@ class TweetFactory extends AbstractUserMenu {
         this.container.appendChild(this.tweet);
     }
     initializeDB() {
-        this.tweet.onclick = () => {
-            console.log('test')
-        }
         this.contentManager.createTweet(this.tweetid, "Dummy text", "General", console.log);
     }
 

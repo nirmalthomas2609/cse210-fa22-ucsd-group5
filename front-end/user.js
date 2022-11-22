@@ -5,6 +5,9 @@ class User extends AbstractUserMenu {
         this.container = container;
         this.tweets = [];
         this.topics = {};
+        this.db = db;
+        this.contentManager = new ContentManagemnt(this.db);
+
         // this.htmlElements = [];
         
         this.createUserScreen();
@@ -55,6 +58,8 @@ class User extends AbstractUserMenu {
             );
             topics+=1;
         }
+        this.readTweetsPerTopic("General");
+        console.log(this.tweets);
 
         this.topics['General'] = new TopicFactory(
             'General',
@@ -63,5 +68,14 @@ class User extends AbstractUserMenu {
         );
         this.htmlElements.push(...this.topics['General'].getHTMLElements());
         this._toggleSubItems();
+    }
+
+    readTopics() {
+        this.topics = this.contentManager.getAllTopics(this.htmlElements.push);
+        console.log(topics);
+    }
+
+    readTweetsPerTopic(topic_id){
+        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, console.log)
     }
 }
