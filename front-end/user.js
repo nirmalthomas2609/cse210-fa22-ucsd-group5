@@ -8,7 +8,7 @@ class User extends AbstractUserMenu {
         this.db = db;
         this.contentManager = new ContentManagemnt(this.db);
 
-        // this.htmlElements = [];
+        this.htmlElements = [];
         
         this.createUserScreen();
         this.notes = [];
@@ -76,6 +76,14 @@ class User extends AbstractUserMenu {
     }
 
     readTweetsPerTopic(topic_id){
-        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, console.log)
+        console.log(this.htmlElements);
+
+        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, this.displayTweetsByTopics)
+    }
+
+    displayTweetsByTopics(topicList){
+//        console.log(this.htmlElements);
+        console.log(this.name);
+        this.htmlElements.push(topicList.data.getHTMLElements())
     }
 }
