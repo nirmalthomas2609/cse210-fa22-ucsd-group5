@@ -30,17 +30,17 @@ class User extends AbstractUserMenu {
         // this.container.appendChild(this.newNoteBtn);
         // this.htmlElements.push(this.newNoteBtn);
         // this.newNoteBtn.onclick = () => {
-        //     if(!this.topics.hasOwnProperty('General')) {
-        //         this.topics['General'] = new TopicFactory(
-        //             'General',
+        //     if(!this.topics.hasOwnProperty(DEFAULT_TOPIC)) {
+        //         this.topics[DEFAULT_TOPIC] = new TopicFactory(
+        //             DEFAULT_TOPIC,
         //             db,
         //             this.container
         //         );
-        //         this.topics['General'].newTweet('My First Tweet!');
+        //         this.topics[DEFAULT_TOPIC].newTweet('My First Tweet!');
         //     } else {
-        //         this.topics['General'].newTweet('Another Tweet!');
+        //         this.topics[DEFAULT_TOPIC].newTweet('Another Tweet!');
         //     }
-        //     this.topics['General']._toggleSubItems();
+        //     this.topics[DEFAULT_TOPIC]._toggleSubItems();
         // }
                 
         // new topic
@@ -49,38 +49,62 @@ class User extends AbstractUserMenu {
         this.newFolderBtn.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS)
         this.container.appendChild(this.newFolderBtn);
         this.htmlElements.push(this.newFolderBtn);
-        let topics = 1;
+        this.topicIDNum = 1;
         this.newFolderBtn.onclick = () => {
-            this.topics[`New Topic ${topics}`](new TopicFactory(
-                `New Topic ${topics}`,
-                db,
-                this.container)
-            );
-            topics+=1;
+            this.createTopic(this.topicIDNum);
         }
-        this.readTweetsPerTopic("General");
-        console.log(this.tweets);
-
-        this.topics['General'] = new TopicFactory(
-            'General',
+        this.topics[DEFAULT_TOPIC] = new TopicFactory(
+            DEFAULT_TOPIC,
             db,
             this.container
         );
-        this.htmlElements.push(...this.topics['General'].getHTMLElements());
+        this.readTweetsPerTopic(DEFAULT_TOPIC);
+        this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
+
+        this.readTopics();
+
         this._toggleSubItems();
     }
 
     readTopics() {
-        this.topics = this.contentManager.getAllTopics(this.htmlElements.push);
-        console.log(topics);
+        this.contentManager.getAllTopics((topicEvent) => {
+            console.log(topicEvent)
+            for(let topic of topicEvent.topicsList) {
+                if (topic !== DEFAULT_TOPIC) {
+                    console.log(topic)
+                    this.createTopic(topic);
+                }
+            }
+        });
+
+    }
+
+    createTopic(topic) {
+        this.topics[`New Topic ${topic}`] = new TopicFactory(
+            `New Topic ${topic}`,
+            db,
+            this.container
+        );
+        // this.readTweetsPerTopic(DEFAULT_TOPIC);
+        this.htmlElements.push(...this.topics[`New Topic ${topic}`].getHTMLElements());
+
+        this.topicIDNum+=1;
     }
 
     readTweetsPerTopic(topic_id) {
         let scope = this;
-        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, function (topicList) {scope.displayTweetsByTopics(topicList)} )
+        this.tweets= this.contentManager.getTweetsByTopicId(topic_id, 
+            function (topicList) {
+                scope.displayTweetsByTopics(topic_id, topicList);
+        });
     }
 
-    displayTweetsByTopics(tweetList) {
-        this.htmlElements.push(tweetList.data.getHTMLElements())
+    displayTweetsByTopics(topic, tweetList) {
+        if (tweetList.status === OK_STATUS) {
+            for(let tweet of tweetList.data) {
+                this.topics[topic].newTweet("New Tweet!", tweet.tweetId);
+            }
+            this.topics[topic]._toggleSubItems();
+        }
     }
 }

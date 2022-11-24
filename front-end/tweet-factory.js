@@ -1,16 +1,21 @@
 let TWEET_ID = 1;
 
 class TweetFactory extends AbstractUserMenu {
-    constructor(title, db, container, tweetid=null) {
+    constructor(topicid, title, db, container, tweetid=null) {
         super();
         this.title = title;
+        this.topicid = topicid;
         this.tweetid = (tweetid) ? tweetid : TWEET_ID++;
         this.container = container;
         this.db = db;
         this.contentManager = new ContentManagemnt(this.db);
         
         this.initializeHTML();
-        this.initializeDB();
+        if(!tweetid) {
+            this.initializeDB();
+        } else {
+            TWEET_ID = tweetid + 1;
+        }
     }
 
     initializeHTML() {
@@ -21,7 +26,7 @@ class TweetFactory extends AbstractUserMenu {
         this.container.appendChild(this.tweet);
     }
     initializeDB() {
-        this.contentManager.createTweet(this.tweetid, "Dummy text", "General", console.log);
+        this.contentManager.createTweet(this.tweetid, "Dummy text", this.topicid, console.log);
     }
 
     getId() {}

@@ -1,4 +1,5 @@
 let TOPIC_ID = 1;
+let DEFAULT_TOPIC = 'General';
 class TopicFactory extends AbstractUserMenu {
     constructor(title, db, container, topicid=null) {
         super();
@@ -27,12 +28,7 @@ class TopicFactory extends AbstractUserMenu {
         this.newNoteBtn.innerHTML ="New Note";
         this.topicContainer.appendChild(this.newNoteBtn);
         this.newNoteBtn.onclick = () => {
-            let tweet = new TweetFactory(
-                'New Tweet!',
-                db,
-                this.topicContainer
-            );
-            this.tweets.push(tweet);
+            this.newTweet('New Tweet!');
         }
         TOPIC_ID += 1;
         
@@ -41,11 +37,13 @@ class TopicFactory extends AbstractUserMenu {
         this._toggleSubItems();
 	}
 
-    newTweet(title) {
+    newTweet(title, id=null) {
         let tweet = new TweetFactory(
+            this.topicid,
             title,
             db,
-            this.topicContainer
+            this.topicContainer,
+            id
         );
         this.tweets.push(tweet);
     }

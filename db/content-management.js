@@ -2,6 +2,8 @@ let tweetStoreName = "tweets";
 let topicStoreName = "topics";
 let topicIndexName = "topicIndex";
 
+let OK_STATUS = 200;
+
 // Class: ContentManagement
 // A class that manages the tweets and topics by interfacing with indexedDB.
 
@@ -37,7 +39,7 @@ class ContentManagemnt {
 
         request.onsuccess = (_) => {
             console.log(`Tweet ${tweetId} added to store`);
-            statusCallback({status: 200});
+            statusCallback({status: OK_STATUS});
         }
 
         request.onerror = (event) => {
@@ -58,7 +60,7 @@ class ContentManagemnt {
             const updateReq = objStore.update(tweet);
             updateReq.onsuccess = (_) => {
                 console.log(`Tweet ${tweetId} updated in store`);
-                statusCallback({status: 200});
+                statusCallback({status: OK_STATUS});
             }
 
             updateReq.onerror = (event) => {
@@ -79,7 +81,7 @@ class ContentManagemnt {
 
         request.onsuccess = (_) => {
             console.log(`Tweet ${tweetId} deleted from store`);
-            statusCallback({status: 200});
+            statusCallback({status: OK_STATUS});
         }
         request.onerror = (event) => {
              console.log(`Could not delete ${tweetId} from records. Failed with ${event.target.errorCode}`);
@@ -94,7 +96,7 @@ class ContentManagemnt {
 
         request.onsuccess = (_) => {
             console.log(`Topic ${topicId} added to store`);
-            statusCallback({status: 200});
+            statusCallback({status: OK_STATUS});
         }
 
         request.onerror = (event) => {
@@ -114,7 +116,7 @@ class ContentManagemnt {
             const updateReq = objStore.update(topic);
             updateReq.onsuccess = (_) => {
                 console.log(`Topic ${topicId} updated in store`);
-                statusCallback({status: 200});
+                statusCallback({status: OK_STATUS});
             }
 
             updateReq.onerror = (event) => {
@@ -135,7 +137,7 @@ class ContentManagemnt {
 
         request.onsuccess = (event) => {
             const data = event.target.result;
-            displayTweetsCallback({status: 200, data: data});
+            displayTweetsCallback({status: OK_STATUS, data: data});
           };
 
           request.onerror = (event) => {
