@@ -7,7 +7,7 @@ class User extends AbstractUserMenu {
         this.topics = {};
         this.db = db;
         this.contentManager = new ContentManagemnt(this.db);
-
+        this.textEditor = document.getElementById('text-editor');
         this.htmlElements = [];
         
         this.createUserScreen();
@@ -57,6 +57,8 @@ class User extends AbstractUserMenu {
                 this.container)
             );
             topics+=1;
+            this.textEditor.classList.remove('hidden');
+            this.container.classList.add('hidden');
         }
         this.readTweetsPerTopic("General");
         console.log(this.tweets);
@@ -66,7 +68,7 @@ class User extends AbstractUserMenu {
             db,
             this.container
         );
-        this.htmlElements.push(...this.topics['General'].getHTMLElements());
+        // this.htmlElements.push(...this.topics['General'].getHTMLElements());
         this._toggleSubItems();
     }
 
