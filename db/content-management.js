@@ -1,8 +1,11 @@
+import generateHash from 'hashGenerator.js';
+
 let tweetStoreName = "tweets";
 let topicStoreName = "topics";
 let topicIndexName = "topicIndex";
 
 let OK_STATUS = 200;
+let FAILURE_STATUS = 500;
 
 // Class: ContentManagement
 // A class that manages the tweets and topics by interfacing with indexedDB.
@@ -18,11 +21,10 @@ class ContentManagemnt {
 
     // Function: createTweet
     //
-    // Creates an entry corresponding to a tweer in the database
+    // Creates an entry corresponding to a tweet in the database
     //
     // Parameters:
     //
-    //  tweetId         - The unique id of the tweet.
     //  tweetText       - The text contained in the tweet.
     //  topicName       - Name of the topic to file the tweet under.
     //  statusCallback  - Listener function from frontend to be executed
@@ -31,7 +33,8 @@ class ContentManagemnt {
     //
     //      Nothing
 
-    createTweet(tweetId, tweetText, topicId, statusCallback) {
+    createTweet(tweetText, topicId, statusCallback) {
+        const tweetId = generateHash(`tweet-${Date.now()}`);
         const tweetObj = {tweetId: tweetId, textContent: tweetText, topicId: topicId};
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const request = objStore.add(tweetObj);
@@ -39,14 +42,29 @@ class ContentManagemnt {
 
         request.onsuccess = (_) => {
             console.log(`Tweet ${tweetId} added to store`);
-            statusCallback({status: OK_STATUS});
+            statusCallback({status: OK_STATUS, data: {id: tweetId}});
         }
 
         request.onerror = (event) => {
             console.log(`Failed adding tweet ${tweetId} to store with error code ${event}`);
-            statusCallback({status: 500, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
+            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
         }
     }
+
+    // Function: updateTweet
+    //
+    // Updates tweet content in the database / moves tweet within topics
+    //
+    // Parameters:
+    //
+    //  tweetId         - The unique id of the tweet.
+    //  tweetText       - Updated text contained in the tweet.
+    //  topicId       - Updated TopicId if moving tweet
+    //  statusCallback  - Listener function from frontend to be executed
+    // 
+    // Returns:
+    //
+    //      Nothing
 
     updateTweet(tweetId, tweetText, topicId, statusCallback) {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
@@ -65,15 +83,28 @@ class ContentManagemnt {
 
             updateReq.onerror = (event) => {
                 console.log(`Failed to update ${tweetId} in store with error code ${event.target.errorCode}`);
-                statusCallback({status: 500, errorMessage: `Failed to update ${tweetId} in store with error code ${event.target.errorCode}`});
+                statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to update ${tweetId} in store with error code ${event.target.errorCode}`});
             }
         }
 
         fetchRequest.onerror = (event) => {
             console.log(`Failed to fetch ${tweetId} from store with error code ${event.target.errorCode}`);
-            statusCallback({status: 500, errorMessage: `Failed to fetch ${tweetId} from store with error code ${event.target.errorCode}`});
+            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to fetch ${tweetId} from store with error code ${event.target.errorCode}`});
         }
     }
+
+    // Function: deleteTweet
+    //
+    // Delete tweet entry from DB
+    //
+    // Parameters:
+    //
+    //  tweetId         - The unique id of the tweet.
+    //  statusCallback  - Listener function from frontend to be executed
+    // 
+    // Returns:
+    //
+    //      Nothing
 
     deleteTweet(tweetId, statusCallback) {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
@@ -85,25 +116,53 @@ class ContentManagemnt {
         }
         request.onerror = (event) => {
              console.log(`Could not delete ${tweetId} from records. Failed with ${event.target.errorCode}`);
-             statusCallback({status: 500, errorMessage: `Could not delete ${tweetId} from records. Failed with ${event.target.errorCode}`});
+             statusCallback({status: FAILURE_STATUS, errorMessage: `Could not delete ${tweetId} from records. Failed with ${event.target.errorCode}`});
         }
     }
 
-    createTopic(topicId, topicName, statusCallback) {
+    // Function: createTopic
+    //
+    // Creates an entry corresponding to a new topic in the database
+    //
+    // Parameters:
+    //
+    //  topicName       - Name of the topic to store tweets within
+    //  statusCallback  - Listener function from frontend to be executed
+    // 
+    // Returns:
+    //
+    //      Nothing
+
+    createTopic(topicName, statusCallback) {
+        const topicId = generateHash(`topic-${Date.now()}`);
         const topicObj = {topicId: topicId, topicName: topicName};
         const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
         const request = objStore.add(topicObj);
 
         request.onsuccess = (_) => {
             console.log(`Topic ${topicId} added to store`);
-            statusCallback({status: OK_STATUS});
+            statusCallback({status: OK_STATUS, data: {id: topicId}});
         }
 
         request.onerror = (event) => {
             console.log(`Failed adding topic ${topicId} to store`);
-            statusCallback({status: 500, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
+            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
         }
     }
+
+    // Function: updateTopic
+    //
+    // Updates topic Name
+    //
+    // Parameters:
+    //
+    //  topicId         - Unique topic ID corresponding to the topic (Primary Key)
+    //  topicName       - Updated topic name
+    //  statusCallback  - Listener function from frontend to be executed
+    // 
+    // Returns:
+    //
+    //      Nothing
 
     updateTopic(topicId, topicName, statusCallback) {
         const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
@@ -121,15 +180,28 @@ class ContentManagemnt {
 
             updateReq.onerror = (event) => {
                 console.log(`Failed to update ${topicId} in store with error code ${event.target.errorCode}`);
-                statusCallback({status: 500, errorMessage: `Failed to update ${topicId} in store with error code ${event.target.errorCode}`});
+                statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to update ${topicId} in store with error code ${event.target.errorCode}`});
             }
         }
 
         fetchRequest.onerror = (event) => {
             console.log(`Failed to fetch ${topicId} from store with error code ${event.target.errorCode}`);
-            statusCallback({status: 500, errorMessage: `Failed to fetch ${topicId} from store with error code ${event.target.errorCode}`});
+            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to fetch ${topicId} from store with error code ${event.target.errorCode}`});
         }
     }
+
+    // Function: getTweetsByTopicId
+    //
+    // Gets all tweets corresponding to a given topic ID
+    //
+    // Parameters:
+    //
+    //  topicId         - Unique ID corresponding to the topic
+    //  displayTweetsCallback  - Listener function from frontend to be executed
+    // 
+    // Returns:
+    //
+    //      Nothing
 
     getTweetsByTopicId(topicId, displayTweetsCallback) {
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
@@ -142,7 +214,7 @@ class ContentManagemnt {
 
           request.onerror = (event) => {
             console.log(`Failed fetch tweets request by topic ID ${topicId} with error code ${event.target.result}`);
-            displayTweetsCallback({status: 500, errorMessage: `Failed fetch tweets request by topic ID ${topicId} with error code ${event.target.result}`});
+            displayTweetsCallback({status: FAILURE_STATUS, errorMessage: `Failed fetch tweets request by topic ID ${topicId} with error code ${event.target.result}`});
           }
     }
 
@@ -152,7 +224,7 @@ class ContentManagemnt {
     //
     // Parameters:
     //
-    //  displayTopicsCallback   - Listener fucntion from fontend to be executed
+    //  displayTopicsCallback - Listener fucntion from fontend to be executed
     // 
     // Returns:
     //
