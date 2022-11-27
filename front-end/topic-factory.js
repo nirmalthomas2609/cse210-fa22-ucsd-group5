@@ -1,4 +1,5 @@
 let TOPIC_ID = 1;
+let DEFAULT_TOPIC = 'General';
 class TopicFactory extends AbstractUserMenu {
     constructor(title, db, container, topicid=null) {
         super();
@@ -11,9 +12,18 @@ class TopicFactory extends AbstractUserMenu {
         this.contentManager = new ContentManagemnt(this.db);
 
     	this.initializeHTML();
+        this.textEditor = new TextEditor(this.container);
+        this.textEditor.registerObserver(this);
     	//this.initializeDB();
 	}
 
+    _tweetClickEvent(tweetData) {
+        this.textEditor.start(false, tweetData.content);
+    }
+    _textEditorUpdate(tweetData) {
+        this.newTweet(tweetData); 
+        this._toggleSubItems();   
+    }
 	initializeHTML() {
 		// add folder to folder object
         this.topicContainer = document.createElement('div');
@@ -27,12 +37,7 @@ class TopicFactory extends AbstractUserMenu {
         this.newNoteBtn.innerHTML ="New Note";
         this.topicContainer.appendChild(this.newNoteBtn);
         this.newNoteBtn.onclick = () => {
-            let tweet = new TweetFactory(
-                'New Tweet!',
-                db,
-                this.topicContainer
-            );
-            this.tweets.push(tweet);
+            this.textEditor.start();
         }
         TOPIC_ID += 1;
         
@@ -41,12 +46,18 @@ class TopicFactory extends AbstractUserMenu {
         this._toggleSubItems();
 	}
 
-    newTweet(title) {
+    newTweet(tweetData, id=null) {
+        console.log(tweetData)
         let tweet = new TweetFactory(
-            title,
+            this.title,
+            tweetData.title,
             db,
-            this.topicContainer
+            this.topicContainer,
+            tweetData.content,
+            tweetData.title,
+            tweetData.newTweet
         );
+        tweet.registerObserver(this);
         this.tweets.push(tweet);
     }
 	//initializeDB() {

@@ -9,6 +9,7 @@
         <script src="front-end/abstract-user-menu.js"></script>
         <script src="front-end/topic-factory.js"></script>
         <script src="front-end/tweet-factory.js"></script>
+        <script src="front-end/text-editor.js"></script>
         <script src="front-end/user.js"></script>
         <script src="front-end/note.js"></script>
     </head>
@@ -29,7 +30,16 @@
         </div>        
         
         <script src="front-end/note-app.js"></script>
-        <div id="text-editor" class="text-editor hidden"></div>
+
+        <div id="text-editor-container" class="text-editor-container hidden">
+            <button id='save-button'>Save</button>
+            <textarea id='text-editor'></textarea>
+        </div>
+
+        <div id='save-container' class='save-container hidden'>
+            <div>Save as...</div>
+            <input id="save-input">
+        </div>
 
         <!--initialize background animation-->
         <script src="vendor/three.min.js"></script>

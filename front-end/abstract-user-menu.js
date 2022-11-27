@@ -4,8 +4,9 @@ let SUB_ITEM_CLASS = 'sub-item';
 let TOPIC_ITEM_CLASS = 'topic-item';
 let TWEET_ITEM_CLASS = 'tweet-item';
 
-class AbstractUserMenu {
-    constructor() {
+class AbstractUserMenu extends AbstractObserverPattern{
+    constructor(callback) {
+        super(callback)
         if(this.constructor === AbstractUserMenu) {
             throw new Error(
                 'Abstract Class: AbstractUserMenu cannot be instantiated.'

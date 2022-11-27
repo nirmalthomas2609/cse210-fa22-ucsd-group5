@@ -1,11 +1,12 @@
 :root {
     --header-font-color: rgba(255,255,255,1);
-    --faded-font-color: rgba(255,255,255,0.3);
+    --faded-font-color: rgba(255,255,255,0.4);
     --header-font-size: clamp(3rem, 8vw, 8rem);
     --sub-font-size: clamp(2rem, 5vw, 5rem);
     --small-font-size: clamp(1rem, 2vw, 2rem);
-    --light-grey-background: rgba(255,255,255,0.05);
-    --medium-grey-background: rgba(255,255,255,0.05);
+    --light-grey-background: rgba(255,255,255,0.1);
+    --medium-grey-background: rgba(255,255,255,0.1);
+    --dark-grey-background: rgba(255,255,255,0.75);
     --border-placement: 5%;
 }
 
@@ -14,14 +15,59 @@ body {
     overflow: hidden;
 }
 
-.text-editor {
+.save-container {
     position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    
+    top: 40%;
+    left: 30%;
+    width: 40%;
+    height: 20%;
+    background-color: var(--dark-grey-background);
+    border-color: transparent;
+}
+
+.save-container > div {
+    font-size: var(--header-font-size);
+    font-family: "Ibarra Real Nova", serif;
+}
+.text-editor-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-end;*/
+
     top: var(--border-placement);
     left: var(--border-placement);
     width: 90%;
     height: 90%;
-    background-color: blueviolet;
+    background-color: var(--dark-grey-background);
+    border-color: transparent;
 }
+.text-editor-container > button  {
+    border-color: transparent;
+}
+
+.text-editor-container > textarea {
+    border-color: transparent;
+    resize: none;
+    flex-grow:  1;
+    background-color: transparent;
+
+    font-family: "Ibarra Real Nova", serif;
+    text-decoration: none;
+    text-align: left;
+
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
 #background {
     position: absolute;
     top: 0;

@@ -26,14 +26,15 @@
             3000
         );
         camera.position.set(0, 0, 0);
+        camera.lookAt(new THREE.Vector3(0,-1,0))
         camera.updateProjectionMatrix();
 
         // set up skybox
         let skyGeometry = new THREE.BoxGeometry(1000, 1000, 1000);
         
         function createMaterialArray() {
-            let skyboxPaths = ['rt', 'lf','up', 'dn', 'bk', 'ft'].map(side => {
-                return `front-end/background-images/${SKYBOX_NAME}_${side}.png`
+            let skyboxPaths = ['right', 'left', 'top','bot', 'front', 'back'].map(side => {
+                return `front-end/background-images/bkg1_${side}.png`
             });
             let materialArray = skyboxPaths.map(path => {
                 let texture = new THREE.TextureLoader().load(path);
@@ -46,7 +47,7 @@
         scene.add(skybox)
         
         function animate() {
-            skybox.rotation.y += 0.001;
+            skybox.rotation.z += 0.001;
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
         }
