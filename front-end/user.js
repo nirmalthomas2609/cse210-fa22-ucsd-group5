@@ -8,8 +8,10 @@ class User extends AbstractUserMenu {
         this.db = db;
         this.contentManager = new ContentManagemnt(this.db);
         this.htmlElements = [];
+
         
         this.createUserScreen();
+
         this.notes = [];
         this.folders = [];
         this.chksPressed = 0;
@@ -50,20 +52,31 @@ class User extends AbstractUserMenu {
         this.htmlElements.push(this.newFolderBtn);
         this.topicIDNum = 1;
         this.newFolderBtn.onclick = () => {
-            this.createTopic(`New Topic ${this.topicIDNum}`);
+            this.createTopic(`New Topic ${this.topicIDNum}`, true);
         }
-        this.topics[DEFAULT_TOPIC] = new TopicFactory(
-            DEFAULT_TOPIC,
-            db,
-            this.container,
-            DEFAULT_TOPIC
-        );
-        this.readTweetsPerTopic(DEFAULT_TOPIC);
-        this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
+        this.contentManager.getAllTopics((returnObj) => {
+            if (returnObj.topicsList.length > 0){
+            this.topics[DEFAULT_TOPIC] = new TopicFactory(
+                DEFAULT_TOPIC,
+                db,
+                this.container,
+                DEFAULT_TOPIC, 
+                true);
+            }
+            else {
+                this.topics[DEFAULT_TOPIC] = new TopicFactory(
+                    DEFAULT_TOPIC, 
+                    db,
+                    this.container,
+                    DEFAULT_TOPIC);
+            }
+            this.readTweetsPerTopic(DEFAULT_TOPIC);
+            this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
 
-        this.readTopics();
+            this.readTopics();
 
-        this._toggleSubItems();
+            this._toggleSubItems();
+        });
     }
 
     readTopics() {
@@ -79,12 +92,13 @@ class User extends AbstractUserMenu {
 
     }
 
-    createTopic(topic) {
+    createTopic(topic, isNewTopic = false) {
         this.topics[topic] = new TopicFactory(
             topic,
             db,
             this.container,
-            this.topicIDNum
+            this.topicIDNum,
+            isNewTopic
         );
         
         // this.readTweetsPerTopic(DEFAULT_TOPIC);

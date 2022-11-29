@@ -1,7 +1,7 @@
 let TOPIC_ID = 1;
 let DEFAULT_TOPIC = 'General';
 class TopicFactory extends AbstractUserMenu {
-    constructor(title, db, container, topicid=null) {
+    constructor(title, db, container, topicid=null, isNewEntry = false) {
         super();
 
         this.title = title;
@@ -14,7 +14,9 @@ class TopicFactory extends AbstractUserMenu {
     	this.initializeHTML();
         this.textEditor = new TextEditor(this.container);
         this.textEditor.registerObserver(this);
-    	this.initializeDB();
+        if (isNewEntry) {
+    	    this.initializeDB();
+        }
 	}
 
     _tweetClickEvent(tweetData) {

@@ -131,7 +131,7 @@ class ContentManagemnt {
 
     createTopic(topicName, statusCallback) {
         console.log(this.db);
-        const topicId = `topic-${Date.now()}`;
+        const topicId = topicName;
         const topicObj = {topicId: topicId, topicName: topicName};
         const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
         const request = objStore.add(topicObj);
@@ -143,7 +143,7 @@ class ContentManagemnt {
 
         request.onerror = (event) => {
             console.log(`Failed adding topic ${topicId} to store`);
-            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
+            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed adding topic ${topicId} to store with error code ${event.target.errorCode}`});
         }
     }
 
@@ -228,15 +228,15 @@ class ContentManagemnt {
 
     getAllTopics(displayTopicsCallback) {
 
-        const topicStore = this.db.transaction([tweetStoreName], "readonly").objectStore(tweetStoreName);
+        const topicStore = this.db.transaction([topicStoreName], "readonly").objectStore(topicStoreName);
 
         var allRecords = topicStore.getAll();
 
         allRecords.onsuccess = (event) => {
             let data = event.target.result;
             let topicList = new Set();
-            for (var tweet of data) {
-                topicList.add(tweet.topicId);
+            for (var topic of data) {
+                topicList.add(topic.topicId);
             }
             const returnObj = {status: true, topicsList: [...topicList]};
             displayTopicsCallback(returnObj);
