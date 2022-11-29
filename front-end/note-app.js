@@ -45,7 +45,7 @@ function lauchUser(userName) {
     }
 }
 
-(function app() {
+function displayLogin() {
     // parameters for login screen
     let LOGIN_SCREEN_ID = 'login-div';
     let WELCOME_TEXT = 'Welcome';
@@ -80,4 +80,15 @@ function lauchUser(userName) {
         loginItems.push(item);
     }
     fadeInOut(loginItems, true);
+}
+
+(function app() {
+   // console.log(db);
+   //if (firstUser) {
+    lauchUser("Temp");
+   // }
+   // else {
+    //    displayLogin();
+   // }
+    
 })();

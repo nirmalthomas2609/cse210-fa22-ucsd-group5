@@ -1,5 +1,3 @@
-import generateHash from 'hashGenerator.js';
-
 let tweetStoreName = "tweets";
 let topicStoreName = "topics";
 let topicIndexName = "topicIndex";
@@ -11,10 +9,8 @@ let FAILURE_STATUS = 500;
 // A class that manages the tweets and topics by interfacing with indexedDB.
 
 class ContentManagemnt {
-
     // Constructor: constructor
-    //  Initializes the db object.
-
+    // Initializes the db object.
     constructor(db) {
         this.db = db;
     }
@@ -34,7 +30,7 @@ class ContentManagemnt {
     //      Nothing
 
     createTweet(tweetText, topicId, statusCallback) {
-        const tweetId = generateHash(`tweet-${Date.now()}`);
+        const tweetId = `tweet-${Date.now()}`;
         const tweetObj = {tweetId: tweetId, textContent: tweetText, topicId: topicId};
         const objStore = this.db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
         const request = objStore.add(tweetObj);
@@ -134,7 +130,8 @@ class ContentManagemnt {
     //      Nothing
 
     createTopic(topicName, statusCallback) {
-        const topicId = generateHash(`topic-${Date.now()}`);
+        console.log(this.db);
+        const topicId = `topic-${Date.now()}`;
         const topicObj = {topicId: topicId, topicName: topicName};
         const objStore = this.db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
         const request = objStore.add(topicObj);

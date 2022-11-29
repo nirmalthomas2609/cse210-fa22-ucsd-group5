@@ -86,6 +86,7 @@ class User extends AbstractUserMenu {
             this.container,
             this.topicIDNum
         );
+        
         // this.readTweetsPerTopic(DEFAULT_TOPIC);
         this.htmlElements.push(...this.topics[topic].getHTMLElements());
 
@@ -102,7 +103,7 @@ class User extends AbstractUserMenu {
     }
 
     displayTweetsByTopics(topic, tweetList) {
-        console.log('????', topic, tweetList)
+        //console.log('????', topic, tweetList)
         if (tweetList.status === OK_STATUS) {
             for(let tweet of tweetList.data) {
                 console.log(tweet)

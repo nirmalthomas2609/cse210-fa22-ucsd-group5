@@ -14,7 +14,7 @@ class TopicFactory extends AbstractUserMenu {
     	this.initializeHTML();
         this.textEditor = new TextEditor(this.container);
         this.textEditor.registerObserver(this);
-    	//this.initializeDB();
+    	this.initializeDB();
 	}
 
     _tweetClickEvent(tweetData) {
@@ -47,7 +47,7 @@ class TopicFactory extends AbstractUserMenu {
 	}
 
     newTweet(tweetData, id=null) {
-        console.log(tweetData)
+        //console.log(tweetData)
         let tweet = new TweetFactory(
             this.title,
             tweetData.title,
@@ -60,9 +60,10 @@ class TopicFactory extends AbstractUserMenu {
         tweet.registerObserver(this);
         this.tweets.push(tweet);
     }
-	//initializeDB() {
-        //this.contentManager.createTopic(TOPIC_ID, "ExampleTopic", console.log);
-   // }
+
+	initializeDB() {
+        this.contentManager.createTopic(this.title, console.log);
+    }
 	
 
     getTopicDiv() {
