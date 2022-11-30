@@ -246,15 +246,94 @@ function getAllTopics(displayTopicsCallback) {
         for (var topic of data) {
             topicList.add(topic.topicId);
         }
-        const returnObj = {status: true, topicsList: [...topicList]};
+        const returnObj = {status: OK_STATUS, topicsList: [...topicList]};
         displayTopicsCallback(returnObj);
     }
 
     allRecords.onerror = (event) => {
-        const returnObj = {status: false, topicsList: []};
+        const returnObj = {status: FAILURE_STATUS, topicsList: []};
         displayTopicsCallback(returnObj);
     }
 
+}
+
+// Function: getTweetById
+//
+// Gets tweet identified by tweetId
+//
+// Parameters:
+//
+//  tweetId         - Unique ID corresponding to the tweet
+//  displayTweetCallback  - Listener function from frontend to be executed
+// 
+// Returns:
+//
+//      Nothing
+
+function getTweetById(tweetId, displayTweetCallback) {
+    const objStore = db.transaction([tweetStoreName], "readonly").objectStore(tweetStoreName);
+
+    var tweetRecord = objStore.get(tweetId);
+
+    tweetRecord.onsuccess = (event) => {
+        let tweetData = event.target.result;
+        const returnObj = {status: OK_STATUS, data: tweetData};
+        displayTweetCallback(returnObj);
+    }
+
+    tweetRecord.onerror = (event) => {
+        const returnObj = {status: FAILURE_STATUS, data: undefined}
+        displayTweetCallback(returnObj);
+    }
+}
+
+// Function: deleteTopic
+//
+// Deletes all tweets corresponding to the topic and also additionally removes the topic record from the topic store
+//
+// Parameters:
+//
+//  topicId         - Unique ID corresponding to the topic
+//  statusCallback  - Listener function from frontend to be executed
+// 
+// Returns:
+//
+//      Nothing
+
+function deleteTopic(topicId, statusCallback) {
+    const topicStore = db.transaction([topicStoreName], "readonly").objectStore(topicStoreName);
+
+    const successReturnObj = {status: OK_STATUS};
+    const failureReturnObj = {status: FAILURE_STATUS};
+
+    getTweetsByTopicId(topicId, function(tweetsFetchStatus) {
+        if (tweetsFetchStatus.status == FAILURE_STATUS){
+            statusCallback(failureReturnObj);
+            return;
+        }
+
+        const tweets = tweetsFetchStatus.data;
+        for (var tweet of tweets) {
+            deleteTweet(tweet.tweetId, function(tweetDeleteStatus) {
+                if (tweetDeleteStatus.status === FAILURE_STATUS){
+                    statusCallback(failureReturnObj);
+                    return;
+                }
+            });
+        }
+
+        const deleteTopicRequest = topicStore.delete(topicId);
+
+        deleteTopicRequest.onsuccess = (event) => {
+            statusCallback(successReturnObj);
+            return;
+        }
+
+        deleteTopicRequest.onerror = (event) => {
+            statusCallback(failureReturnObj);
+            return;
+        }
+    });
 }
 
 // module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic};
