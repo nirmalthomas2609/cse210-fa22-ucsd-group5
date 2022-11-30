@@ -20,11 +20,9 @@ class AbstractUserMenu extends AbstractObserverPattern{
         subItem.dataset.active = false;
         subItem.onmouseover = () => {
             subItem.dataset.active = true;
-            hideItems(subItem.children,false);
         }
         subItem.onmouseout = () => {
             subItem.dataset.active = false;
-            hideItems(subItem.children,true);
         }
     }
 

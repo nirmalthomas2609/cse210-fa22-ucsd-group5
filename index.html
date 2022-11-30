@@ -15,35 +15,31 @@
     </head>
 
     <body>
-        <canvas id="background">
-            Your browser does not support HTML5
-        </canvas>
-
-        <!--login screen-->
-        <div class="menu"> 
-            <div id="login-div" class="login-items"></div>
-        </div>
-
         <!-- user screen -->
         <div class="menu">
-            <div id="user-div" class="user-items"></div>
+            <div id="topics">
+                <div class="menu-header">
+                    <div class="base-font bold">Topics</div>
+                    <button id="new-topic" class="base-font bold clear-background">+</button>
+                </div>
+            </div>
+            <div id="tweets">
+                <button id="new-note" class="base-font bold clear-background">
+                    New Note
+                </button>
+                <div id="tweet-items"></div>
+            </div>
+            <div id="text-editor-container" class="text-editor-container hidden">
+                <div class="text-editor-menu">
+                    <input id="tweet-title"></input>
+                    <button id='save-button'>Save</button>
+                </div>
+                <textarea id='text-editor'></textarea>
+            </div>
         </div>        
-        
+        <div id="context-menu" class="hidden">
+            <div class="context-item">Rename</div>
+        </div>
         <script src="front-end/note-app.js"></script>
-
-        <div id="text-editor-container" class="text-editor-container hidden">
-            <button id='save-button'>Save</button>
-            <textarea id='text-editor'></textarea>
-        </div>
-
-        <div id='save-container' class='save-container hidden'>
-            <div>Save as...</div>
-            <input id="save-input">
-        </div>
-
-        <!--initialize background animation-->
-        <script src="vendor/three.min.js"></script>
-        <script src="front-end/background-animation.js"></script>
-
     </body>
 </html>

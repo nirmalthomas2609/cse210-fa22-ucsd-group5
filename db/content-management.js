@@ -77,20 +77,23 @@ function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
 //
 //      Nothing
 
-function updateTweet(tweetId, tweetText, topicId, statusCallback) {
+function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
     const objStore = db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
     const fetchRequest = objStore.get(tweetId);
 
     fetchRequest.onsuccess = (event) => {
         const tweet = event.target.result;
-        if (tweetText > 0){
+        if (tweetTitle.length > 0){
+            tweet.tweetTitle = tweetTitle;
+        }
+        if (tweetText.length > 0){
             tweet.textContent = tweetText;
         }
         if (topicId.length > 0) {
             tweet.topicId = topicId;
         }
 
-        const updateReq = objStore.update(tweet);
+        const updateReq = objStore.put(tweet);
         updateReq.onsuccess = (_) => {
             statusCallback({status: OK_STATUS});
         }
@@ -180,7 +183,7 @@ function updateTopic(topicId, topicName, statusCallback) {
         const topic = event.target.result;
         topic.topicName = topicName;
 
-        const updateReq = objStore.update(topic);
+        const updateReq = objStore.put(topic);
         updateReq.onsuccess = (_) => {
             statusCallback({status: OK_STATUS});
         }

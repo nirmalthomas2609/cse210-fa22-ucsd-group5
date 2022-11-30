@@ -1,35 +1,67 @@
 let DEFAULT_TOPIC = 'General';
-class TopicFactory extends AbstractUserMenu {
-    constructor(title, db, container, topicid=null, isNewEntry = false) {
-        super();
-
+let TOPIC_ID = 1;
+class TopicFactory {
+    constructor(title, container, newTopic=false) {
         this.title = title;
-    	this.tweets = [];
-    	this.topicid = topicid ? topicid : TOPIC_ID++;
-    	this.container = container;
-
-    	this.initializeHTML();
-        this.textEditor = new TextEditor(this.container);
-        this.textEditor.registerObserver(this);
-        if (isNewEntry) {
-    	    this.initializeDB();
-            this.tweets = [];
+    	this.topicid = title;
+        this.container = container;
+        this.tweetContainer = document.getElementById('tweet-items');
+        if(newTopic) {
+            this.initializeDB();
         }
+        this.currentTweet = null;
+        this.textEditor = new TextEditor();
+        this.textEditor.registerObserver(this);
 	}
+
+    activate() {
+        this.container.classList.add('topic-item-selected');
+        getTweetsByTopicId(this.topicid, (tweetList) => {
+            if (tweetList.status === OK_STATUS) {
+                for(let tweet of tweetList.data) {
+                    this.createTweetItem(tweet.tweetTitle, tweet.tweetId);
+                }
+            }
+            if (tweetList.data.length > 0) {
+                this.launchTextEditor(tweetList.data[0].tweetId);
+            }
+        });
+    }
+
+    createTweetItem(title, id) {
+        let container = document.createElement('div');
+        container.innerHTML = title;
+        container.id = id;
+        container.classList.add('tweet-item');
+        container.onmouseover = () => {
+            container.dataset.active = true;
+        }
+        container.onmouseout = () => {
+            container.dataset.active = false;
+        }
+        container.onclick = () => {
+            this.launchTextEditor(container.id);
+        }
+        this.tweetContainer.appendChild(container);
+    }
+
+    deactivate() {
+        this.container.classList.remove('topic-item-selected');
+        while (this.tweetContainer.firstChild) {
+            this.tweetContainer.removeChild(this.tweetContainer.firstChild);
+        }
+    }
 
     _tweetClickEvent(tweetData) {
         this.textEditor.start(false, tweetData.content);
     }
+    
     _textEditorUpdate(tweetData) {
-        this.newTweet(tweetData); 
-        this._toggleSubItems();   
+        console.log(tweetData)
+        updateTweet(tweetData.id, tweetData.title, tweetData.content, this.topicid, console.log)
     }
+
 	initializeHTML() {
-		// add folder to folder object
-        this.topicContainer = document.createElement('div');
-        this.topicContainer.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS, TOPIC_ITEM_CLASS);
-        this.topicContainer.innerHTML = this.title;
-        
         // Edit Topic Name Button
         this.updateTopicNameButton = document.createElement('div');
         this.updateTopicNameButton.innerHTML = 'Edit Topic Name';
@@ -38,25 +70,9 @@ class TopicFactory extends AbstractUserMenu {
         this.updateTopicNameButton.onclick = () => {
             this.promptNewTopicName()
         }
-        
-
-        
-        // New Note
-        this.newNoteBtn = document.createElement('button');
-        this.newNoteBtn.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS);
-        this.newNoteBtn.innerHTML ="New Note";
-        this.topicContainer.appendChild(this.newNoteBtn);
-        this.newNoteBtn.onclick = () => {
-            this.textEditor.start();
-        }
-        
-        this.container.append(this.topicContainer);
-
-        this._toggleSubItems();
 	}
 
     promptNewTopicName() {
-        
         let text;
         let newTopicId = prompt("New name for topic");
         console.log(this.topicid)
@@ -65,28 +81,36 @@ class TopicFactory extends AbstractUserMenu {
           
     }
 
-    newTweet(tweetData, id=null) {
-        //console.log(tweetData)
-        let tweet = new TweetFactory(
-            this.title,
-            tweetData.title,
-            db,
-            this.topicContainer,
-            tweetData.content,
-            tweetData.title,
-            tweetData.newTweet
-        );
-        tweet.registerObserver(this);
-        this.tweets.push(tweet);
+    newTweet() {
+        let tweetTitle = 'Untitled';
+        createTweet('', tweetTitle, this.topicid, (tweet) => {
+            this.createTweetItem(tweetTitle, tweet.data.tweetId);
+            this.launchTextEditor();
+        });
     }
 
+    launchTextEditor(tweetId) {
+        for(let tweet of document.getElementsByClassName('tweet-item-selected')) {
+            tweet.classList.remove('tweet-item-selected');
+        }
+        let tweet = document.getElementById(tweetId);
+        tweet.classList.add('tweet-item-selected');
+        getTweetsByTopicId(this.topicid, (tweetList) => {
+            if (tweetList.status === OK_STATUS) {
+                for(let tweet of tweetList.data) {
+                    if (tweet.tweetId === tweetId) {
+                        console.log(tweet)
+                        this.textEditor.start(tweet.tweetTitle, tweet.textContent, tweet.tweetId)
+                        console.log(`launch tweet${tweet.tweetId}`)
+                    }
+                }
+            }
+        })
+    }
 
 	initializeDB() {
-        createTopic(this.title, console.log);
-    }
-	
-
-    getTopicDiv() {
-        return this.topicContainer;
+        createTopic(this.title, (topicObj) => {
+            this.topicid = topicObj.topicid;
+        });
     }
 }
