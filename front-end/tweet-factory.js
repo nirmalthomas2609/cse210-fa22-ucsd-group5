@@ -8,8 +8,6 @@ class TweetFactory extends AbstractUserMenu {
         this.topicid = topicid;
         this.tweetid = (tweetid) ? tweetid : TWEET_ID++;
         this.container = container;
-        this.db = db;
-        this.contentManager = new ContentManagemnt(this.db);
         
         this.initializeHTML();
         if(newTweet) {
@@ -33,7 +31,7 @@ class TweetFactory extends AbstractUserMenu {
     }
 
     initializeDB() {
-        this.contentManager.createTweet(this.content, this.topicid, console.log);
+        createTweet(this.content, this.topicid, console.log);
     }
 
     getId() {}

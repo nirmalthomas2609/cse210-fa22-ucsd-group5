@@ -8,8 +8,6 @@ class TopicFactory extends AbstractUserMenu {
     	this.tweets = [];
     	this.topicid = topicid ? topicid : TOPIC_ID++;
     	this.container = container;
-        this.db = db;
-        this.contentManager = new ContentManagemnt(this.db);
 
     	this.initializeHTML();
         this.textEditor = new TextEditor(this.container);
@@ -64,7 +62,7 @@ class TopicFactory extends AbstractUserMenu {
     }
 
 	initializeDB() {
-        this.contentManager.createTopic(this.title, console.log);
+        createTopic(this.title, console.log);
     }
 	
 
