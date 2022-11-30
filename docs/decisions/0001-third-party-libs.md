@@ -2,7 +2,6 @@
 status: {accepted}
 date: {2022-10-28 when the decision was last updated}
 ---
-
 # Use of Third Party Libraries
 
 ## Context and Problem Statement
