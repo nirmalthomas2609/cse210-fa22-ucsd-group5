@@ -1,6 +1,6 @@
 ---
 status: {accepted}
-date: {2022-10-28 when the decision was last updated}
+date: {2022-10-28}
 ---
 # Use of Third Party Libraries
 
