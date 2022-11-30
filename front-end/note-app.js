@@ -84,7 +84,6 @@ function displayLogin() {
 }
 
 (function app() {
-    console.log("Hello 1");
     setupDB("note-taker-db", launchUser)
    // console.log(db);
    //if (firstUser) {

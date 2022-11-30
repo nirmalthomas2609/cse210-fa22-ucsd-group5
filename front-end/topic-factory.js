@@ -15,9 +15,6 @@ class TopicFactory extends AbstractUserMenu {
     	    this.initializeDB();
             this.tweets = [];
         }
-        else {
-
-        }
 	}
 
     _tweetClickEvent(tweetData) {
