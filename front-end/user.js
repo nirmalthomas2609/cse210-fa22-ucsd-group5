@@ -54,7 +54,7 @@ class User extends AbstractUserMenu {
         this.newFolderBtn.onclick = () => {
             this.createTopic(`New Topic ${this.topicIDNum}`, true);
         }
-        this.contentManager.getAllTopics((returnObj) => {
+        /* this.contentManager.getAllTopics((returnObj) => {
             if (returnObj.topicsList.length > 0){
             this.topics[DEFAULT_TOPIC] = new TopicFactory(
                 DEFAULT_TOPIC,
@@ -64,11 +64,7 @@ class User extends AbstractUserMenu {
                 true);
             }
             else {
-                this.topics[DEFAULT_TOPIC] = new TopicFactory(
-                    DEFAULT_TOPIC, 
-                    db,
-                    this.container,
-                    DEFAULT_TOPIC);
+                this.topics[DEFAULT_TOPIC] = 
             }
             this.readTweetsPerTopic(DEFAULT_TOPIC);
             this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
@@ -76,7 +72,11 @@ class User extends AbstractUserMenu {
             this.readTopics();
 
             this._toggleSubItems();
-        });
+        }); */
+        this.readTopics();
+
+        this._toggleSubItems();
+
     }
 
     readTopics() {

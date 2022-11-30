@@ -1,4 +1,3 @@
-let TOPIC_ID = 1;
 let DEFAULT_TOPIC = 'General';
 class TopicFactory extends AbstractUserMenu {
     constructor(title, db, container, topicid=null, isNewEntry = false) {
@@ -16,6 +15,10 @@ class TopicFactory extends AbstractUserMenu {
         this.textEditor.registerObserver(this);
         if (isNewEntry) {
     	    this.initializeDB();
+            this.tweets = [];
+        }
+        else {
+
         }
 	}
 
@@ -31,7 +34,17 @@ class TopicFactory extends AbstractUserMenu {
         this.topicContainer = document.createElement('div');
         this.topicContainer.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS, TOPIC_ITEM_CLASS);
         this.topicContainer.innerHTML = this.title;
-        this.htmlElements.push(this.topicContainer);
+        
+        // Edit Topic Name Button
+        this.updateTopicNameButton = document.createElement('div');
+        this.updateTopicNameButton.innerHTML = 'Edit Topic Name';
+        this.updateTopicNameButton.classList.add(USER_ITEM_CLASS, SUB_ITEM_CLASS)
+        this.topicContainer.appendChild(this.updateTopicNameButton);
+        this.updateTopicNameButton.onclick = () => {
+            this.promptNewTopicName()
+        }
+        
+
         
         // New Note
         this.newNoteBtn = document.createElement('button');
@@ -41,12 +54,21 @@ class TopicFactory extends AbstractUserMenu {
         this.newNoteBtn.onclick = () => {
             this.textEditor.start();
         }
-        TOPIC_ID += 1;
         
         this.container.append(this.topicContainer);
 
         this._toggleSubItems();
 	}
+
+    promptNewTopicName() {
+        
+        let text;
+        let newTopicId = prompt("New name for topic");
+        console.log(this.topicid)
+        this.contentManager.updateTopic(this.topicid, newTopicId);
+        this.topicid = newTopicId;
+          
+    }
 
     newTweet(tweetData, id=null) {
         //console.log(tweetData)
@@ -62,6 +84,7 @@ class TopicFactory extends AbstractUserMenu {
         tweet.registerObserver(this);
         this.tweets.push(tweet);
     }
+
 
 	initializeDB() {
         this.contentManager.createTopic(this.title, console.log);
