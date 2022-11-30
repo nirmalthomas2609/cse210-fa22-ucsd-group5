@@ -31,7 +31,7 @@ class TweetFactory extends AbstractUserMenu {
     }
 
     initializeDB() {
-        createTweet(this.content, this.topicid, console.log);
+        createTweet(this.content, this.title, this.topicid, this.getId);
     }
 
     getId() {}

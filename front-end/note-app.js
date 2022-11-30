@@ -35,15 +35,15 @@ function launchUser(userName = "") {
     let name = userName.trim();
 
     // else create class new user
-    if(name) { // check for valid names!!!!!!
-        user = new User(name, userScreen, db);
-        let userItems = user.getHTMLElements();
-        hideItems(userItems);
-        setTimeout(() =>{
-            hideItems(userItems, false);
-            fadeInOut(userItems, true);
-        }, 500);
-    }
+    // check for valid names!!!!!!
+    user = new User(name, userScreen, db);
+    let userItems = user.getHTMLElements();
+    hideItems(userItems);
+    setTimeout(() =>{
+        hideItems(userItems, false);
+        fadeInOut(userItems, true);
+    }, 500);
+    
 }
 
 function displayLogin() {
@@ -85,7 +85,7 @@ function displayLogin() {
 
 (function app() {
     console.log("Hello 1");
-    // setupDB("note-taker-db", launchUser)
+    setupDB("note-taker-db", launchUser)
    // console.log(db);
    //if (firstUser) {
     // launchUser("Temp");

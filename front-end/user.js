@@ -120,7 +120,7 @@ class User extends AbstractUserMenu {
             for(let tweet of tweetList.data) {
                 console.log(tweet)
                 this.topics[topic].newTweet({
-                    title: tweet.tweetId,
+                    title: tweet.tweetTitle,
                     content: tweet.textContent,
                     newTweet: false
                 }, tweet.tweetId);
