@@ -8,10 +8,8 @@ let FAILURE_STATUS = 500;
 let db;
 
 function setupDB(namespace, callback) {
-    console.log("Hello");
 
     if (db) {
-        console.log("DB already present");
         callback();
         return;
     }
@@ -147,7 +145,7 @@ function deleteTweet(tweetId, statusCallback) {
 //      Nothing
 
 function createTopic(topicName, statusCallback) {
-    const topicId = topicName;
+    const topicId = `topic-${Date.now()}`;
     const topicObj = {topicId: topicId, topicName: topicName};
     const objStore = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
     const request = objStore.add(topicObj);
@@ -259,5 +257,5 @@ function getAllTopics(displayTopicsCallback) {
 
 }
 
-// module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet};
+// module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic};
 
