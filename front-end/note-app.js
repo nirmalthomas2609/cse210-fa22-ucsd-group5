@@ -29,7 +29,6 @@ function fadeInOut(items, fadein=true) {
 }
 
 function launchUser(userName = "") {
-    console.log("Inside launch user");
     // check to see if user exists
     let userScreen = document.getElementById('user-div');
     let name = userName.trim();
@@ -84,7 +83,6 @@ function displayLogin() {
 }
 
 (function app() {
-    console.log("Hello 1");
     // setupDB("note-taker-db", launchUser)
    // console.log(db);
    //if (firstUser) {

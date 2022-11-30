@@ -8,10 +8,8 @@ let FAILURE_STATUS = 500;
 let db;
 
 function setupDB(namespace, callback) {
-    console.log("Hello");
 
     if (db) {
-        console.log("DB already present");
         callback();
         return;
     }
@@ -90,7 +88,7 @@ function updateTweet(tweetId, tweetText, topicId, statusCallback) {
             tweet.topicId = topicId;
         }
 
-        const updateReq = objStore.update(tweet);
+        const updateReq = db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName).update(tweet);
         updateReq.onsuccess = (_) => {
             statusCallback({status: OK_STATUS});
         }
@@ -144,7 +142,7 @@ function deleteTweet(tweetId, statusCallback) {
 //      Nothing
 
 function createTopic(topicName, statusCallback) {
-    const topicId = topicName;
+    const topicId = `topic-${Date.now()}`;
     const topicObj = {topicId: topicId, topicName: topicName};
     const objStore = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
     const request = objStore.add(topicObj);
@@ -180,7 +178,7 @@ function updateTopic(topicId, topicName, statusCallback) {
         const topic = event.target.result;
         topic.topicName = topicName;
 
-        const updateReq = objStore.update(topic);
+        const updateReq = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName).update(topic);
         updateReq.onsuccess = (_) => {
             statusCallback({status: OK_STATUS});
         }
@@ -256,5 +254,5 @@ function getAllTopics(displayTopicsCallback) {
 
 }
 
-// module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet};
+module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic};
 
