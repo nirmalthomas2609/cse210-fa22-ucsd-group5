@@ -2,16 +2,12 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="front-end/note-app.css" />
-        <!-- <script src="db/db.js"></script> -->
         <script src="db/content-management.js"></script>
 
         <script src="front-end/abstract-observer.js"></script>
-        <script src="front-end/abstract-user-menu.js"></script>
         <script src="front-end/topic-factory.js"></script>
-        <script src="front-end/tweet-factory.js"></script>
         <script src="front-end/text-editor.js"></script>
         <script src="front-end/user.js"></script>
-        <script src="front-end/note.js"></script>
     </head>
 
     <body>
@@ -37,9 +33,12 @@
                 <textarea id='text-editor'></textarea>
             </div>
         </div>        
+
         <div id="context-menu" class="hidden">
-            <div class="context-item">Rename</div>
+            <div id="rename" class="context-item">Rename...</div>
+            <div id="delete" class="context-item">Delete</div>
         </div>
+        
         <script src="front-end/note-app.js"></script>
     </body>
 </html>

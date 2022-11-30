@@ -244,7 +244,7 @@ function getAllTopics(displayTopicsCallback) {
         let data = event.target.result;
         let topicList = new Set();
         for (var topic of data) {
-            topicList.add(topic.topicId);
+            topicList.add({id: topic.topicId, name: topic.topicName});
         }
         const returnObj = {status: true, topicsList: [...topicList]};
         displayTopicsCallback(returnObj);

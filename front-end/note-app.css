@@ -22,7 +22,6 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     overflow: auto !important;
 }
 
@@ -46,6 +45,12 @@ body {
 }
 #new-note {
     width: 100%;;
+}
+#new-note:hover{
+    background-color: lightgray;
+}
+#new-topic:hover {
+    background-color: slategray;
 }
 
 .menu-header {
@@ -117,19 +122,18 @@ body {
 }
 
 #context-menu {
-    background-color: gray;
+    background-color: whitesmoke;
     position: fixed;
     font-size: 15px;
     cursor: pointer;
-    border-radius: 5px;
 }
 
 #context-menu .context-item {
+    border-bottom: 2px solid black;
     padding: 8px, 10px;
     font-size: 15px;
     color: black;
     cursor: pointer;
-    border-radius: inherit;
 }
 
 #context-menu .context-item:hover {

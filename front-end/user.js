@@ -1,18 +1,19 @@
-class User extends AbstractUserMenu {
-    constructor(topicContainer) {
-        super();
+class User {
+    constructor() {
         this.topicContainer = document.getElementById('topics');
-        this.contextMenu = document.getElementById('context-menu')
-        this.topicIDNum = 1;
         this.topics = {};
         
-        this.currentTopic = DEFAULT_TOPIC;
+        this.currentTopic = null;
         this.newFolderBtn = document.getElementById('new-topic');
-        this.newTweetBtn = document.getElementById('new-note');       
         this.newFolderBtn.onclick = () => {
-            this.createTopic(`New Topic ${this.topicIDNum}`, true);
-            this.topicIDNum += 1;
+            this.createTopic({name: `Untitled`});
         }
+        
+        this.newTweetBtn = document.getElementById('new-note'); 
+        this.newTweetBtn.onclick = () => {
+            this.topics[this.currentTopic].newTweet();
+        }      
+
         this.readTopics();
     }
 
@@ -24,46 +25,46 @@ class User extends AbstractUserMenu {
 
     readTopics() {
         getAllTopics((topicEvent) => {
-            if(!topicEvent.topicsList.includes(DEFAULT_TOPIC)) {
-                this.createTopic(DEFAULT_TOPIC, true);
-            }
-            for(let topic of topicEvent.topicsList) {
-                this.createTopic(topic);
-            }
-            this.activateTopic(DEFAULT_TOPIC);
-            this.newTweetBtn.onclick = () => {
-                this.topics[this.currentTopic].newTweet();
+            if(!topicEvent.topicsList.length > 0) {
+                this.createTopic({name: DEFAULT_TOPIC}, true);
+            } else {
+                for(let i = 0; i < topicEvent.topicsList.length; i++) {
+                    let topic = topicEvent.topicsList[i];
+                    let setAsActive = i == 0;
+                    this.createTopic(topic, setAsActive);
+                }
             }
         });
 
     }
 
-    createTopic(topic, isNewTopic = false) {
+    createTopic(topic, setAsActive=false) {
         let topicItem = document.createElement('div');
-        topicItem.innerHTML = topic;
         topicItem.classList.add('topic-item', 'base-font')
-        topicItem.onmouseover = () => {
-            topicItem.dataset.active = true;
-        }
-        topicItem.onmouseout = () => {
-            topicItem.dataset.active = false;
-        }
-        // topicItem.addEventListener('contextmenu', (event) => {
-        //     event.preventDefault();
+        let topicFactory = new TopicFactory(topic.name, topicItem, topic.id)
+        topicFactory.initialize((topicObj) => {
+            topicItem.id = topicObj.id;
+            topicItem.innerHTML = topicObj.name;
+            this.topics[topicObj.id] = topicFactory;
+            addMenuItemEvents(
+                topicItem,
+                () => {this.activateTopic(topicObj.id);},
+                (newName) => {
+                    console.log(newName)
+                    updateTopic(topicObj.id, newName, () => {
+                        topicItem.innerHTML = newName;
+                    });
+                },
+                () => {
+                    console.log('delete topic')
+                }
+            )
+            if(setAsActive) {
+                this.currentTopic = topicObj.id;
+                this.activateTopic(topicObj.id);
+            }
+        });
 
-        //     const {clientX: mouseX, clientY: mouseY} = event;
-
-        //     this.contextMenu.style.top = `${mouseY}px`;
-        //     this.contextMenu.style.left = `${mouseX}px`;
-
-        //     this.contextMenu.classList.remove('hidden');
-        // });
-
-        this.topics[topic] = new TopicFactory(topic, topicItem, isNewTopic);
-
-        topicItem.onclick = () => {
-            this.activateTopic(topic);
-        }
         this.topicContainer.appendChild(topicItem);
     }
 }

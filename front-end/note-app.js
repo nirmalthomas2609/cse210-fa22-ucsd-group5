@@ -1,14 +1,39 @@
-function launchUser() {
-    console.log("Inside launch user");
+function addMenuItemEvents(htmlElement, menuSelectCallback, renameCallback, deleteCallback) {
+    htmlElement.onmouseover = () => {
+        htmlElement.dataset.active = true;
+    }
+    htmlElement.onmouseout = () => {
+        htmlElement.dataset.active = false;
+    }
+    addContextMenu(htmlElement, renameCallback, deleteCallback);
+    htmlElement.onclick = () => {
+        menuSelectCallback();
+    }
+}
 
-    // let userScreen = document.getElementById('user-div');
-    let userScreen = document.getElementById('topics');
+function addContextMenu(htmlElement, renameCallback, deleteCallback) {
+    let contextMenu = document.getElementById('context-menu')
 
-    // else create class new user
-    user = new User(userScreen, db);
-    let userItems = user.getHTMLElements();
+    htmlElement.oncontextmenu = (event) => {
+        event.preventDefault();
+
+        const {clientX: mouseX, clientY: mouseY} = event;
+
+        contextMenu.style.top = `${mouseY}px`;
+        contextMenu.style.left = `${mouseX}px`;
+
+        contextMenu.classList.remove('hidden');
+        document.getElementById('rename').onclick = () => {
+            let newName = prompt("Enter new name");
+            renameCallback(newName);
+        }
+        document.getElementById('delete').onclick = deleteCallback;
+    };
 }
 
 (function app() {
-    setupDB("note-taker", launchUser)
+    setupDB("note-taker", () => {new User();})
+    document.onclick = () => {
+        document.getElementById('context-menu').classList.add('hidden');
+    };
 })();
