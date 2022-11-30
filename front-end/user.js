@@ -53,7 +53,8 @@ class User extends AbstractUserMenu {
             this.createTopic(`New Topic ${this.topicIDNum}`, true);
         }
         getAllTopics((returnObj) => {
-            if (returnObj.topicsList.length > 0){
+            console.log(returnObj.topicsList)
+            if (returnObj.topicsList.length == 0){
             this.topics[DEFAULT_TOPIC] = new TopicFactory(
                 DEFAULT_TOPIC,
                 db,
@@ -61,30 +62,28 @@ class User extends AbstractUserMenu {
                 DEFAULT_TOPIC, 
                 true);
             }
-            else {
-                this.topics[DEFAULT_TOPIC] = new TopicFactory(
-                    DEFAULT_TOPIC, 
-                    db,
-                    this.container,
-                    DEFAULT_TOPIC);
-            }
-            this.readTweetsPerTopic(DEFAULT_TOPIC);
-            this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
+            console.log("entered topic")
+            //this.readTweetsPerTopic(DEFAULT_TOPIC);
+            //this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
 
-            this.readTopics();
+            //this.readTopics();
 
-            this._toggleSubItems();
+            //this._toggleSubItems();
         });
+        this.readTopics();
+
+        this._toggleSubItems();
+
     }
 
     readTopics() {
         getAllTopics((topicEvent) => {
             for(let topic of topicEvent.topicsList) {
-                if (topic !== DEFAULT_TOPIC) {
-                    this.createTopic(topic);
-                    this.readTweetsPerTopic(topic);
-                    this.htmlElements.push(...this.topics[topic].getHTMLElements());
-                }
+               
+                this.createTopic(topic);
+                this.readTweetsPerTopic(topic);
+                this.htmlElements.push(...this.topics[topic].getHTMLElements());
+                
             }
         });
 
@@ -120,7 +119,7 @@ class User extends AbstractUserMenu {
             for(let tweet of tweetList.data) {
                 console.log(tweet)
                 this.topics[topic].newTweet({
-                    title: tweet.tweetId,
+                    title: tweet.tweetTitle,
                     content: tweet.textContent,
                     newTweet: false
                 }, tweet.tweetId);
