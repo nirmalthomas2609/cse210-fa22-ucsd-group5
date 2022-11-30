@@ -62,11 +62,7 @@ class User extends AbstractUserMenu {
                 true);
             }
             else {
-                this.topics[DEFAULT_TOPIC] = new TopicFactory(
-                    DEFAULT_TOPIC, 
-                    db,
-                    this.container,
-                    DEFAULT_TOPIC);
+                this.topics[DEFAULT_TOPIC] = 
             }
             this.readTweetsPerTopic(DEFAULT_TOPIC);
             this.htmlElements.push(...this.topics[DEFAULT_TOPIC].getHTMLElements());
@@ -74,7 +70,11 @@ class User extends AbstractUserMenu {
             this.readTopics();
 
             this._toggleSubItems();
-        });
+        }); */
+        this.readTopics();
+
+        this._toggleSubItems();
+
     }
 
     readTopics() {
