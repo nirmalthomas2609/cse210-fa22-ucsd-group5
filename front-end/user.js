@@ -14,16 +14,6 @@ class User {
             this.topics[this.currentTopic].newTweet();
         }      
 
-        this.readTopics();
-    }
-
-    activateTopic(topic) {
-        this.topics[this.currentTopic].deactivate();
-        this.currentTopic = topic;
-        this.topics[this.currentTopic].activate();
-    }
-
-    readTopics() {
         getAllTopics((topicEvent) => {
             if(!topicEvent.topicsList.length > 0) {
                 this.createTopic({name: DEFAULT_TOPIC}, true);
@@ -35,42 +25,39 @@ class User {
                 }
             }
         });
+    }
 
+    activateTopic(topic) {
+        this.topics[this.currentTopic].deactivate();
+        this.currentTopic = topic;
+        this.topics[this.currentTopic].activate();
     }
 
     createTopic(topic, setAsActive=false) {
-        let topicItem = document.createElement('div');
-        topicItem.classList.add('topic-item', 'base-font')
-        let topicFactory = new TopicFactory(topic.name, topicItem, topic.id)
+        let topicFactory = new TopicFactory(topic.name, topic.id)
         topicFactory.initialize((topicObj) => {
-            topicItem.id = topicObj.id;
-            topicItem.innerHTML = topicObj.name;
-            this.topics[topicObj.id] = topicFactory;
-            addMenuItemEvents(
-                topicItem,
-                () => {this.activateTopic(topicObj.id);},
-                (newName) => {
-                    console.log(newName)
-                    updateTopic(topicObj.id, newName, () => {
-                        topicItem.innerHTML = newName;
-                    });
-                },
-                () => {
-                    deleteTopic(topicObj.id, () => {
-                        document.getElementById(topicObj.id).remove();
-                        if (topicObj.id === this.currentTopic) {
+            let topicItem = createMenuItem(topicObj, {
+                selectCallback: (id) => {this.activateTopic(id)},
+                renameCallback: (id, title) => {updateTopic(id, title, console.log);},
+                deleteCallback: (id) => {
+                    deleteTopic(id, () => {
+                        if (id === this.currentTopic) {
                             this.currentTopic = Object.keys(this.topics)[0];
-                            this.activateTopic(Object.keys(this.topics)[0]);
+                            this.activateTopic(this.currentTopic);
                         }
-                    });
-                }
-            )
+                    })},
+                dragCallback: (id) => {
+                    console.log(id);
+                }     
+            });
+            topicFactory.setContainer(topicItem);
+
+            this.topics[topicObj.id] = topicFactory;
             if(setAsActive) {
                 this.currentTopic = topicObj.id;
                 this.activateTopic(topicObj.id);
             }
+            this.topicContainer.appendChild(topicItem);
         });
-
-        this.topicContainer.appendChild(topicItem);
     }
 }

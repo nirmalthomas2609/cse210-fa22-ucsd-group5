@@ -14,116 +14,112 @@ body {
     margin: 0px;
     overflow: hidden;
     cursor: default;
-}
-
-.menu {
-    /* position:fixed; */
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    overflow: auto !important;
+    background-color: lightgray;
 }
 
 .hidden {
     display: none !important;
 }
 
-#topics {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 100%;
-    width: 10%;
-    max-width: 10%;
-    overflow: scroll;
-    background-color:darkslategrey;
-}
-#tweets {
-    width: 10%;
-    background-color: lightslategray;
-}
-#new-note {
-    width: 100%;;
-}
-#new-note:hover{
-    background-color: lightgray;
-}
-#new-topic:hover {
-    background-color: slategray;
+.menu {
+    display: grid;
+    grid-template-rows: 100vh;
+    grid-template-columns: 1fr 1fr 8fr;
+    grid-column-gap: 0.25%;
 }
 
-.menu-header {
+.menu-item {
     display: flex;
-    width: 100%;
     flex-direction: row;
     justify-content: space-between;
+    color: var(--header-font-color);
 }
-.topic-item {
-    position: relative;
-    left: 5%;
-    width: 100%;
-    color: lightgray !important;
+
+.menu-item > div{
+    font-family: "Ibarra Real Nova", serif;
+    overflow-wrap: anywhere;
 }
+
+.menu-item > button {
+    font-family: "Ibarra Real Nova", serif;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--header-font-color);
+}
+
+.menu-item[data-active=true] {
+    background-color: grey;
+}
+
+.bold-bottom-border {
+    border-bottom-width: 100%;
+    border-bottom-style:  solid;
+    border-bottom-color:  black;
+}
+
+#topics {
+    background-color:darkslategrey;
+}
+
+#tweets {
+    background-color: lightslategray;
+}
+
 .topic-item-selected {
     background-color: lightslategray !important;
 }
-.topic-item[data-active=true] {
-    background-color: grey;
-}
+
 .tweet-item-selected {
-    background-color: lightgray !important;
+    background-color: darkgrey !important;
 }
-.tweet-item[data-active=true] {
-    background-color: grey;
-}
+
 .base-font {
-    color: var(--header-font-color);
     font-family: "Ibarra Real Nova", serif;
 }
 
 .bold {
     font-weight: bold;
 }
+
 .clear-background {
     background-color: transparent;
 }
 .text-editor-menu {
-    background-color: lightgray;
+    display: flex;
+    flex-direction: row;
 }
+.text-editor-menu > div {
+    cursor:text;
+    min-width: 10%;
+    overflow-wrap: anywhere;
+    margin-right: 2px;
+}
+
 .text-editor-container {
+    margin-bottom: 5px;
+    margin-right: 5px;
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 100%;
-    background-color: var(--dark-grey-background);
-    border-color: transparent;
-}
-.text-editor {
-    border-color: lightgray;
-    background-color: lightgray;
+    font-family: "Ibarra Real Nova", serif;
+    background-color: silver;
 }
 
 #text-editor{
-    border-color: gray;
+    border-color: lightgray;
+    background-color: white;
     resize: none;
-    flex-grow:  1;
-    background-color: transparent;
+    flex-grow: 1;
 
     font-family: "Ibarra Real Nova", serif;
     text-decoration: none;
     text-align: left;
 
     outline: none;
-
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
 }
 
 #context-menu {
     background-color: whitesmoke;
-    position: fixed;
+    position: absolute;
     font-size: 15px;
     cursor: pointer;
 }
@@ -138,4 +134,8 @@ body {
 
 #context-menu .context-item:hover {
     background: lightgray;
+}
+
+.not-saved {
+    background-color: #ca2b2e !important;
 }

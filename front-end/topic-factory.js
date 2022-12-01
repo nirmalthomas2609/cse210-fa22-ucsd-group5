@@ -1,15 +1,23 @@
 let DEFAULT_TOPIC = 'General';
 let TOPIC_ID = 1;
 class TopicFactory {
-    constructor(title, container, topicid=null) {
+    constructor(title, topicid=null) {
         this.title = title;
     	this.topicid = topicid;
-        this.container = container;
+        this.container = null;
         this.tweetContainer = document.getElementById('tweet-items');
         this.currentTweet = null;
         this.textEditor = new TextEditor();
         this.textEditor.registerObserver(this);
 	}
+
+    setContainer(htmlElement) {
+        this.container = htmlElement;
+    }
+
+    isActive() {
+        return this.container.classList.contains('topic-item-selected');
+    }
 
     activate() {
         this.container.classList.add('topic-item-selected');
@@ -26,23 +34,20 @@ class TopicFactory {
     }
 
     createTweetItem(title, id) {
-        let container = document.createElement('div');
-        container.innerHTML = title;
-        container.id = id;
-        container.classList.add('tweet-item');
-        container.draggable = true;
-        addMenuItemEvents(
-            container,
-            () => {this.launchTextEditor(container.id);},
-            (newName) => {
-                updateTweet(id, newName, '', this.topicid, () => {});
-                document.getElementById(id).innerHTML = newName;
+        let container = createMenuItem({id: id, name: title}, {
+            selectCallback: (id) => {this.launchTextEditor(id);},
+            renameCallback: (id, title) => {
+                updateTweet(id, title, '', this.topicid, () => {});
+                this.textEditor.setTitle(title);
             },
-            () => {
+            deleteCallback: (id) => {
                 deleteTweet(id, () => {});
-                document.getElementById(id).remove();
-            }
-        )
+                if(id===this.currentTweet) {
+                    this.closeTextEditor();
+                }
+            }},
+            true
+        );
         this.tweetContainer.appendChild(container);
     }
 
@@ -51,11 +56,14 @@ class TopicFactory {
         while (this.tweetContainer.firstChild) {
             this.tweetContainer.removeChild(this.tweetContainer.firstChild);
         }
+        this.closeTextEditor();
     }
 
     _textEditorUpdate(tweetData) {
         updateTweet(tweetData.id, tweetData.title, tweetData.content, this.topicid, console.log)
-        document.getElementById(tweetData.id).innerHTML = tweetData.title;
+        if(this.isActive()) {
+            setMenuItemName(tweetData.id, tweetData.title);
+        }
     }
 
 
@@ -68,6 +76,7 @@ class TopicFactory {
     }
 
     launchTextEditor(tweetId) {
+        this.currentTweet = tweetId;
         for(let tweet of document.getElementsByClassName('tweet-item-selected')) {
             tweet.classList.remove('tweet-item-selected');
         }
@@ -77,7 +86,6 @@ class TopicFactory {
             if (tweetList.status === OK_STATUS) {
                 for(let tweet of tweetList.data) {
                     if (tweet.tweetId === tweetId) {
-                        this.currentTweet = tweet.tweetId;
                         this.textEditor.start(tweet.tweetTitle, tweet.textContent, tweet.tweetId)
                     }
                 }
@@ -86,6 +94,7 @@ class TopicFactory {
     }
 
     closeTextEditor() {
+        this.currentTweet=null;
         this.textEditor.end();
     }
 
