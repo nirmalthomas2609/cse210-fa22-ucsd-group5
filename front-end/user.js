@@ -56,7 +56,13 @@ class User {
                     });
                 },
                 () => {
-                    console.log('delete topic')
+                    deleteTopic(topicObj.id, () => {
+                        document.getElementById(topicObj.id).remove();
+                        if (topicObj.id === this.currentTopic) {
+                            this.currentTopic = Object.keys(this.topics)[0];
+                            this.activateTopic(Object.keys(this.topics)[0]);
+                        }
+                    });
                 }
             )
             if(setAsActive) {

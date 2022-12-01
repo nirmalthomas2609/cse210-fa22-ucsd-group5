@@ -31,6 +31,7 @@ function addContextMenu(htmlElement, renameCallback, deleteCallback) {
     };
 }
 
+
 (function app() {
     setupDB("note-taker", () => {new User();})
     document.onclick = () => {

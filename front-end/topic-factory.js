@@ -30,7 +30,19 @@ class TopicFactory {
         container.innerHTML = title;
         container.id = id;
         container.classList.add('tweet-item');
-        addMenuItemEvents(container, () => {this.launchTextEditor(container.id);} )
+        container.draggable = true;
+        addMenuItemEvents(
+            container,
+            () => {this.launchTextEditor(container.id);},
+            (newName) => {
+                updateTweet(id, newName, '', this.topicid, () => {});
+                document.getElementById(id).innerHTML = newName;
+            },
+            () => {
+                deleteTweet(id, () => {});
+                document.getElementById(id).remove();
+            }
+        )
         this.tweetContainer.appendChild(container);
     }
 
@@ -45,6 +57,7 @@ class TopicFactory {
         updateTweet(tweetData.id, tweetData.title, tweetData.content, this.topicid, console.log)
         document.getElementById(tweetData.id).innerHTML = tweetData.title;
     }
+
 
     newTweet() {
         let tweetTitle = 'Untitled';
@@ -64,11 +77,16 @@ class TopicFactory {
             if (tweetList.status === OK_STATUS) {
                 for(let tweet of tweetList.data) {
                     if (tweet.tweetId === tweetId) {
+                        this.currentTweet = tweet.tweetId;
                         this.textEditor.start(tweet.tweetTitle, tweet.textContent, tweet.tweetId)
                     }
                 }
             }
         })
+    }
+
+    closeTextEditor() {
+        this.textEditor.end();
     }
 
 	initialize(callback) {

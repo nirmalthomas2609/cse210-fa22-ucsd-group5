@@ -301,8 +301,6 @@ function getTweetById(tweetId, displayTweetCallback) {
 //      Nothing
 
 function deleteTopic(topicId, statusCallback) {
-    const topicStore = db.transaction([topicStoreName], "readonly").objectStore(topicStoreName);
-
     const successReturnObj = {status: OK_STATUS};
     const failureReturnObj = {status: FAILURE_STATUS};
 
@@ -321,7 +319,8 @@ function deleteTopic(topicId, statusCallback) {
                 }
             });
         }
-
+        
+        const topicStore = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
         const deleteTopicRequest = topicStore.delete(topicId);
 
         deleteTopicRequest.onsuccess = (event) => {
