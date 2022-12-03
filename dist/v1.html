@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="main.css"></link>
+    </head>
+
+    <body>
+        <div class="menu">
+            <div class="topics">
+                <div class="menu-header">
+                    <div>Topics</div>
+                    <button id="new-topic">+</button>
+                </div>
+                <div id="topics"></div>
+            </div>
+            
+            <div class="tweets">
+                <div class="menu-header">
+                    <div>Tweets</div>
+                    <button id="new-note">+</button>
+                </div>
+                <div id="tweets"></div>
+            </div>
+            
+            <div id="text-editor-container" class="text-editor-container hidden">
+                <div class="text-editor-menu">
+                    <div id="tweet-title" ondrop="return false;" contenteditable="true" spellcheck="false"></div>
+                    <button id='save-button'>Save</button>
+                </div>
+                <textarea id='text-editor' draggable="false"></textarea>
+            </div>
+        </div>
+                
+        <div id="context-menu" class="hidden">
+            <div id="rename" class="context-item">Rename...</div>
+            <div id="delete" class="context-item">Delete</div>
+        </div>
+        <script src="bundle.js"></script>
+    </body>
+</html>

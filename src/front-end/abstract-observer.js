@@ -55,3 +55,5 @@ class AbstractObserverPattern {
         return typeof observer[this.notifyFunction] === "function";
     }
 }
+
+export {AbstractObserverPattern}

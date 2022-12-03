@@ -1,0 +1,20 @@
+@use 'configure';
+
+#context-menu {
+    background-color: whitesmoke;
+    position: absolute;
+    font-size: 15px;
+    cursor: pointer;
+
+    .context-item {
+        border-bottom: 2px solid black;
+        padding: 8px, 10px;
+        font-size: 15px;
+        color: black;
+        cursor: pointer;
+    }
+
+    .context-item:hover {
+        background: configure.$background-color;
+    }
+}

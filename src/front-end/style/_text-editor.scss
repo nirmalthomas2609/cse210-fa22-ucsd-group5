@@ -1,0 +1,42 @@
+@use 'configure';
+
+.text-editor-container {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-direction: column;
+    font-family: configure.$font-family;
+    background-color: silver;
+    
+    .text-editor-menu {
+        display: flex;
+        flex-direction: row;
+
+        div {
+            cursor:text;
+            min-width: 10%;
+            overflow-wrap: anywhere;
+            margin-right: 2px;
+        }
+    }
+
+    textarea {
+        border-color: configure.$background-color;
+        background-color: white;
+        resize: none;
+        flex-grow: 1;
+    
+        font-family: configure.$font-family;
+        text-decoration: none;
+        text-align: left;
+    
+        outline: none;
+    }
+
+    &.not-saved {
+        background-color: #ca2b2e !important;
+    }
+}
+
+
+

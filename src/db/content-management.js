@@ -1,23 +1,14 @@
-let tweetStoreName = "tweets";
-let topicStoreName = "topics";
-let topicIndexName = "topicIndex";
-
-let OK_STATUS = 200;
-let FAILURE_STATUS = 500;
+import {DB} from "../configure";
 
 let db;
 
 function setupDB(namespace, callback) {
 
-    if (db) {
-        callback();
-        return;
-    }
-
     const request = indexedDB.open(`${namespace}`, 1);
 
     request.onsuccess = (event) => {
         db = event.target.result;
+        console.log(db, db.objectStoreNames)
         callback();
     }
 
@@ -48,15 +39,15 @@ function setupDB(namespace, callback) {
 function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
     const tweetId = `tweet-${Date.now()}`;
     const tweetObj = {tweetId: tweetId, textContent: tweetText, topicId: topicId, tweetTitle: tweetTitle};
-    const objStore = db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
+    const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
     const request = objStore.add(tweetObj);
 
     request.onsuccess = (_) => {
-        statusCallback({status: OK_STATUS, data: {id: tweetId}});
+        statusCallback({status: DB.OK_STATUS, data: {id: tweetId}});
     }
 
     request.onerror = (event) => {
-        statusCallback({status: FAILURE_STATUS, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
+        statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed adding tweet ${tweetId} to store with error code ${event.target.errorCode}`});
     }
 }
 
@@ -76,11 +67,12 @@ function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
 //      Nothing
 
 function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
-    const objStore = db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
+    const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
     const fetchRequest = objStore.get(tweetId);
 
     fetchRequest.onsuccess = (event) => {
         const tweet = event.target.result;
+        console.log(tweet)
         if (tweetTitle.length > 0){
             tweet.tweetTitle = tweetTitle;
         }
@@ -93,16 +85,16 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 
         const updateReq = objStore.put(tweet);
         updateReq.onsuccess = (_) => {
-            statusCallback({status: OK_STATUS});
+            statusCallback({status: DB.OK_STATUS});
         }
 
         updateReq.onerror = (event) => {
-            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to update ${tweetId} in store with error code ${event.target.errorCode}`});
+            statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed to update ${tweetId} in store with error code ${event.target.errorCode}`});
         }
     }
 
     fetchRequest.onerror = (event) => {
-        statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to fetch ${tweetId} from store with error code ${event.target.errorCode}`});
+        statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed to fetch ${tweetId} from store with error code ${event.target.errorCode}`});
     }
 }
 
@@ -120,14 +112,14 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 //      Nothing
 
 function deleteTweet(tweetId, statusCallback) {
-    const objStore = db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
+    const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
     const request = objStore.delete(tweetId);
 
     request.onsuccess = (_) => {
-        statusCallback({status: OK_STATUS});
+        statusCallback({status: DB.OK_STATUS});
     }
     request.onerror = (event) => {
-            statusCallback({status: FAILURE_STATUS, errorMessage: `Could not delete ${tweetId} from records. Failed with ${event.target.errorCode}`});
+            statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Could not delete ${tweetId} from records. Failed with ${event.target.errorCode}`});
     }
 }
 
@@ -147,15 +139,15 @@ function deleteTweet(tweetId, statusCallback) {
 function createTopic(topicName, statusCallback) {
     const topicId = `topic-${Date.now()}`;
     const topicObj = {topicId: topicId, topicName: topicName};
-    const objStore = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
+    const objStore = db.transaction([DB.topicStoreName], "readwrite").objectStore(DB.topicStoreName);
     const request = objStore.add(topicObj);
 
     request.onsuccess = (_) => {
-        statusCallback({status: OK_STATUS, data: {id: topicId}});
+        statusCallback({status: DB.OK_STATUS, data: {id: topicId}});
     }
 
     request.onerror = (event) => {
-        statusCallback({status: FAILURE_STATUS, errorMessage: `Failed adding topic ${topicId} to store with error code ${event.target.errorCode}`});
+        statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed adding topic ${topicId} to store with error code ${event.target.errorCode}`});
     }
 }
 
@@ -174,7 +166,7 @@ function createTopic(topicName, statusCallback) {
 //      Nothing
 
 function updateTopic(topicId, topicName, statusCallback) {
-    const objStore = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
+    const objStore = db.transaction([DB.topicStoreName], "readwrite").objectStore(DB.topicStoreName);
     const fetchRequest = objStore.get(topicId);
 
     fetchRequest.onsuccess = (event) => {
@@ -183,16 +175,16 @@ function updateTopic(topicId, topicName, statusCallback) {
 
         const updateReq = objStore.put(topic);
         updateReq.onsuccess = (_) => {
-            statusCallback({status: OK_STATUS});
+            statusCallback({status: DB.OK_STATUS});
         }
 
         updateReq.onerror = (event) => {
-            statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to update ${topicId} in store with error code ${event.target.errorCode}`});
+            statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed to update ${topicId} in store with error code ${event.target.errorCode}`});
         }
     }
 
     fetchRequest.onerror = (event) => {
-        statusCallback({status: FAILURE_STATUS, errorMessage: `Failed to fetch ${topicId} from store with error code ${event.target.errorCode}`});
+        statusCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed to fetch ${topicId} from store with error code ${event.target.errorCode}`});
     }
 }
 
@@ -210,16 +202,16 @@ function updateTopic(topicId, topicName, statusCallback) {
 //      Nothing
 
 function getTweetsByTopicId(topicId, displayTweetsCallback) {
-    const objStore = db.transaction([tweetStoreName], "readwrite").objectStore(tweetStoreName);
-    const request = objStore.index(topicIndexName).getAll(topicId);
+    const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
+    const request = objStore.index(DB.topicIndexName).getAll(topicId);
 
     request.onsuccess = (event) => {
         const data = event.target.result;
-        displayTweetsCallback({status: OK_STATUS, data: data});
+        displayTweetsCallback({status: DB.OK_STATUS, data: data});
         };
 
         request.onerror = (event) => {
-        displayTweetsCallback({status: FAILURE_STATUS, errorMessage: `Failed fetch tweets request by topic ID ${topicId} with error code ${event.target.result}`});
+        displayTweetsCallback({status: DB.FAILURE_STATUS, errorMessage: `Failed fetch tweets request by topic ID ${topicId} with error code ${event.target.result}`});
         }
 }
 
@@ -236,7 +228,7 @@ function getTweetsByTopicId(topicId, displayTweetsCallback) {
 
 function getAllTopics(displayTopicsCallback) {
 
-    const topicStore = db.transaction([topicStoreName], "readonly").objectStore(topicStoreName);
+    const topicStore = db.transaction([DB.topicStoreName], "readonly").objectStore(DB.topicStoreName);
 
     var allRecords = topicStore.getAll();
 
@@ -246,12 +238,12 @@ function getAllTopics(displayTopicsCallback) {
         for (var topic of data) {
             topicList.add({id: topic.topicId, name: topic.topicName});
         }
-        const returnObj = {status: OK_STATUS, topicsList: [...topicList]};
+        const returnObj = {status: DB.OK_STATUS, topicsList: [...topicList]};
         displayTopicsCallback(returnObj);
     }
 
     allRecords.onerror = (event) => {
-        const returnObj = {status: FAILURE_STATUS, topicsList: []};
+        const returnObj = {status: DB.FAILURE_STATUS, topicsList: []};
         displayTopicsCallback(returnObj);
     }
 
@@ -271,18 +263,18 @@ function getAllTopics(displayTopicsCallback) {
 //      Nothing
 
 function getTweetById(tweetId, displayTweetCallback) {
-    const objStore = db.transaction([tweetStoreName], "readonly").objectStore(tweetStoreName);
+    const objStore = db.transaction([DB.tweetStoreName], "readonly").objectStore(DB.tweetStoreName);
 
     var tweetRecord = objStore.get(tweetId);
 
     tweetRecord.onsuccess = (event) => {
         let tweetData = event.target.result;
-        const returnObj = {status: OK_STATUS, data: tweetData};
+        const returnObj = {status: DB.OK_STATUS, data: tweetData};
         displayTweetCallback(returnObj);
     }
 
     tweetRecord.onerror = (event) => {
-        const returnObj = {status: FAILURE_STATUS, data: undefined}
+        const returnObj = {status: DB.FAILURE_STATUS, data: undefined}
         displayTweetCallback(returnObj);
     }
 }
@@ -301,11 +293,11 @@ function getTweetById(tweetId, displayTweetCallback) {
 //      Nothing
 
 function deleteTopic(topicId, statusCallback) {
-    const successReturnObj = {status: OK_STATUS};
-    const failureReturnObj = {status: FAILURE_STATUS};
+    const successReturnObj = {status: DB.OK_STATUS};
+    const failureReturnObj = {status: DB.FAILURE_STATUS};
 
     getTweetsByTopicId(topicId, function(tweetsFetchStatus) {
-        if (tweetsFetchStatus.status == FAILURE_STATUS){
+        if (tweetsFetchStatus.status == DB.FAILURE_STATUS){
             statusCallback(failureReturnObj);
             return;
         }
@@ -313,14 +305,14 @@ function deleteTopic(topicId, statusCallback) {
         const tweets = tweetsFetchStatus.data;
         for (var tweet of tweets) {
             deleteTweet(tweet.tweetId, function(tweetDeleteStatus) {
-                if (tweetDeleteStatus.status === FAILURE_STATUS){
+                if (tweetDeleteStatus.status === DB.FAILURE_STATUS){
                     statusCallback(failureReturnObj);
                     return;
                 }
             });
         }
         
-        const topicStore = db.transaction([topicStoreName], "readwrite").objectStore(topicStoreName);
+        const topicStore = db.transaction([DB.topicStoreName], "readwrite").objectStore(DB.topicStoreName);
         const deleteTopicRequest = topicStore.delete(topicId);
 
         deleteTopicRequest.onsuccess = (event) => {
@@ -335,5 +327,8 @@ function deleteTopic(topicId, statusCallback) {
     });
 }
 
-// module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic};
+export {
+    setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic, deleteTopic,
+    deleteTweet,getTweetById
+};
 

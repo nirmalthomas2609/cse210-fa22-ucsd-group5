@@ -1,0 +1,18 @@
+@use 'configure';
+// @use 'menu';
+// @use 'context-menu';
+// @use 'text-editor';
+
+// body {
+//     margin: 0px;
+//     overflow: hidden;
+//     cursor: default;
+//     background-color: configure.$background-color;
+// }
+
+body {
+    margin: 0px;
+    overflow: hidden;
+    cursor: default;
+    background-color: configure.$background-color;
+}
