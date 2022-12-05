@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("get",["Function"],[["getAllTopics",,[[,,,,0,"File:content-management.js:getAllTopics"]]],["getTweetsByTopicId",,[[,,,,0,"File:content-management.js:getTweetsByTopicId"]]]]);
