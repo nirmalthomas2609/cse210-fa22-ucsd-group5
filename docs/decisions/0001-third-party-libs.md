@@ -1,8 +1,9 @@
 ---
 status: {accepted}
+confidence: {high}
 date: {2022-10-28}
 ---
-# Use of Third Party Libraries
+# Third Party Libraries
 
 ## Context and Problem Statement
 

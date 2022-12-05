@@ -1,9 +1,10 @@
 ---
 # These are optional elements. Feel free to remove any of them.
-status: { accepted}
+status: {accepted | Dependent on [ADR-0002](0002-data-storage.md)}
+confidence: {high}
 date: {2022-11-03}
 ---
-# Choice of language for Backend
+# Backend Language
 
 ## Context and Problem Statement
 
@@ -32,14 +33,19 @@ Chosen option: "Javascript", because it is general enough, satisfies capability 
 ### Javascript
 
 * Good, because well-known and widely used so has lots of guiding examples and documentation
-* Good, because integrates well with a javascript based frontend
+* Good, because its client side scripting characteristics align well with out application requirements
+* Good, because it is easy to integrate with our javascript based frontend
 * Good, because some team members are well versed in it
 * Bad, because it has a slightly strict learning curve for the newer practitioners
 
+### Node.js
+
+* Good, because it does not contain OS specific constraints and might allow for easy portability
+* Good, because npm provides easy environment and package management
+* Bad, because it is for server side scripting which does not align with our application requirements
+
 ### Python
 
-{example | description | pointer to more information | …}
-
-* Good, because very familiar and easy to work with
-* Bad, because not easy to integrate with a web application fontend design that we have
+* Good, because of high familiarity and ease of working
+* Bad, because it is not easy to integrate with a web app fontend
 * Bad, because can be cumbersome to write simple functionality
