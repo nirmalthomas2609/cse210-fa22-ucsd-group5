@@ -2,19 +2,23 @@ import {CLASSES} from "../configure";
 let NAME_CLASS = 'name-label';
 
 function createMenuItemHTML(title, isDraggable) {
-    let menuItem = document.createElement('div');
-    menuItem.draggable = isDraggable;
-    menuItem.classList.add(CLASSES.MENU_ITEM, CLASSES.HOVER);
+    // let menuItem = document.createElement('div');
+    // menuItem.draggable = isDraggable;
+    // menuItem.classList.add(CLASSES.MENU_ITEM, CLASSES.HOVER);
 
-    let nameLbl = document.createElement('div');
-    if(title) nameLbl.innerHTML = title;
-    nameLbl.classList.add(NAME_CLASS);
-    menuItem.appendChild(nameLbl);
+    // let nameLbl = document.createElement('div');
+    // if(title) nameLbl.innerHTML = title;
+    // nameLbl.classList.add(NAME_CLASS);
+    // menuItem.appendChild(nameLbl);
 
-    let ellipseBtn = document.createElement('button');
-    ellipseBtn.classList.add('hidden');
-    ellipseBtn.innerHTML = '...';
-    menuItem.appendChild(ellipseBtn);
+    // let ellipseBtn = document.createElement('button');
+    // ellipseBtn.classList.add('hidden');
+    // ellipseBtn.innerHTML = '...';
+    // menuItem.appendChild(ellipseBtn);
+    
+    let htmlString = `
+        <li><a class="dropdown-item" href="#">${title}</a></li>
+    `;
     
     return menuItem;
 }

@@ -72,7 +72,6 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 
     fetchRequest.onsuccess = (event) => {
         const tweet = event.target.result;
-        console.log(tweet)
         if (tweetTitle.length > 0){
             tweet.tweetTitle = tweetTitle;
         }

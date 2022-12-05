@@ -1,40 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="main.css"></link>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./main.css">
+  </head>
+  <body>
 
-    <body>
-        <div class="menu">
-            <div class="topics">
-                <div class="menu-header">
-                    <div>Topics</div>
-                    <button id="new-topic">+</button>
-                </div>
-                <div id="topics"></div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">GReKO</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li id="topics" class="nav-item  ">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
             </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="container">
+        
+        <input type="radio" name="slider" id="s1" checked>
+        <input type="radio" name="slider" id="s2">
+        <input type="radio" name="slider" id="s3">
+        <input type="radio" name="slider" id="s4">
+        <input type="radio" name="slider" id="s5">
+
+        <div class="cards">
+            <label for="s1" id="slide1" >
+                <div class="card">
+                    <div class="card-header">1</div>
+                    <div class="card-body card-1">
+                        <p class="card-text card-1"></p>
+                    </div>
+                </div>
+            </label>
             
-            <div class="tweets">
-                <div class="menu-header">
-                    <div>Tweets</div>
-                    <button id="new-note">+</button>
+            <label for="s2" id="slide2" >
+                <div class="card">
+                    <div class="card-header">2</div>
+                    <div class="card-body card-2">
+                        <p class="card-text card-2">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
                 </div>
-                <div id="tweets"></div>
-            </div>
-            
-            <div id="text-editor-container" class="text-editor-container hidden">
-                <div class="text-editor-menu">
-                    <div id="tweet-title" ondrop="return false;" contenteditable="true" spellcheck="false"></div>
-                    <button id='save-button'>Save</button>
+            </label>
+
+            <label for="s3" id="slide3" >
+                <div class="card">
+                    <h5 class="card-header">3</h5>
+                    <div class="card-body card-3">
+                        <p class="card-text card-3">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
                 </div>
-                <textarea id='text-editor' draggable="false"></textarea>
-            </div>
+            </label>
+
+            <label for="s4" id="slide4" >
+                <div class="card">
+                    <h5 class="card-header">4</h5>
+                    <div class="card-body card-4">
+                        <p class="card-text card-4">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </label>
+
+            <label for="s5" id="slide5" >
+                <div class="card">
+                    <h5 class="card-header">5</h5>
+                    <div class="card-body card-5">
+                    <p class="card-text card-5">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+            </label>
         </div>
-                
-        <div id="context-menu" class="hidden">
-            <div id="rename" class="context-item">Rename...</div>
-            <div id="delete" class="context-item">Delete</div>
-        </div>
-        <script src="bundle.js"></script>
-    </body>
+    </div>
+    <script src="./bundle.js"></script>
+  </body>
 </html>
