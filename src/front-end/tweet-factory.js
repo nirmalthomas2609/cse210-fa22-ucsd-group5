@@ -3,6 +3,9 @@ import { TWEETS } from "../configure";
 import { AbstractMenuItem } from "./abstract-menu-item";
 import {sortElements} from "./util";
 class TweetFactory extends AbstractMenuItem {
+    // Class TweetFactory is the interface for managing tweets (creating, reading, updating, deleting)
+
+	// TweetFactory constructor depends on the menu object
     constructor(menuItemContainer) {
         super(menuItemContainer, true, '_tweetItemUpdate', 'tweets');
         this.newTweetBtn = document.getElementById(TWEETS.NEW_BUTTON);
@@ -12,6 +15,7 @@ class TweetFactory extends AbstractMenuItem {
 	}
 
     load(topicid) {
+        // Loads in all tweets associated with a topic
         this.topicid = topicid;
         this.clearMenuItemContainer();
         getTweetsByTopicId(topicid, (tweetList) => {
@@ -27,6 +31,7 @@ class TweetFactory extends AbstractMenuItem {
     }
 
     newEvent() {
+        // Creates a new tweet within a topic when user wants to add a tweet
         if (this.selectedMenuItem) {
             createTweet('', this.selectedTitle, this.topicid, (dbObj) => {
                 this.notify({
@@ -43,6 +48,7 @@ class TweetFactory extends AbstractMenuItem {
     }
 
     deleteEvent(data) {
+        // Deletes a tweet from the menu when user wants to remove a tweet
         deleteTweet(data.deleteId, () => {
             this.notify({
                 id: this.selectedId, type: 'tweets',
@@ -52,6 +58,7 @@ class TweetFactory extends AbstractMenuItem {
     }
 
     renameEvent() {
+        // Renames a tweet when user wants to change title
         updateTweet(this.selectedId, this.selectedTitle, '', '', () => {
             this.notify({
                 id: this.selectedId, type: 'tweets',

@@ -6,6 +6,9 @@ import { TOPICS, TWEETS } from "../configure";
 import { TextEditor } from "./text-editor";
 
 class Menu extends AbstractMenuItem {
+    // Class Menu is the homepage interface for the user
+
+	// Menu constructor does not depend on any objects
     constructor() {
         super('_menuUpdate');
         this.topicContainer = document.getElementById(TOPICS.CONTAINER);
@@ -23,6 +26,8 @@ class Menu extends AbstractMenuItem {
     }
 
     _topicItemUpdate(menuItemEvent) {
+        // changes view to new Topic upon event from user
+
         // need to reload tweets
         // select, context-start, new
         if (['select', 'context-start', 'new', 'loaded',].includes(menuItemEvent.event)) {
@@ -82,6 +87,8 @@ class Menu extends AbstractMenuItem {
     }
 
     _tweetItemUpdate(menuItemEvent) {
+        // changes view to different tweet upon even from user
+
         // close editor if tweet has been delete 
         if(['delete'].includes(menuItemEvent.event)) {
             this.textEditor.reset();

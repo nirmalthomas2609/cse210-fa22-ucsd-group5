@@ -1,6 +1,9 @@
 import { AbstractObserverPattern } from "./abstract-observer";
 
 class TextEditor extends AbstractObserverPattern {
+	// Class TextEditor is the interface for editing a note
+
+	// TextEditor constructor does not depend on any objects
 	constructor() {
 		super('_textEditorUpdate');
         this.textEditorContainer = document.getElementById('text-editor-container');
@@ -20,6 +23,7 @@ class TextEditor extends AbstractObserverPattern {
 	}
 
 	reset() {
+		// creates an empty text window
 		this.textEditorContainer.classList.add('hidden');
 		this.textEditorContainer.classList.remove('not-saved');
 		this.tweetId = null;
@@ -29,10 +33,12 @@ class TextEditor extends AbstractObserverPattern {
 	}
 
 	isRunning() {
+		// returns boolean value if unsaved changes in text editor
 		return this._isUnSaved();
 	}
 
 	start(title, content, tweetId, topicId) {
+		// creates an empty text editor upon new note creation
 		if(this.isRunning()) {
 			throw new Error('cannot text editor while it is running');
 		}		
@@ -50,6 +56,7 @@ class TextEditor extends AbstractObserverPattern {
 	}
 
 	getSaveObj() {
+		// return the saved note object
 		let savedObj = {
 			tweetId: this.tweetId,
 			topicId: this.topicId,
@@ -59,6 +66,8 @@ class TextEditor extends AbstractObserverPattern {
 		return savedObj;
 	}
 	close() {
+		// closes the actively opened text editor
+		// returns the saved object upon closing
 		this.textEditorContainer.classList.add('hidden');
 		if(!this._isUnSaved()) {
 			return null;
@@ -77,10 +86,12 @@ class TextEditor extends AbstractObserverPattern {
 	}
 
 	_save() {
+		// sets a note as saved
 		this._setSavedStatus(true);
 	}
 
 	_setSavedStatus(isSaved) {
+		// update the button based on save status
 		if(isSaved) {
 			this.textEditorContainer.classList.remove('not-saved');
 		} else  {
@@ -89,14 +100,17 @@ class TextEditor extends AbstractObserverPattern {
 	}
 	
 	_isUnSaved() {
+		// returns True if note is unsaved
 		return this.textEditorContainer.classList.contains('not-saved');
 	}
 
 	setTitle(title) {
+		// sets title of a note
 		this.title.innerHTML = title;
 	}
 
 	getTitle() {
+		// gets title of a note
 		return this.title.innerHTML;
 	}
 

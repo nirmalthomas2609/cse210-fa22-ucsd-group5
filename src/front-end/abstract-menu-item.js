@@ -2,13 +2,17 @@ import {CLASSES} from "../configure";
 import { AbstractObserverPattern } from "./abstract-observer";
 import { createMenuItemHTML, makeTitleUnique, setMenuItemTitle } from "./util";
 let NAME_CLASS = 'name-label';
+
 class AbstractMenuItem extends AbstractObserverPattern {
+    // Class AbstractMenuItem defines the methods available for a menu item in the front end
+
     static contextMenuStatus = {
         showMenu: false,
         set show(status) {this.showMenu = status;},
         get show() {return this.showMenu;}
     }
 
+    // AbstractMenuItem constructor depends on the HTML container, a callback function, and type of menu
     constructor(container, isDraggable=false, callback, menuType) {
         super(callback);
 
@@ -24,7 +28,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
 
     //                                           //
-    // getters and setters                       //
+    // getters and setters for each menu item    //
     //                                           //
     set selectedMenuItem(menuItem) {
         let curSelectedItem = this.selectedMenuItem;
@@ -82,6 +86,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
 
     add(id, title) {
+        // Creates a new menu item with id and title
         let menuItem = createMenuItemHTML(title, this.isDraggable);
         this.menuItemContainer.appendChild(menuItem);
         this.addMenuEvents(menuItem);
@@ -99,6 +104,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
 
     initializeItem(menuItem) {
+        // Configures the new menuItem with the correct options
         let nameLbl = menuItem.querySelector(`.${NAME_CLASS}`);
         nameLbl.innerHTML = '';
         nameLbl.dataset.text = 'Enter Name...';
@@ -124,6 +130,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
 
     addMenuEvents(menuItem) {
+        // Shows menu options upon click
         menuItem.onclick = () => {
             if (AbstractMenuItem.contextMenuStatus.show) {
                 return;
@@ -168,6 +175,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
 
     deleteSelectedMenuItem() {
+        // Deletes a menu item
         let menuItem = this.selectedMenuItem;
         let deletedId = menuItem.id;
         while(menuItem.firstChild) {
@@ -179,6 +187,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     
     setItemTitleById(id, title) {
+        // Sets title of menu item
         let titleElm = document.getElementById(id);
         if(!titleElm) { 
             return;
@@ -188,16 +197,19 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
 
     clearMenuItemContainer() {
+        // Clears all menu items in a container
         while (this.menuItemContainer.firstChild) {
             this.menuItemContainer.removeChild(this.menuItemContainer.firstChild);
         }
     }
 
     _makeEditable(htmlElement, isEditable) {
+        // Configures an html element to be editable
         htmlElement.contentEditable = isEditable;
     }
 
     activate(event, data) {
+        // Activates a menu item by adding listeners for events on an item
         if(event === 'context-start') {
             this.notify({
                 id: this.selectedId, type: this.type,
@@ -228,6 +240,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
 
     configureDraggable(menuItem) {
+        // Configures a menu item as draggable
         if(!this.isDraggable) {
             menuItem.ondragover = (e) => {
                 e.preventDefault();
