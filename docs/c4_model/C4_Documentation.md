@@ -36,17 +36,17 @@ The Level - 2 Container diagram for the 'Tweet Management' application is axplai
 
 The interactions and the dependencies among the API components in the 'Content-Management' JS container is as follows:
 
-| API           | Functionality         |
-|-------------- |: --------------------- :|
-| _createTweet_ | Allows users to create new tweets (notes) |
-| _updateTweet_ | Allows the user to update tweets, which are dynamically saved in the browser's indexedDB database |
-| _deleteTweet_ | Allows users to delete tweets from local storage |
-| _createTopic_ | Allows users to create new topics (folders) to organise their tweets |
-| _updateTopic_ | Allows users to update topic names and their content (tweets stored) at any time |
-| _deletetopic_ | Allows users to delete topics, thereby deleting all notes within that topic folder |
-| _getTweetByTopicID_ | Gets the note corresponding to the folder in which the note is present |
-| _viewAllTopics_ | Fetches all the created topics from the topic store for the user to view |
-| _getTweetByID_ | Gets the tweet corresponding to a particular ID. 
+| API                 | Functionality                                                                                     |
+|:------------------- |: ------------------------------------------------------------------------------------------------:|
+| _createTweet_       | Allows users to create new tweets (notes)                                                         |
+| _updateTweet_       | Allows the user to update tweets, which are dynamically saved in the browser's indexedDB database |
+| _deleteTweet_       | Allows users to delete tweets from local storage                                                  |
+| _createTopic_       | Allows users to create new topics (folders) to organise their tweets                              |
+| _updateTopic_       | Allows users to update topic names and their content (tweets stored) at any time                  |
+| _deletetopic_       | Allows users to delete topics, thereby deleting all notes within that topic folder                |
+| _getTweetByTopicID_ | Gets the note corresponding to the folder in which the note is present                            |
+| _viewAllTopics_     | Fetches all the created topics from the topic store for the user to view                          |
+| _getTweetByID_      | Gets the tweet corresponding to a particular ID                                                   |
 
 The dependencies are as follows:
 
