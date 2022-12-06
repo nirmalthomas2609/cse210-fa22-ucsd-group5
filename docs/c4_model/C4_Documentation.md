@@ -37,7 +37,7 @@ The Level - 2 Container diagram for the 'Tweet Management' application is axplai
 The interactions and the dependencies among the API components in the 'Content-Management' JS container is as follows:
 
 | API                 | Functionality                                                                                     |
-|:------------------- |: ------------------------------------------------------------------------------------------------:|
+|-------------------  | ------------------------------------------------------------------------------------------------  |
 | _createTweet_       | Allows users to create new tweets (notes)                                                         |
 | _updateTweet_       | Allows the user to update tweets, which are dynamically saved in the browser's indexedDB database |
 | _deleteTweet_       | Allows users to delete tweets from local storage                                                  |
