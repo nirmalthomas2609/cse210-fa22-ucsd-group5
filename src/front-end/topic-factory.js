@@ -6,7 +6,7 @@ import { sortElements } from "./util";
 class TopicFactory extends AbstractMenuItem {
     // Class TopicFactory is for creating, reading, updating, and deleting topics
 
-    // TopicFactor constructor depends on the Menu object  
+    // TopicFactory constructor depends on the Menu object  
     constructor(menuItemContainer) {
         super(menuItemContainer, false, '_topicItemUpdate', 'topis');
         this.newFolderBtn = document.getElementById(TOPICS.NEW_BUTTON);
@@ -17,8 +17,19 @@ class TopicFactory extends AbstractMenuItem {
         this.load();
 	}
 
+    // Function: load
+    //
+    // Loads in all the topics and tweets created by the user to display
+    //
+    // Parameters:
+    //
+    //  None
+    // 
+    //  Returns:
+    //
+    //      None
+
     load() {
-        // Loads in all the topics and tweets created by the user
         getAllTopics((topicEvent) => {
             if(!topicEvent.topicsList.length > 0) {
                 createTopic(TOPICS.DEFAULT_TOPIC, (topicObj) => {
@@ -37,8 +48,18 @@ class TopicFactory extends AbstractMenuItem {
         });
     }
 
+    // Function: renameEvent
+    //
+    // Renames topic on webpage when user makes name change
+    //
+    // Parameters:
+    //
+    //  None
+    // 
+    //  Returns:
+    //
+    //      None
     renameEvent() {
-        // Renames topic on webpage when user makes name change
         updateTopic(this.selectedId, this.selectedTitle, () => {
             this.notify({
                 id: this.selectedId, type: 'topics',
@@ -47,8 +68,18 @@ class TopicFactory extends AbstractMenuItem {
         });
     }
 
+    // Function: deleteEvent
+    //
+    // Deletes a topic when user wants to remove a topic
+    //
+    // Parameters:
+    //
+    //  data   - contains the id of the topic to delete
+    // 
+    //  Returns:
+    //
+    //      None
     deleteEvent(data) {
-        // Deletes a topic when user wants to remove a topic
         deleteTopic(data.deleteId, () => {
             this.notify({
                 id: this.selectedId, type: 'topics',
@@ -57,8 +88,19 @@ class TopicFactory extends AbstractMenuItem {
         })
     }
 
+    // Function: newEvent
+    //
+    // Creates a new, empty topic when user wants to add a topic
+    //
+    // Parameters:
+    //
+    //  None
+    // 
+    //  Returns:
+    //
+    //      None
+
     newEvent() {
-        // Creates a new, empty topic when user wants to add a topic
         if(this.selectedMenuItem) {
             createTopic(this.selectedTitle, (dbObj) => {
                 this.notify({

@@ -84,9 +84,20 @@ class AbstractMenuItem extends AbstractObserverPattern {
         return this.selectedContextBtn.offsetLeft;
     }
 
+    // Function: add
+    //
+    // Creates a new menu item with id and title
+    //
+    // Parameters:
+    //
+    //  id         - id of the menu item
+    //  title  - title of the menu item
+    // 
+    // Returns:
+    //
+    //      Nothing
 
     add(id, title) {
-        // Creates a new menu item with id and title
         let menuItem = createMenuItemHTML(title, this.isDraggable);
         this.menuItemContainer.appendChild(menuItem);
         this.addMenuEvents(menuItem);
@@ -103,8 +114,19 @@ class AbstractMenuItem extends AbstractObserverPattern {
         this.initializeItem(menuItem);
     }
 
+    // Function: initializeItem
+    //
+    // Configures the new menuItem with the correct options
+    //
+    // Parameters:
+    //
+    //  menuItem  - the HTML element of the menu
+    // 
+    // Returns:
+    //
+    //      Nothing
+
     initializeItem(menuItem) {
-        // Configures the new menuItem with the correct options
         let nameLbl = menuItem.querySelector(`.${NAME_CLASS}`);
         nameLbl.innerHTML = '';
         nameLbl.dataset.text = 'Enter Name...';
@@ -129,8 +151,19 @@ class AbstractMenuItem extends AbstractObserverPattern {
         }
     }
 
+    // Function: addMenuEvents
+    //
+    // Shows menu options upon click
+    //
+    // Parameters:
+    //
+    //  menuItem  - the HTML element of the menu
+    // 
+    // Returns:
+    //
+    //      Nothing
+
     addMenuEvents(menuItem) {
-        // Shows menu options upon click
         menuItem.onclick = () => {
             if (AbstractMenuItem.contextMenuStatus.show) {
                 return;
@@ -142,7 +175,17 @@ class AbstractMenuItem extends AbstractObserverPattern {
             }
         }
     }
-
+    // Function: addContextMenu
+    //
+    // Displays the options when the user clicks to expand the menu
+    //
+    // Parameters:
+    //
+    //  menuItem  - the HTML element of the menu
+    // 
+    // Returns:
+    //
+    //      Nothing
     addContextMenu(menuItem) {
         let contextMenu = document.getElementById('context-menu')
     
@@ -173,9 +216,18 @@ class AbstractMenuItem extends AbstractObserverPattern {
             this.activate('context-start');
         };
     }
-
+    // Function: deleteSelectedMenuItem
+    //
+    // Deletes a menu item from the HTML container
+    //
+    // Parameters:
+    //
+    //  menuItem  - the HTML element of the menu
+    // 
+    // Returns:
+    //
+    //      Nothing
     deleteSelectedMenuItem() {
-        // Deletes a menu item
         let menuItem = this.selectedMenuItem;
         let deletedId = menuItem.id;
         while(menuItem.firstChild) {
@@ -185,9 +237,19 @@ class AbstractMenuItem extends AbstractObserverPattern {
         return deletedId;
     }
 
-    
+    // Function: setItemTitleById
+    //
+    // Sets title of menu item
+    //
+    // Parameters:
+    //
+    //  id  - id of the menu item
+    //  title - new title of the menu item
+    // 
+    //  Returns:
+    //
+    //      Nothing
     setItemTitleById(id, title) {
-        // Sets title of menu item
         let titleElm = document.getElementById(id);
         if(!titleElm) { 
             return;
@@ -196,18 +258,54 @@ class AbstractMenuItem extends AbstractObserverPattern {
         titleElm.innerHTML = title;
     }
 
+    // Function: clearMenuItemContainer
+    //
+    // Clears all menu items in a container
+    //
+    // Parameters:
+    //
+    //  None
+    // 
+    // Returns:
+    //
+    //      Nothing
     clearMenuItemContainer() {
-        // Clears all menu items in a container
         while (this.menuItemContainer.firstChild) {
             this.menuItemContainer.removeChild(this.menuItemContainer.firstChild);
         }
     }
 
+    // Function: _makeEditable
+    //
+    // Configures an html element to be editable
+    //
+    // Parameters:
+    //
+    //  htmlElement  - an HTML element
+    //  isEditable   - boolean value for whether element is editable
+    //
+    //
+    // Returns:
+    //
+    //      Nothing
     _makeEditable(htmlElement, isEditable) {
         // Configures an html element to be editable
         htmlElement.contentEditable = isEditable;
     }
 
+    // Function: addMenuEvents
+    //
+    // Shows menu options upon click
+    //
+    // Parameters:
+    //
+    //  event  - the name of the event triggering this call
+    //  data   - optional parameter if necessary call requires data
+    //
+    //
+    // Returns:
+    //
+    //      Nothing
     activate(event, data) {
         // Activates a menu item by adding listeners for events on an item
         if(event === 'context-start') {
@@ -239,8 +337,18 @@ class AbstractMenuItem extends AbstractObserverPattern {
         }
     }
 
+    // Function: configureDraggable
+    //
+    // Configures a menu item as draggable
+    //
+    // Parameters:
+    //
+    //  menuItem  - the HTML element of the menu
+    // 
+    // Returns:
+    //
+    //      Nothing
     configureDraggable(menuItem) {
-        // Configures a menu item as draggable
         if(!this.isDraggable) {
             menuItem.ondragover = (e) => {
                 e.preventDefault();

@@ -25,6 +25,17 @@ class Menu extends AbstractMenuItem {
         this.curTweet = null;
     }
 
+    // Function: _topicItemUpdate
+    //
+    // makes appropriate update to topic based on parameter
+    //
+    // Parameters:
+    //
+    //  menuItemEvent  - either  drop, rename, loaded, context-start, select, or new to make the appropriate update 
+    //                    to a topic item
+    //  Returns:
+    //
+    //      Nothing
     _topicItemUpdate(menuItemEvent) {
         // changes view to new Topic upon event from user
 
@@ -86,8 +97,18 @@ class Menu extends AbstractMenuItem {
         }
     }
 
+    // Function: _tweetItemUpdate
+    //
+    // makes appropriate update of tweet based on parameter
+    //
+    // Parameters:
+    //
+    //  menuItemEvent  - either  delete, rename, loaded, context-start, select, or new to make the appropriate update 
+    //                    to a tweet item
+    //  Returns:
+    //
+    //      Nothing
     _tweetItemUpdate(menuItemEvent) {
-        // changes view to different tweet upon even from user
 
         // close editor if tweet has been delete 
         if(['delete'].includes(menuItemEvent.event)) {

@@ -14,6 +14,18 @@ class TweetFactory extends AbstractMenuItem {
         }
 	}
 
+    // Function: load
+    //
+    // Loads in all the topics and tweets created by the user to display
+    //
+    // Parameters:
+    //
+    //  topidid  - the id of the topic from which to read all tweets
+    // 
+    //  Returns:
+    //
+    //      None
+
     load(topicid) {
         // Loads in all tweets associated with a topic
         this.topicid = topicid;
@@ -29,6 +41,19 @@ class TweetFactory extends AbstractMenuItem {
             this.activate('loaded');
         });
     }
+    
+    
+    // Function: newEvent
+    //
+    // Creates a new tweet within a topic when user wants to add a tweet
+    //
+    // Parameters:
+    //
+    //  None
+    // 
+    //  Returns:
+    //
+    //      None
 
     newEvent() {
         // Creates a new tweet within a topic when user wants to add a tweet
@@ -47,8 +72,19 @@ class TweetFactory extends AbstractMenuItem {
         }
     }
 
+    // Function: deleteEvent
+    //
+    // Deletes a tweet from the menu when user wants to remove a tweet
+    //
+    // Parameters:
+    //
+    //  data - contained id of the tweet to delete
+    // 
+    //  Returns:
+    //
+    //      None
+
     deleteEvent(data) {
-        // Deletes a tweet from the menu when user wants to remove a tweet
         deleteTweet(data.deleteId, () => {
             this.notify({
                 id: this.selectedId, type: 'tweets',
@@ -57,8 +93,19 @@ class TweetFactory extends AbstractMenuItem {
         });
     }
 
+    // Function: renameEvent
+    //
+    // Renames a tweet when user wants to change title
+    //
+    // Parameters:
+    //
+    //  None
+    // 
+    //  Returns:
+    //
+    //      None
+
     renameEvent() {
-        // Renames a tweet when user wants to change title
         updateTweet(this.selectedId, this.selectedTitle, '', '', () => {
             this.notify({
                 id: this.selectedId, type: 'tweets',
