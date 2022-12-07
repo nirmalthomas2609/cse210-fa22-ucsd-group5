@@ -2,6 +2,19 @@ import {DB} from "../configure";
 
 let db;
 
+// Function: setupDB
+//
+// Creates a datastore corresponding for the tweets/topics
+//
+// Parameters:
+//
+//  namespace - Name of the datastore created
+//  callback - Method invoked on successful creation of the datastore
+// 
+// Returns:
+//
+//      Nothing
+
 function setupDB(namespace, callback) {
 
     const request = indexedDB.open(`${namespace}`, 1);
@@ -28,9 +41,9 @@ function setupDB(namespace, callback) {
 //
 // Parameters:
 //
-//  tweetText       - The text contained in the tweet.
-//  topicName       - Name of the topic to file the tweet under.
-//  statusCallback  - Listener function from frontend to be executed
+//  tweetText       - The text contained in the tweet
+//  topicName       - Name of the topic to file the tweet under
+//  statusCallback  - Listener function from frontend to be executed on completed transaction
 // 
 // Returns:
 //
@@ -57,10 +70,11 @@ function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
 //
 // Parameters:
 //
-//  tweetId         - The unique id of the tweet.
-//  tweetText       - Updated text contained in the tweet.
-//  topicId       - Updated TopicId if moving tweet
-//  statusCallback  - Listener function from frontend to be executed
+//  tweetId         - ID of the tweet to be updated
+//  tweetTitle      - Updated tweet title if any (else pass empty string)
+//  tweetText       - Updated text contained in the tweet if any (else pass empty string)
+//  topicId         - Updated TopicId if moving tweet if any (else pass empty string)
+//  statusCallback  - Listener function from frontend to be executed on completed transaction
 // 
 // Returns:
 //
@@ -103,8 +117,8 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 //
 // Parameters:
 //
-//  tweetId         - The unique id of the tweet.
-//  statusCallback  - Listener function from frontend to be executed
+//  tweetId         - ID of the tweet to be deleted
+//  statusCallback  - Listener function from frontend to be executed on completed transaction
 // 
 // Returns:
 //
@@ -128,8 +142,8 @@ function deleteTweet(tweetId, statusCallback) {
 //
 // Parameters:
 //
-//  topicName       - Name of the topic to store tweets within
-//  statusCallback  - Listener function from frontend to be executed
+//  topicName       - Name of the topic to store tweets within (Folder)
+//  statusCallback  - Listener function from frontend to be executed on transaction complete
 // 
 // Returns:
 //
@@ -158,7 +172,7 @@ function createTopic(topicName, statusCallback) {
 //
 //  topicId         - Unique topic ID corresponding to the topic (Primary Key)
 //  topicName       - Updated topic name
-//  statusCallback  - Listener function from frontend to be executed
+//  statusCallback  - Listener function from frontend to be executed on transaction complete
 // 
 // Returns:
 //
@@ -194,7 +208,7 @@ function updateTopic(topicId, topicName, statusCallback) {
 // Parameters:
 //
 //  topicId         - Unique ID corresponding to the topic
-//  displayTweetsCallback  - Listener function from frontend to be executed
+//  displayTweetsCallback  - Listener function from frontend to be executed on transaction complete
 // 
 // Returns:
 //
@@ -220,7 +234,7 @@ function getTweetsByTopicId(topicId, displayTweetsCallback) {
 //
 // Parameters:
 //
-//  displayTopicsCallback - Listener fucntion from fontend to be executed
+//  displayTopicsCallback - Listener fucntion from fontend to be executed on transaction complete
 // 
 // Returns:
 //
@@ -254,8 +268,8 @@ function getAllTopics(displayTopicsCallback) {
 //
 // Parameters:
 //
-//  tweetId         - Unique ID corresponding to the tweet
-//  displayTweetCallback  - Listener function from frontend to be executed
+//  tweetId         - Unique ID corresponding to the tweet to be fetched
+//  displayTweetCallback  - Listener function from frontend to be executed on transaction complete
 // 
 // Returns:
 //
@@ -284,8 +298,8 @@ function getTweetById(tweetId, displayTweetCallback) {
 //
 // Parameters:
 //
-//  topicId         - Unique ID corresponding to the topic
-//  statusCallback  - Listener function from frontend to be executed
+//  topicId         - ID corresponding to the topic to be deleted
+//  statusCallback  - Listener function from frontend to be executed on transaction complete
 // 
 // Returns:
 //
