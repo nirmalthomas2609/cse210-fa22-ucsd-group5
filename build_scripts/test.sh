@@ -31,10 +31,12 @@ echo "Docs repo cloned"
 
 cd docs_repo
 git checkout msharan/documentation
-cp ../documentation/* docs/naturaldocs/
+cp -r ../documentation/* docs/naturaldocs/
 
 git add docs/*
 
+git config --global user.email "msharan@ucsd.edu"
+git config --global user.name "Mayank Sharan"
 git commit -m "Updating Natural docs"
 echo "Changes committed"
 
