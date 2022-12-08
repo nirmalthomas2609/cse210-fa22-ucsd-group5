@@ -22,5 +22,5 @@ echo "ND downloaded"
 
 # Generate Naturaldocs
 
-mono NaturalDocs/NaturalDocs.exe nd_config
+mono NaturalDocs/Natural\ Docs/NaturalDocs.exe nd_config
 echo "Docs update completed"
