@@ -19,3 +19,9 @@ curl https://www.naturaldocs.org/download/natural_docs/2.2/Natural_Docs_2.2.zip 
 unzip NaturalDocs.zip -d NaturalDocs
 
 echo "ND downloaded"
+
+echo "Current directory"
+ls
+
+echo "ND directory"
+ls NaturalDocs
