@@ -20,8 +20,7 @@ unzip NaturalDocs.zip -d NaturalDocs
 
 echo "ND downloaded"
 
-echo "Current directory"
-ls
+# Generate Naturaldocs
 
-echo "ND directory"
-ls NaturalDocs
+mono NaturalDocs/NaturalDocs.exe nd_config
+echo "Docs update completed"
