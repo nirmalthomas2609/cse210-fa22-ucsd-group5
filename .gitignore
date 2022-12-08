@@ -2,6 +2,5 @@
 .vscode/*
 node_modules/*
 package-lock.json
-package.json
 db/node_modules/*
 db/yarn.lock

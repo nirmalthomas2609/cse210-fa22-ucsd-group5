@@ -14,72 +14,93 @@ $custom-theme-colors: (
     "card-colors": theme4.$card-colors
 );
 
+.topic {
+    background-color: tint-color(red, 80%);
+    cursor: pointer;
 
+    &.active {
+        background-color: red !important;
+    }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: map.get($custom-theme-colors, "background-color");
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-    font-family: "Brush Script MT", cursive;
+    &:hover{
+        transform: scale(1.05);
+    }
 }
 
-input  {
+.card {
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.hidden {
     display: none;
 }
 
-.container {
-    height: 100%;
-    max-width: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform-style: preserve-3d;
-    flex-direction: column;
+// body {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: map.get($custom-theme-colors, "background-color");
+//     overflow: hidden;
+//     height: 100vh;
+//     width: 100vw;
+//     font-family: "Brush Script MT", cursive;
+// }
 
-    .cards {
-        position: absolute;
-        width: 430px;
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        height: 30vh;
+// input  {
+//     display: none;
+// }
 
-        label {
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 100%;
-            cursor: pointer;
-            transition: transform 0.55s ease;
+// .container {
+//     height: 100%;
+//     max-width: 0px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     transform-style: preserve-3d;
+//     flex-direction: column;
 
-            .card-header {
-                padding-top: 0;
-                padding-bottom: 0;
-                font-size: $h2-font-size;
-                font-weight: $font-weight-bold;
-                background-color: map.get($custom-theme-colors, "light-background-color");
-            }
+//     .cards {
+//         position: absolute;
+//         width: 430px;
+//         perspective: 1000px;
+//         transform-style: preserve-3d;
+//         height: 30vh;
 
-            .card {
-                position: relative;
-                height: 100%;
-                border-color: map.get($custom-theme-colors, "dark-accent-color");
+//         label {
+//             position: absolute;
+//             left: 0;
+//             right: 0;
+//             height: 100%;
+//             cursor: pointer;
+//             transition: transform 0.55s ease;
 
-                &:hover{
-                    transform: scale(1.05);
-                }
-            }
-        }
+//             .card-header {
+//                 padding-top: 0;
+//                 padding-bottom: 0;
+//                 font-size: $h2-font-size;
+//                 font-weight: $font-weight-bold;
+//                 background-color: map.get($custom-theme-colors, "light-background-color");
+//             }
+
+//             .card {
+//                 position: relative;
+//                 height: 100%;
+//                 border-color: map.get($custom-theme-colors, "dark-accent-color");
+
+//                 &:hover{
+//                     transform: scale(1.05);
+//                 }
+//             }
+//         }
         
-        &:hover {
-            transform: scale(1.05);
-        }
-    }
-}
+//         &:hover {
+//             transform: scale(1.05);
+//         }
+//     }
+// }
 
 @each $num, $color in map.get($custom-theme-colors, "card-colors") {
     .card-#{$num} {
