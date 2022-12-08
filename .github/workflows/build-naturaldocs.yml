@@ -1,0 +1,21 @@
+#################################################
+## Auto build natural docs and update on pages ##
+#################################################
+
+name: Generate Natural Docs
+
+on: push
+
+###############
+# Set the Job #
+###############
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Docs prep script
+      - uses: actions/checkout@v3
+        run: |
+          chmod +x ./build_scripts/test.sh
+          ./public/scripts/test.sh
+        shell: bash
