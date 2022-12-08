@@ -2,7 +2,7 @@
 name: Unit tests for backend API
 
 on:
-  # Triggers the workflow on push or pull request events but only for the "develop" branch as it
+  # Triggers the workflow on push or pull request events but only for the "update-ui" branch as it
   # has the codebase for backend API management
   push:
     branches: [ "update-ui" ]
