@@ -9,14 +9,11 @@ on:
   # This workflow contains a single job called "test"
 test:
     # The type of runner that the job will run on all the OSes
-  runs-on: ${{matrix.os}}
-    strategy:
-        matrix:
-          os: [ubuntu-latest, windows-latest, macOS-latest]
+  runs-on: ubuntu-latest
     
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+  steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
