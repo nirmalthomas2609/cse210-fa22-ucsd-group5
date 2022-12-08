@@ -1,7 +1,9 @@
 import { AbstractObserverPattern } from "./abstract-observer";
 
+// Class: TextEditor
+// Class TextEditor is the interface for editing a note
+
 class TextEditor extends AbstractObserverPattern {
-	// Class TextEditor is the interface for editing a note
 
 	// TextEditor constructor does not depend on any objects
 	constructor() {
@@ -24,7 +26,7 @@ class TextEditor extends AbstractObserverPattern {
 
     // Function: reset
     //
-    // Creates an empty text window
+    // *Creates an empty text window*
     //
     // Parameters:
     //
@@ -32,7 +34,12 @@ class TextEditor extends AbstractObserverPattern {
     // 
     //  Returns:
     //
-    //      Nothing
+    //      None
+    // 
+    // See Also:
+    //  
+    //  Called by <Menu._tweetItemUpdate>
+
 	reset() {
 		this.textEditorContainer.classList.add('hidden');
 		this.textEditorContainer.classList.remove('not-saved');
@@ -44,7 +51,7 @@ class TextEditor extends AbstractObserverPattern {
 
 	// Function: isRunning
     //
-    // Indicator for whether text editor is actively running
+    // *Indicator for whether text editor is actively running*
     //
     // Parameters:
     //
@@ -62,7 +69,7 @@ class TextEditor extends AbstractObserverPattern {
 	
 	// Function: start
     //
-    // Creates an empty text editor upon new note creation
+    // *Creates an empty text editor upon new note creation*
     //
     // Parameters:
     //
@@ -74,6 +81,11 @@ class TextEditor extends AbstractObserverPattern {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Called by <Menu._tweetItemUpdate>
+
 	start(title, content, tweetId, topicId) {
 		if(this.isRunning()) {
 			throw new Error('cannot text editor while it is running');
@@ -93,7 +105,7 @@ class TextEditor extends AbstractObserverPattern {
 
 	// Function: getSaveObj
     //
-    // get method for the saved tweet in the text editor
+    // *get method for the saved tweet in the text editor*
     //
     // Parameters:
     //
@@ -102,6 +114,7 @@ class TextEditor extends AbstractObserverPattern {
     //  Returns:
     //
     //      The object of the saved text editor, with attributes tweetId, topicId, title, and content
+
 	getSaveObj() {
 		// return the saved note object
 		let savedObj = {
@@ -115,7 +128,7 @@ class TextEditor extends AbstractObserverPattern {
 
 	// Function: close
     //
-    // Closes the actively opened text editor
+    // *Closes the actively opened text editor*
     //
     // Parameters:
     //
@@ -124,6 +137,7 @@ class TextEditor extends AbstractObserverPattern {
     //  Returns:
     //
     //      The saved text editor upon closing it
+
 	close() {
 		
 		this.textEditorContainer.classList.add('hidden');
@@ -145,7 +159,7 @@ class TextEditor extends AbstractObserverPattern {
 
 	// Function: _save
     //
-    // Sets saved status as true
+    // *Sets saved status as true*
     //
     // Parameters:
     //
@@ -162,7 +176,7 @@ class TextEditor extends AbstractObserverPattern {
 
 	// Function: _setSavedStatus
     //
-    // Creates an empty text editor upon new note creation
+    // *Creates an empty text editor upon new note creation*
     //
     // Parameters:
     //
@@ -171,6 +185,7 @@ class TextEditor extends AbstractObserverPattern {
     //  Returns:
     //
     //      None
+
 	_setSavedStatus(isSaved) {
 		// update the button based on save status
 		if(isSaved) {
@@ -182,7 +197,7 @@ class TextEditor extends AbstractObserverPattern {
 	
 	// Function: _isUnSaved
     //
-    // Indicator for if tweet is unsaved
+    // *Indicator for if tweet is unsaved*
     //
     // Parameters:
     //
@@ -191,6 +206,7 @@ class TextEditor extends AbstractObserverPattern {
     //  Returns:
     //
     //      True if the tweet is unsaved, returns false if it is saved
+
 	_isUnSaved() {
 		// returns True if note is unsaved
 		return this.textEditorContainer.classList.contains('not-saved');
@@ -207,6 +223,10 @@ class TextEditor extends AbstractObserverPattern {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Called by <Menu._tweetItemUpdate>
 
 	setTitle(title) {
 		this.title.innerHTML = title;
@@ -215,7 +235,7 @@ class TextEditor extends AbstractObserverPattern {
 
 	// Function: getTitle
     //
-    // Gets the title of a tweet in the text editor
+    // *Gets the title of a tweet in the text editor*
     //
     // Parameters:
     //
