@@ -1,4 +1,11 @@
-import {DB} from "../configure";
+let DB = {
+    tweetStoreName: "tweets",
+    topicStoreName: "topics",
+    topicIndexName: "topicIndex",
+
+    OK_STATUS: 200,
+    FAILURE_STATUS: 500,
+}
 
 let db;
 
@@ -21,7 +28,6 @@ function setupDB(namespace, callback) {
 
     request.onsuccess = (event) => {
         db = event.target.result;
-        console.log(db, db.objectStoreNames)
         callback();
     }
 
@@ -340,7 +346,7 @@ function deleteTopic(topicId, statusCallback) {
     });
 }
 
-export {
+module.exports = {
     setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic, deleteTopic,
     deleteTweet,getTweetById
 };
