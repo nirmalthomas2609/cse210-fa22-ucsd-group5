@@ -2,8 +2,11 @@ import { createTweet, getTweetsByTopicId, updateTweet, deleteTweet } from "../db
 import { TWEETS } from "../configure";
 import { AbstractMenuItem } from "./abstract-menu-item";
 import {sortElements} from "./util";
+
+// Class: TweetFactory
+// Class TweetFactory is the interface for managing tweets (creating, reading, updating, deleting)
+
 class TweetFactory extends AbstractMenuItem {
-    // Class TweetFactory is the interface for managing tweets (creating, reading, updating, deleting)
 
 	// TweetFactory constructor depends on the menu object
     constructor(menuItemContainer) {
@@ -16,15 +19,20 @@ class TweetFactory extends AbstractMenuItem {
 
     // Function: load
     //
-    // Loads in all the topics and tweets created by the user to display
+    // *Loads in all the topics and tweets created by the user to display*
     //
     // Parameters:
     //
-    //  topidid  - the id of the topic from which to read all tweets
+    //  topicid  - the id of the topic from which to read all tweets
     // 
-    //  Returns:
+    // Returns:
     //
-    //      None
+    //  None
+    //
+    // See Also:
+    //  
+    //  Calls functions <getTweetsByTopicId>
+    //  Called by <Menu._topicItemUpdate>
 
     load(topicid) {
         // Loads in all tweets associated with a topic
@@ -45,7 +53,7 @@ class TweetFactory extends AbstractMenuItem {
     
     // Function: newEvent
     //
-    // Creates a new tweet within a topic when user wants to add a tweet
+    // *Creates a new tweet within a topic when user wants to add a tweet*
     //
     // Parameters:
     //
@@ -54,6 +62,10 @@ class TweetFactory extends AbstractMenuItem {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <createTweet>
 
     newEvent() {
         // Creates a new tweet within a topic when user wants to add a tweet
@@ -74,7 +86,7 @@ class TweetFactory extends AbstractMenuItem {
 
     // Function: deleteEvent
     //
-    // Deletes a tweet from the menu when user wants to remove a tweet
+    // *Deletes a tweet from the menu when user wants to remove a tweet*
     //
     // Parameters:
     //
@@ -83,6 +95,10 @@ class TweetFactory extends AbstractMenuItem {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <deleteTweet>
 
     deleteEvent(data) {
         deleteTweet(data.deleteId, () => {
@@ -95,7 +111,7 @@ class TweetFactory extends AbstractMenuItem {
 
     // Function: renameEvent
     //
-    // Renames a tweet when user wants to change title
+    // *Renames a tweet when user wants to change title*
     //
     // Parameters:
     //
@@ -104,6 +120,10 @@ class TweetFactory extends AbstractMenuItem {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <updateTweet>
 
     renameEvent() {
         updateTweet(this.selectedId, this.selectedTitle, '', '', () => {

@@ -15,6 +15,15 @@
  *                               this function in order to register as an
  *                               observer.
  */
+
+// Class: AbstractObserverPattern
+// From Wikipedia: https://en.wikipedia.org/wiki/Observer_pattern
+// The observer pattern is a software design pattern in which an object,
+// named the 'Subject', maintains a list of its dependents, called
+// 'Observers',and notifies them automatically of any state changes, usually
+// by calling one of their methods.
+// Any class that inherits AbstractObserverPattern will become a 'Subject'.
+
 class AbstractObserverPattern {
     constructor(notifyFunction, options) {
         if (this.constructor === AbstractObserverPattern) {
@@ -29,9 +38,18 @@ class AbstractObserverPattern {
         this.options = options;
     }
 
-    /*
-        * Adds an observer to the observer list.
-        */
+    // Function: registerObserver
+    //
+    // *Adds an observer to the observer list.*
+    //
+    // Parameters:
+    //
+    //  observer - The observer to be registered
+    // 
+    // Returns:
+    //
+    //      None
+
     registerObserver(observer) {
         if (!this.hasNotifyFunction(observer)) {
             throw new Error(
@@ -41,9 +59,18 @@ class AbstractObserverPattern {
         this.observers.push(observer);
     }
 
-    /**
-     * Notify all observers.
-     */
+    // Function: notify
+    //
+    // *Notify all observers*
+    //
+    // Parameters:
+    //
+    //  data - The data to be provided to all observers on notification
+    // 
+    // Returns:
+    //
+    //      None
+
     notify(data) {
         var scope = this;
         for(let obs of this.observers) {

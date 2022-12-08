@@ -4,7 +4,7 @@ let db;
 
 // Function: setupDB
 //
-// Creates a datastore corresponding for the tweets/topics
+// *Creates a datastore corresponding for the tweets/topics*
 //
 // Parameters:
 //
@@ -13,7 +13,7 @@ let db;
 // 
 // Returns:
 //
-//      Nothing
+//      None
 
 function setupDB(namespace, callback) {
 
@@ -37,7 +37,7 @@ function setupDB(namespace, callback) {
 
 // Function: createTweet
 //
-// Creates an entry corresponding to a tweet in the database
+// *Creates an entry corresponding to a tweet in the database*
 //
 // Parameters:
 //
@@ -47,7 +47,12 @@ function setupDB(namespace, callback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TweetFactory.newEvent> and <Menu._topicItemUpdate>
+
 
 function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
     const tweetId = `tweet-${Date.now()}`;
@@ -66,7 +71,7 @@ function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
 
 // Function: updateTweet
 //
-// Updates tweet content in the database / moves tweet within topics
+// *Updates tweet content in the database / moves tweet within topics*
 //
 // Parameters:
 //
@@ -78,7 +83,11 @@ function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TweetFactory.renameEvent>, <Menu._tweetItemUpdate> and <Menu._topicItemUpdate>
 
 function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
@@ -113,7 +122,7 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 
 // Function: deleteTweet
 //
-// Delete tweet entry from DB
+// *Delete tweet entry from DB*
 //
 // Parameters:
 //
@@ -122,7 +131,12 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TweetFactory.deleteEvent> and <Menu._topicItemUpdate>
+
 
 function deleteTweet(tweetId, statusCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
@@ -138,7 +152,7 @@ function deleteTweet(tweetId, statusCallback) {
 
 // Function: createTopic
 //
-// Creates an entry corresponding to a new topic in the database
+// *Creates an entry corresponding to a new topic in the database*
 //
 // Parameters:
 //
@@ -147,7 +161,12 @@ function deleteTweet(tweetId, statusCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TopicFactory.load> and <TopicFactory.newEvent>
+
 
 function createTopic(topicName, statusCallback) {
     const topicId = `topic-${Date.now()}`;
@@ -166,7 +185,7 @@ function createTopic(topicName, statusCallback) {
 
 // Function: updateTopic
 //
-// Updates topic Name
+// *Updates topic Name*
 //
 // Parameters:
 //
@@ -176,7 +195,11 @@ function createTopic(topicName, statusCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TopicFactory.renameEvent>
 
 function updateTopic(topicId, topicName, statusCallback) {
     const objStore = db.transaction([DB.topicStoreName], "readwrite").objectStore(DB.topicStoreName);
@@ -203,7 +226,7 @@ function updateTopic(topicId, topicName, statusCallback) {
 
 // Function: getTweetsByTopicId
 //
-// Gets all tweets corresponding to a given topic ID
+// *Gets all tweets corresponding to a given topic ID*
 //
 // Parameters:
 //
@@ -212,7 +235,11 @@ function updateTopic(topicId, topicName, statusCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TweetFactory.load>
 
 function getTweetsByTopicId(topicId, displayTweetsCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
@@ -230,7 +257,7 @@ function getTweetsByTopicId(topicId, displayTweetsCallback) {
 
 // Function: getAllTopics
 //
-// Gets a list of all topics in the topics store
+// *Gets a list of all topics in the topics store*
 //
 // Parameters:
 //
@@ -238,6 +265,9 @@ function getTweetsByTopicId(topicId, displayTweetsCallback) {
 // 
 // Returns:
 //
+// See Also:
+//  
+//  Called by <TopicFactory.load>
 
 function getAllTopics(displayTopicsCallback) {
 
@@ -264,7 +294,7 @@ function getAllTopics(displayTopicsCallback) {
 
 // Function: getTweetById
 //
-// Gets tweet identified by tweetId
+// *Gets tweet identified by tweetId*
 //
 // Parameters:
 //
@@ -273,7 +303,11 @@ function getAllTopics(displayTopicsCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <Menu._tweetItemUpdate>
 
 function getTweetById(tweetId, displayTweetCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readonly").objectStore(DB.tweetStoreName);
@@ -294,7 +328,7 @@ function getTweetById(tweetId, displayTweetCallback) {
 
 // Function: deleteTopic
 //
-// Deletes all tweets corresponding to the topic and also additionally removes the topic record from the topic store
+// *Deletes all tweets corresponding to the topic and also additionally removes the topic record from the topic store*
 //
 // Parameters:
 //
@@ -303,7 +337,11 @@ function getTweetById(tweetId, displayTweetCallback) {
 // 
 // Returns:
 //
-//      Nothing
+//      None
+//
+// See Also:
+//  
+//  Called by <TopicFactory.deleteEvent>
 
 function deleteTopic(topicId, statusCallback) {
     const successReturnObj = {status: DB.OK_STATUS};

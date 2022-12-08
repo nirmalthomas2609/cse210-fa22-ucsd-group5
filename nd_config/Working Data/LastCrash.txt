@@ -1,0 +1,26 @@
+Generated on 12/4/2022 11:38:59 PM
+
+Crash Message:
+
+   libNaturalDocs.Engine.SQLite.Mac64.so assembly:<unknown assembly> type:<unknown type> member:(null)
+   (System.DllNotFoundException)
+
+Stack Trace:
+
+  at (wrapper managed-to-native) CodeClear.NaturalDocs.Engine.SQLite.API.sqlite3_initialize()
+  at CodeClear.NaturalDocs.Engine.SQLite.API.Initialize () [0x00000] in <5f05040a225e456282ce5ec1092f4c83>:0 
+  at CodeClear.NaturalDocs.Engine.CodeDB.Manager.Start (CodeClear.NaturalDocs.Engine.Errors.ErrorList errors) [0x0000c] in <5f05040a225e456282ce5ec1092f4c83>:0 
+  at CodeClear.NaturalDocs.Engine.Instance.Start (CodeClear.NaturalDocs.Engine.Errors.ErrorList errors, CodeClear.NaturalDocs.Engine.Config.ProjectConfig commandLineConfig) [0x000f8] in <5f05040a225e456282ce5ec1092f4c83>:0 
+  at CodeClear.NaturalDocs.CLI.Application.BuildDocumentation (CodeClear.NaturalDocs.Engine.Errors.ErrorList errorList) [0x0002d] in <b9405812e2f14363914a049832d0edc8>:0 
+  at CodeClear.NaturalDocs.CLI.Application.Main (System.String[] commandLine) [0x00141] in <b9405812e2f14363914a049832d0edc8>:0 
+
+Command Line:
+
+   /Users/mayank/Downloads/Natural_Docs/NaturalDocs.exe nd_config
+
+Versions:
+
+   Natural Docs 2.2
+   Unix 22.1.0.0
+   Mono 6.12.0.182
+   SQLite 3.31.1
