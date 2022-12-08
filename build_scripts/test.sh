@@ -15,7 +15,7 @@ echo "Mono installed"
 
 # Install Naturaldocs
 
-curl https://www.naturaldocs.org/download --output NaturalDocs.zip
-unzip NaturalDocs.zip -d NaturalDocs
+curl https://www.naturaldocs.org/download
+ls
 
 echo "ND downloaded"
