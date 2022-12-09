@@ -22,16 +22,14 @@ echo "ND downloaded"
 
 # Generate Naturaldocs
 
-mono NaturalDocs/Natural\ Docs/NaturalDocs.exe nd_config
-echo "Docs update completed"
-
-# Copy generated docs to docs folder
-git rm -r docs/naturaldocs/
+git rm -r docs/naturaldocs/*
 mkdir docs/naturaldocs/
-cp -r documentation/* docs/naturaldocs/
+
+mono NaturalDocs/Natural\ Docs/NaturalDocs.exe nd_config -o docs/naturaldocs/
+
 git add docs/*
 
-echo "Copy completed"
+echo "Docs update completed"
 
 # Commit and push changes
 
