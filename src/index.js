@@ -32,6 +32,9 @@ function setEventListeners() {
             tweetInput.value = 'Select topic first to create tweet.'
             tweetInput.classList.add('no-topic');
             tweetInput.disabled=true;
+            okBtn.onclick = () => {
+             return;
+            }
         }
     });
 
