@@ -1,6 +1,7 @@
 # Local-First Tweet Manager Application
 
-To view our most recent release: https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases/tag/V1  
+To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
+To run the application download a release, unzip and open the index.html within on your favorite browser!
 
 Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
 
@@ -33,7 +34,7 @@ https://cse210-group5.github.io/cse210-fa22-ucsd-group5/naturaldocs/
 
 Architectural Decision Records:
 https://cse210-group5.github.io/cse210-fa22-ucsd-group5/decisions/
-
+x
 - We also believe that to effectively contribute to this application, you should understand the set of decisions that led to the current version of the application and the vision for its future. The records of backend, frontend, and UX decisions will be found in the link above.
 
 Product Evolution:
@@ -78,20 +79,17 @@ Feel free to change the test cases in the file src/db/tests/db.test.js and then 
 
 We maintain two key branches: main and develop. 
 
-Whenever you push to a branch, we automatically run a linter, unit tests, build natural docs, and the code coverage summary report. These can be reviewed as workflows set up using github actions.
+Whenever you push to a branch, we automatically run a unit tests, build natural docs, generate a release and a code coverage summary report. These can be reviewed as workflows set up using github actions.
 
-For pull requests to main, you need one approving review and all the automated tests to pass.
+For pull requests to main, you need one approving review and all the automated tests to pass including an additional code linter.
 
 ## Internal Documentation
 
-Meeting Policies:  
-https://coda.io/d/Meetings-Policies_dzJaSfaoHaC 
-
-UI/UX and Frontend ADR:
-https://coda.io/d/Frontend-ADR_dWFJbslsd6F
-
-Sprint Planning:  
-Taiga
+[Decision Docs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-eO22fp3pi_)
+[Processes](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
+[Product Specs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
+[Testing Reports](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-0PWeswvamv)
+[Sprint Planning](https://tree.taiga.io/project/mayanksharan-cse-210-group-5/timeline)
 
 Communication:  
 Discord
