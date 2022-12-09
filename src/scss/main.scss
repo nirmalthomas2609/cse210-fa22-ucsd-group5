@@ -1,8 +1,35 @@
 @use "sass:map";
 @use "./theme4";
 
-// Import all of Bootstrap's CSS
-@import "~bootstrap/scss/bootstrap";
+// Import Bootstrap's CSS
+// scss-docs-start import-stack
+// Configuration
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Layout & components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+
+// Helpers
+@import "~bootstrap/scss/helpers";
+
+// Utilities
+@import "~bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
+
 
 $custom-theme-colors: (
     "background-color": theme4.$background-color,
@@ -74,15 +101,4 @@ $custom-theme-colors: (
 body {
     color: color-contrast(map.get($custom-theme-colors, "background-color"));
     background-color: map.get($custom-theme-colors, "background-color");
-    font-family: "Brush Script MT", cursive;
 }
-
-// @each $num, $color in map.get($custom-theme-colors, "card-colors") {
-//     .card-#{$num} {
-//         background-color: $color;
-//     }
-
-//     .card-#{$num} {
-//         color: color-contrast($color);
-//     }
-// }

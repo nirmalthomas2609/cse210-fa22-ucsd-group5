@@ -15,14 +15,6 @@ module.exports = {
     module: {
         rules: [
             {
-            mimetype: 'image/svg+xml',
-            scheme: 'data',
-            type: 'asset/resource',
-            generator: {
-              filename: 'icons/[hash].svg'
-            }
-          },
-            {
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
             }
