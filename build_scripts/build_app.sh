@@ -23,7 +23,7 @@ npm install -g pkg
 
 echo "Attempt to build executable"
 
-pkg -t latest-linux,latest-win,latest-macos greco_notes_app/index.html
+pkg -t latest-linux,latest-win,latest-macos greco_notes_app/bundle.js
 
 echo "Script Complete"
 
