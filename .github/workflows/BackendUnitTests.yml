@@ -1,10 +1,10 @@
 name: Unit tests for backend API
 
-on:
+on: [push, pull_request]
   # Triggers the workflow on push or pull request events but only for the "develop" branch as it
   # has the codebase for backend API management
-  [push, pull_request]
 
+jobs:
   # This workflow contains a single job called "test"
   test:
     # The type of runner that the job will run on all the OSes
@@ -17,12 +17,13 @@ on:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       #Install jest
       - name: Jest for Unit testing 
         run: npm install --save-dev jest
       
       #Run the unit tests
-      - name: Backend Unit Tests
+      - name: Run unit tests
         run: npx jest --runInBand db.test.js

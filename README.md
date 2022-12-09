@@ -56,21 +56,13 @@ https://coda.io/d/Product-Evolution_deTs8LnIArk
 
 If either are not installed, use the directions here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm  
 
-4. Fourth, install all dependencies using the following command in terminal in the project directory:  
+4. Then run the following commands from the root of the repo
 
-`npm install -d`  
+`chown +x ./build_scripts/build_app.sh`
+`./build_scripts/build_app.sh`
 
-5. Fifth, you should build the system by running the following command in terminal in the project directory:  
-
-`npm run build`  
-
-If successful, there should now be a folder called dist, which contains the application bundle.  
-
-6. Sixth, run the following command in terminal in the project directory to run the development version:  
-
-`npm run dev`  
-
-If you get an issue that there is a process running, you will need to shut down the current process running in port 3000. Now, you are fully set up with a local, development version of Tweet Manager. Congrats!   
+Now, you are fully set up with a local, development version of Tweet Manager. Congrats!
+You can launch the application by opening the index.html in the greco_notes_app folder in a browser of your choice!
 
 ## To run unit tests
 
@@ -84,7 +76,7 @@ Feel free to change the test cases in the file src/db/tests/db.test.js and then 
 
 We maintain two key branches: main and develop. 
 
-Whenever you push to a branch, we automatically run a linter, unit tests, build natural docs, and the code coverage summary report. 
+Whenever you push to a branch, we automatically run a linter, unit tests, build natural docs, and the code coverage summary report. These can be reviewed as workflows set up using github actions.
 
 For pull requests to main, you need one approving review and all the automated tests to pass.
 

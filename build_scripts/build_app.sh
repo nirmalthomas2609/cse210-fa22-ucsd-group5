@@ -2,7 +2,7 @@
 
 echo "App build start"
 
-npm install -d > misc_logs.txt
+npm install -d
 
 echo "All dependencies installed"
 
