@@ -22,43 +22,43 @@ https://cse210-group5.github.io/cse210-fa22-ucsd-group5/
 Architecture/Component Overview:
 https://cse210-group5.github.io/cse210-fa22-ucsd-group5/c4_model/C4_Documentation.html
 
-Before you start any coding, please review the diagrams in the link above. In it, you will find a System Context Diagram, a container diagram, a component diagram, and a code map. We believe these are essential to review in order to navigate the code base easily.
+- Before you start any coding, please review the diagrams in the link above. In it, you will find a System Context Diagram, a container diagram, a component diagram, and a code map. We believe these are essential to review in order to navigate the code base easily.
 
 Natural Docs Documentation:
 https://cse210-group5.github.io/cse210-fa22-ucsd-group5/naturaldocs/
 
-This source will walk you through the front end code and back end code. Please remember to keep comment formatting consistent to ensure automatic generation and maintenance of the Natural Docs.
+- This source will walk you through the front end code and back end code. Please remember to keep comment formatting consistent to ensure automatic generation and maintenance of the Natural Docs.
 
 Architectural Decision Records:
 https://cse210-group5.github.io/cse210-fa22-ucsd-group5/decisions/
 
-We also believe that to effectively contribute to this application, you should understand the set of decisions that led to the current version of the application and the vision for its future. The records of backend, frontend, and UX decisions will be found in the link above.
+- We also believe that to effectively contribute to this application, you should understand the set of decisions that led to the current version of the application and the vision for its future. The records of backend, frontend, and UX decisions will be found in the link above.
 
 ## Getting Started Developing
 
-First, use the command below to clone the repository to your local machine (If you do not have permission, please reach out to a current team member for permission):
+1. First, use the command below to clone the repository to your local machine (If you do not have permission, please reach out to a current team member for permission):
 
 git clone git@github.com:nirmalthomas2609/cse210-fa22-ucsd-group5.git
 
-Second, using the IDE of your choice, open the repository on your local machine.
+2. Second, using the IDE of your choice, open the repository on your local machine.
 
-Third, ensure you have Node.js and npm installed using:
+3. Third, ensure you have Node.js and npm installed using:
 node -v
 npm -v
 
 If either are not installed, use the directions here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
-Fourth, install all dependencies using the following command in terminal in the project directory:
+4. Fourth, install all dependencies using the following command in terminal in the project directory:
 
 npm install -d
 
-Fifth, you should build the system by running the following command in terminal in the project directory:
+5. Fifth, you should build the system by running the following command in terminal in the project directory:
 
 npm run build
 
 If successful, there should now be a folder called dist, which contains the application bundle. 
 
-Sixth, run the following command in terminal in the project directory to run the development version:
+6. Sixth, run the following command in terminal in the project directory to run the development version:
 
 npm run dev
 
