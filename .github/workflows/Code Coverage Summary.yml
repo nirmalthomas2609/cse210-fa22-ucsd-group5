@@ -16,7 +16,7 @@ jobs:
 
       # Using the Code Coverage Action from https://github.com/marketplace/actions/code-coverage-summary
       - name: Code Coverage Summary
-      - uses: irongut/CodeCoverageSummary@v1.3.0
+        uses: irongut/CodeCoverageSummary@v1.3.0
         with:
           filename: [db.test.js, content-management.js]
           badge: true
