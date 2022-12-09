@@ -15,17 +15,13 @@ zip -r greco_notes_app.zip greco_notes_app
 
 echo "Zip complete"
 
-ls dist/
-
-echo "Attempting fancy things"
-
 npm i -g @vercel/ncc
 
 echo "NCC Installed"
 
 npm install -g pkg
 
-echo "Attempt 1"
+echo "Attempt to build executable"
 
 pkg -t latest-linux,latest-win,latest-macos greco_notes_app/index.html
 
