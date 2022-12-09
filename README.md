@@ -85,11 +85,11 @@ For pull requests to main, you need one approving review and all the automated t
 
 ## Internal Documentation
 
-[Decision Docs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-eO22fp3pi_)
-[Processes](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
-[Product Specs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
-[Testing Reports](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-0PWeswvamv)
-[Sprint Planning](https://tree.taiga.io/project/mayanksharan-cse-210-group-5/timeline)
+* [Decision Docs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-eO22fp3pi_)
+* [Processes](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
+* [Product Specs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
+* [Testing Reports](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-0PWeswvamv)
+* [Sprint Planning](https://tree.taiga.io/project/mayanksharan-cse-210-group-5/timeline)
 
 Communication:  
 Discord
