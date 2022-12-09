@@ -1,7 +1,7 @@
 # Local-First Tweet Manager Application
 
 To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
-To run the application download a release, unzip and open the index.html within on your favorite browser!
+To run the application download a release, unzip and open the index.html within on your favorite browser! Also checkout checkout `Getting Started Developing` for instructions run the developer version.
 
 Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
 
@@ -56,8 +56,8 @@ If either are not installed, use the directions here: https://docs.npmjs.com/dow
 
 4. Then run the following commands from the root of the repo
 
-`chown +x ./build_scripts/build_app.sh`
-`./build_scripts/build_app.sh`
+`npm install -d`
+`npm run dev`
 
 *In case any of this does not work please push your code to your branch and our CI/CD pipeline will create a build for you. This build is generated within 1 minute of the push can can be downloaded from [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)*
 
