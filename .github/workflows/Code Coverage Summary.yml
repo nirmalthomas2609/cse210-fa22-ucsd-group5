@@ -18,6 +18,7 @@ jobs:
           node-version: 16
 
       - run: npm install
+      - run: npm i c8 -g
 
       # Using the Code Coverage Action from https://github.com/marketplace/actions/code-coverage-summary
       - name: Code Coverage Summary
