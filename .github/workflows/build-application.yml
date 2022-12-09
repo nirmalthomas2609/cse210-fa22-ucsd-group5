@@ -1,0 +1,22 @@
+#################################################
+## Auto build natural docs and update on pages ##
+#################################################
+
+name: Build Release
+
+on: push
+
+###############
+# Set the Job #
+###############
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+      - name: Run App build script
+        run: |
+          chmod +x ./build_scripts/build_app.sh
+          ./build_scripts/build_app.sh
+        shell: bash
