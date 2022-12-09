@@ -18,9 +18,9 @@ jobs:
       - name: Code Coverage Summary
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: documentation/styles/main.js
+          filename: documentation/index.html
           badge: true
-          format: text
+          format: markdown
           hide_branch_rate: false
           hide_complexity: true
           indicators: true
