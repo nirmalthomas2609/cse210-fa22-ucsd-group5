@@ -19,28 +19,25 @@ Yizheng Yu
 
 Welcome to the codebase! We have a range of tools you should add to your boookmarks to help in your development. Please navigate to each of the links below and explore the contents, as they will help understand our system as a whole, our codebase, and our decisions.
 
-GRECo Development Resources Homepage:
-https://cse210-group5.github.io/cse210-fa22-ucsd-group5/
+*[GRECo Development Resources Homepage](https://nirmalthomas2609.github.io/cse210-fa22-ucsd-group5/)
 
-Architecture/Component Overview:
-https://cse210-group5.github.io/cse210-fa22-ucsd-group5/c4_model/C4_Documentation.html
+*[Architecture/Component Overview](https://nirmalthomas2609.github.io/cse210-fa22-ucsd-group5/c4_model/C4_Documentation.html)
 
 - Before you start any coding, please review the diagrams in the link above. In it, you will find a System Context Diagram, a container diagram, a component diagram, and a code map. We believe these are essential to review in order to navigate the code base easily.
 
-Natural Docs Documentation:
-https://cse210-group5.github.io/cse210-fa22-ucsd-group5/naturaldocs/
+*[Natural Docs Documentation](https://nirmalthomas2609.github.io/cse210-fa22-ucsd-group5/naturaldocs/)
 
 - This source will walk you through the front end code and back end code. Please remember to keep comment formatting consistent to ensure automatic generation and maintenance of the Natural Docs.
 
-Architectural Decision Records:
-https://cse210-group5.github.io/cse210-fa22-ucsd-group5/decisions/
-x
+*[Architectural Decision Records](https://nirmalthomas2609.github.io/cse210-fa22-ucsd-group5/decisions/)
+
 - We also believe that to effectively contribute to this application, you should understand the set of decisions that led to the current version of the application and the vision for its future. The records of backend, frontend, and UX decisions will be found in the link above.
 
-Product Evolution:
-https://coda.io/d/Product-Evolution_deTs8LnIArk
+*[Product Evolution](https://coda.io/d/Product-Evolution_deTs8LnIArk)
 
 - This document shows the different stages of our product, as we progressed through the different iterations of our app.
+
+- Also completed an exploratory study on Twitter integration (and built an independent demo for the same): *[Twitter Demo](https://github.com/CSE210-Group5/twitter_post_api_demo_app)
 
 ## Getting Started Developing
 
@@ -81,7 +78,7 @@ We maintain two key branches: main and develop.
 
 Whenever you push to a branch, we automatically run a unit tests, build natural docs, generate a release and a code coverage summary report. These can be reviewed as workflows set up using github actions.
 
-For pull requests to main, you need one approving review and all the automated tests to pass including an additional code linter.
+For pull requests to main, you need one approving review and all the automated tests to pass including an additional code linter (recommended).
 
 ## Internal Documentation
 
