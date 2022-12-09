@@ -1,8 +1,8 @@
 
-name: Unit tests for backend API
+name: Unit tests for backend API in MacOS
 
+# Triggers the workflow on push or pull request events on any of the branches
 on: push, pull_request
-  # Triggers the workflow on push or pull request events on any of the branches
     
 jobs:
   # This workflow contains a single job called "test"
