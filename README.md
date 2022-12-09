@@ -1,5 +1,7 @@
 # Local-First Tweet Manager Application
 
+To view our most recent release: https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases/tag/V1  
+
 Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
 
 The contents of this repository were developed by the Gordan Ramsey Engineering Company (GRECo):
@@ -90,6 +92,9 @@ For pull requests to main, you need one approving review and all the automated t
 
 Meeting Policies:  
 https://coda.io/d/Meetings-Policies_dzJaSfaoHaC 
+
+UI/UX and Frontend ADR:
+https://coda.io/d/Frontend-ADR_dWFJbslsd6F
 
 Sprint Planning:  
 Taiga
