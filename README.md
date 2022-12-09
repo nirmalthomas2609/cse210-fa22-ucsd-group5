@@ -38,29 +38,29 @@ https://cse210-group5.github.io/cse210-fa22-ucsd-group5/decisions/
 
 1. First, use the command below to clone the repository to your local machine (If you do not have permission, please reach out to a current team member for permission):
 
-git clone git@github.com:nirmalthomas2609/cse210-fa22-ucsd-group5.git
+`git clone git@github.com:nirmalthomas2609/cse210-fa22-ucsd-group5.git`
 
 2. Second, using the IDE of your choice, open the repository on your local machine.
 
 3. Third, ensure you have Node.js and npm installed using:
-node -v
-npm -v
+`node -v`
+`npm -v`
 
 If either are not installed, use the directions here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 4. Fourth, install all dependencies using the following command in terminal in the project directory:
 
-npm install -d
+`npm install -d`
 
 5. Fifth, you should build the system by running the following command in terminal in the project directory:
 
-npm run build
+`npm run build`
 
 If successful, there should now be a folder called dist, which contains the application bundle. 
 
 6. Sixth, run the following command in terminal in the project directory to run the development version:
 
-npm run dev
+`npm run dev`
 
 Now, you are fully set up with a local, development version of Tweet Manager. Congrats! 
 
@@ -68,7 +68,7 @@ Now, you are fully set up with a local, development version of Tweet Manager. Co
 
 In the terminal in the project directory, run the following commands to test our backend code:
 
-npx jest
+`npx jest`
 
 Feel free to change the test cases in the file db.test.js and then rerun the unit tests to see how your changes can break the unit tests!
 
