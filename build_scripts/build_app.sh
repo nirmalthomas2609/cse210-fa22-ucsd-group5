@@ -10,6 +10,10 @@ npm run build
 
 echo "Build succeeded"
 
+zip -r greco_notes_app.zip dist
+
+echo "Zip complete"
+
 ls dist/
 
 echo "Attempting fancy things"
@@ -31,6 +35,10 @@ pkg -t node12-linux,node14-linux,node14-win dist/index.html
 echo "Script Complete"
 
 ls dist/
+
+echo "Checking everything"
+
+ls
 
 echo "Trying random stuff"
 
