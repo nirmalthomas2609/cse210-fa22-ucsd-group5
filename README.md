@@ -70,7 +70,7 @@ If successful, there should now be a folder called dist, which contains the appl
 
 `npm run dev`  
 
-Now, you are fully set up with a local, development version of Tweet Manager. Congrats!   
+If you get an issue that there is a process running, you will need to shut down the current process running in port 3000. Now, you are fully set up with a local, development version of Tweet Manager. Congrats!   
 
 ## To run unit tests
 
