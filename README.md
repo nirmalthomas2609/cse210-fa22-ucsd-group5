@@ -1,19 +1,14 @@
 # Local-First Tweet Manager Application
 
-To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
-To run the application download a release, unzip and open the index.html within on your favorite browser! Also checkout checkout `Getting Started Developing` for instructions run the developer version.
+Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!
 
-Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
+To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
+
+To run the application download a release, unzip and open the index.html within on your favorite browser!
 
 The contents of this repository were developed by the Gordan Ramsey Engineering Company (GRECo):
 
-Kalen Cantrell  
-Alexis Flores  
-Anshul Shah  
-Mayank Sharan  
-Akshaya Sundaram  
-Nirmal Thomas  
-Yizheng Yu  
+Kalen Cantrell, Alexis Flores, Anshul Shah, Mayank Sharan, Akshaya Sundaram, Nirmal Thomas, Yizheng Yu  
 
 # Resources for Onboarding
 
@@ -37,7 +32,7 @@ Welcome to the codebase! We have a range of tools you should add to your boookma
 
 - This document shows the different stages of our product, as we progressed through the different iterations of our app.
 
-- Also completed an exploratory study on Twitter integration (and built an independent demo for the same): *[Twitter Demo](https://github.com/CSE210-Group5/twitter_post_api_demo_app)
+- Also completed an exploratory study on Twitter integration (and built an independent demo for the same): [Twitter Demo](https://github.com/CSE210-Group5/twitter_post_api_demo_app)
 
 ## Getting Started Developing
 
@@ -56,12 +51,14 @@ If either are not installed, use the directions here: https://docs.npmjs.com/dow
 
 4. Then run the following commands from the root of the repo
 
-`npm install -d`
-`npm run dev`
+`chown +x ./build_scripts/build_app.sh`
+
+`./build_scripts/build_app.sh`
 
 *In case any of this does not work please push your code to your branch and our CI/CD pipeline will create a build for you. This build is generated within 1 minute of the push can can be downloaded from [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)*
 
 Now, you are fully set up with a local, development version of Tweet Manager. Congrats!
+
 You can launch the application by opening the index.html in the greco_notes_app folder in a browser of your choice!
 
 ## To run unit tests
