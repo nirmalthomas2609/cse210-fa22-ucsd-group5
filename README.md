@@ -1,19 +1,14 @@
 # Local-First Tweet Manager Application
 
-To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
-To run the application download a release, unzip and open the index.html within on your favorite browser!
+Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!
 
-Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
+To view our most recent release, please check [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases).
+
+To run the application download a release, unzip and open the index.html within on your favorite browser!
 
 The contents of this repository were developed by the Gordan Ramsey Engineering Company (GRECo):
 
-Kalen Cantrell  
-Alexis Flores  
-Anshul Shah  
-Mayank Sharan  
-Akshaya Sundaram  
-Nirmal Thomas  
-Yizheng Yu  
+Kalen Cantrell, Alexis Flores, Anshul Shah, Mayank Sharan, Akshaya Sundaram, Nirmal Thomas, Yizheng Yu
 
 # Resources for Onboarding
 
@@ -37,7 +32,7 @@ Welcome to the codebase! We have a range of tools you should add to your boookma
 
 - This document shows the different stages of our product, as we progressed through the different iterations of our app.
 
-- Also completed an exploratory study on Twitter integration (and built an independent demo for the same): *[Twitter Demo](https://github.com/CSE210-Group5/twitter_post_api_demo_app)
+- Also completed an exploratory study on Twitter integration (and built an independent demo for the same): [Twitter Demo](https://github.com/CSE210-Group5/twitter_post_api_demo_app)
 
 ## Getting Started Developing
 
