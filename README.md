@@ -4,13 +4,13 @@ Welcome to the Github repository for Tweet Manager, the a local first applicatio
 
 The contents of this repository were developed by the Gordan Ramsey Engineering Company (GRECo):
 
-Kalen Cantrell
-Alexis Flores
-Anshul Shah
-Mayank Sharan
-Akshaya Sundaram
-Nirmal Thomas
-Yizheng Yu
+Kalen Cantrell  
+Alexis Flores  
+Anshul Shah  
+Mayank Sharan  
+Akshaya Sundaram  
+Nirmal Thomas  
+Yizheng Yu  
 
 # Resources for Onboarding
 
@@ -70,7 +70,7 @@ In the terminal in the project directory, run the following commands to test our
 
 npx jest
 
-Feel free to change the test cases in the file db.test.js and then rerun the unit tests to see how your changes can break the unit tests!
+Feel free to change the test cases in the file src/db/tests/db.test.js and then rerun the unit tests to see how your changes can break the unit tests!
 
 
 

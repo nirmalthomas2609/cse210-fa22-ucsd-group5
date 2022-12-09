@@ -7,7 +7,7 @@ test('update tweet', done => {
             let tweetId = createTweetMetadata.data.id;
             updateTweet(tweetId, 'bUT1', 'aUC1', '', function(updateTweetMetadata) {
                 getTweetsByTopicId('cTo1', function(returnData) {
-                    expect(returnData.data[0].textContent).toBe('aUC1');
+                    expect(returnData.data[0].textContent).toBe('aUC2');
                     expect(returnData.data[0].tweetTitle).toBe('bUT1');
                     done();
                 });
