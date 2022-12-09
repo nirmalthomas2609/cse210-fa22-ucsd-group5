@@ -1,10 +1,10 @@
 import "./scss/main.scss";
-import { addTopics, displayTweets, getActiveTopic } from "./front-end/topic-helper";
+import { displayTopics, addTopics, displayTweets, getActiveTopic, removeTopicHTML } from "./front-end/topic-helper";
 
 // You can specify which plugins you need
 import { Popover } from 'bootstrap';
 
-import { setupDB, getAllTopics, getTweetsByTopicId, deleteTweet, deleteTopic, createTopic, createTweet, updateTweet, updateTopic } from "./db/content-management";
+import { setupDB, getAllTopics, deleteTweet, deleteTopic, createTweet } from "./db/content-management";
 
 function setEventListeners() {
     let tweetPrompt = document.getElementById('newTweetPrompt');
@@ -48,13 +48,9 @@ function setEventListeners() {
         trashBtn.classList.remove('drag-over');
         let [tweetId, topicId] = e.dataTransfer.getData('text').split(',');
         if(tweetId ==='') {
-            let container = document.getElementById(topicId);
             deleteTopic(topicId, () => {
-                container = container.parentElement;
-                while(container.firstChild) {
-                    container.removeChild(container.firstChild);
-                }
-                container.remove();
+                removeTopicHTML(topicId);
+                displayTopics(getActiveTopic())
             })
         }
         else {
