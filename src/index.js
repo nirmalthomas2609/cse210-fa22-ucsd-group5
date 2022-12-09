@@ -6,6 +6,16 @@ import { Popover } from 'bootstrap';
 
 import { setupDB, getAllTopics, deleteTweet, deleteTopic, createTweet } from "./db/content-management";
 
+// Function: setEventListeners
+//
+// Sets up inital event listeners
+//
+// Parameters:
+//      None
+//
+// Returns:
+//      None
+
 function setEventListeners() {
     let tweetPrompt = document.getElementById('newTweetPrompt');
     let tweetInput = tweetPrompt.querySelector('#new-tweet-name');
@@ -69,6 +79,16 @@ function setEventListeners() {
     }
 }
 
+// Function: initUI
+//
+// sets up indexedDB and initial event listeners
+//
+// Parameters:
+//      None
+//
+// Returns:
+//      None
+
 function initUI() {
     setEventListeners();
     getAllTopics((dbObj) => {
@@ -78,7 +98,7 @@ function initUI() {
 
 
 
-// ENTERY POINT!!!!!!!!!!!!!!!!!
+// Entry point
 setupDB('note-taker', () => {
     initUI();   
 });
