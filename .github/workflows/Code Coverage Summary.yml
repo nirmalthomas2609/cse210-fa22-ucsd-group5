@@ -20,7 +20,7 @@ jobs:
         with:
           filename: documentation/index.html
           badge: true
-          format: text
+          format: markdown
           hide_branch_rate: false
           hide_complexity: true
           indicators: true
