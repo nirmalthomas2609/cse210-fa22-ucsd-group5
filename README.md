@@ -1,6 +1,7 @@
 # Local-First Tweet Manager Application
 
-To view our most recent release: https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases/tag/V1  
+To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
+To run the application download a release, unzip and open the index.html within on your favorite browser!
 
 Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
 
@@ -33,7 +34,7 @@ https://cse210-group5.github.io/cse210-fa22-ucsd-group5/naturaldocs/
 
 Architectural Decision Records:
 https://cse210-group5.github.io/cse210-fa22-ucsd-group5/decisions/
-
+x
 - We also believe that to effectively contribute to this application, you should understand the set of decisions that led to the current version of the application and the vision for its future. The records of backend, frontend, and UX decisions will be found in the link above.
 
 Product Evolution:
@@ -56,21 +57,15 @@ https://coda.io/d/Product-Evolution_deTs8LnIArk
 
 If either are not installed, use the directions here: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm  
 
-4. Fourth, install all dependencies using the following command in terminal in the project directory:  
+4. Then run the following commands from the root of the repo
 
-`npm install -d`  
+`chown +x ./build_scripts/build_app.sh`
+`./build_scripts/build_app.sh`
 
-5. Fifth, you should build the system by running the following command in terminal in the project directory:  
+*In case any of this does not work please push your code to your branch and our CI/CD pipeline will create a build for you. This build is generated within 1 minute of the push can can be downloaded from [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)*
 
-`npm run build`  
-
-If successful, there should now be a folder called dist, which contains the application bundle.  
-
-6. Sixth, run the following command in terminal in the project directory to run the development version:  
-
-`npm run dev`  
-
-If you get an issue that there is a process running, you will need to shut down the current process running in port 3000. Now, you are fully set up with a local, development version of Tweet Manager. Congrats!   
+Now, you are fully set up with a local, development version of Tweet Manager. Congrats!
+You can launch the application by opening the index.html in the greco_notes_app folder in a browser of your choice!
 
 ## To run unit tests
 
@@ -84,20 +79,17 @@ Feel free to change the test cases in the file src/db/tests/db.test.js and then 
 
 We maintain two key branches: main and develop. 
 
-Whenever you push to a branch, we automatically run a linter, unit tests, build natural docs, and the code coverage summary report. 
+Whenever you push to a branch, we automatically run a unit tests, build natural docs, generate a release and a code coverage summary report. These can be reviewed as workflows set up using github actions.
 
-For pull requests to main, you need one approving review and all the automated tests to pass.
+For pull requests to main, you need one approving review and all the automated tests to pass including an additional code linter.
 
 ## Internal Documentation
 
-Meeting Policies:  
-https://coda.io/d/Meetings-Policies_dzJaSfaoHaC 
-
-UI/UX and Frontend ADR:
-https://coda.io/d/Frontend-ADR_dWFJbslsd6F
-
-Sprint Planning:  
-Taiga
+* [Decision Docs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-eO22fp3pi_)
+* [Processes](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
+* [Product Specs](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-E7VJ8DGEow)
+* [Testing Reports](https://coda.io/workspaces/ws-NEOCxZp2yH/folders/fl-0PWeswvamv)
+* [Sprint Planning](https://tree.taiga.io/project/mayanksharan-cse-210-group-5/timeline)
 
 Communication:  
 Discord

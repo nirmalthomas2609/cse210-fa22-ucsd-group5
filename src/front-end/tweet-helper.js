@@ -12,6 +12,9 @@ let tweetContainer = document.getElementById('tweets');
 //
 // Returns:
 //      None
+//
+// See Also:
+//      Calls <getTweetsByTopicId>
 
 function displayTweets(topicId) {
     getTweetsByTopicId(topicId, (dbObj) => {
