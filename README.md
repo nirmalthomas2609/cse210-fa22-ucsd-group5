@@ -34,6 +34,11 @@ https://cse210-group5.github.io/cse210-fa22-ucsd-group5/decisions/
 
 - We also believe that to effectively contribute to this application, you should understand the set of decisions that led to the current version of the application and the vision for its future. The records of backend, frontend, and UX decisions will be found in the link above.
 
+Product Evolution:
+https://coda.io/d/Product-Evolution_deTs8LnIArk
+
+- This document shows the different stages of our product, as we progressed through the different iterations of our app.
+
 ## Getting Started Developing
 
 1. First, use the command below to clone the repository to your local machine (If you do not have permission, please reach out to a current team member for permission):
@@ -73,7 +78,23 @@ In the terminal in the project directory, run the following commands to test our
 
 Feel free to change the test cases in the file src/db/tests/db.test.js and then rerun the unit tests to see how your changes can break the unit tests!
 
+## Branching Policies and CI/CD Pipeline
 
+We maintain two key branches: main and develop. 
 
+Whenever you push to a branch, we automatically run a linter, unit tests, build natural docs, and the code coverage summary report. 
+
+For pull requests to main, you need one approving review and all the automated tests to pass.
+
+## Internal Documentation
+
+Meeting Policies:  
+https://coda.io/d/Meetings-Policies_dzJaSfaoHaC 
+
+Sprint Planning:  
+Taiga
+
+Communication:  
+Discord
 
 
