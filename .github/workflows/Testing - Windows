@@ -1,24 +1,14 @@
 
 name: Unit tests for backend API
 
-on:
-  # Triggers the workflow on push or pull request events but only for the "update-ui" branch as it
-  # has the codebase for backend API management
-  push:
-    branches: [ "update-ui" ]
-  pull_request:
-    branches: [ "update-ui" ]
+# Triggers the workflow on push or pull request events on any of the branches
+on: push, pull_request
     
 jobs:
   # This workflow contains a single job called "test"
  test:
     # The type of runner that the job will run on all the OSes
-    runs-on: ${{matrix.os}}
-    strategy:
-        matrix:
-          os: [ubuntu-latest, windows-latest, macOS-latest]
-    
-
+    runs-on: windows-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
