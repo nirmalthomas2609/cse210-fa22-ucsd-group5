@@ -1,7 +1,7 @@
 # Local-First Tweet Manager Application
 
 To view our most recent release: [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)
-To run the application download a release, unzip and open the index.html within on your favorite browser!
+To run the application download a release, unzip and open the index.html within on your favorite browser or look under the `Getting Started Developing` section to run the developer version.
 
 Welcome to the Github repository for Tweet Manager, the a local first application that acts as a note taking and tweet management system!  
 
