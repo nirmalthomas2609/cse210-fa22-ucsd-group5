@@ -61,6 +61,8 @@ If either are not installed, use the directions here: https://docs.npmjs.com/dow
 `chown +x ./build_scripts/build_app.sh`
 `./build_scripts/build_app.sh`
 
+*In case any of this does not work please push your code to your branch and our CI/CD pipeline will create a build for you. This build is generated within 1 minute of the push can can be downloaded from [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)*
+
 Now, you are fully set up with a local, development version of Tweet Manager. Congrats!
 You can launch the application by opening the index.html in the greco_notes_app folder in a browser of your choice!
 
