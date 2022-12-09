@@ -73,7 +73,11 @@ function initUI() {
     });
 }
 
+
+
 // ENTERY POINT!!!!!!!!!!!!!!!!!
 setupDB('note-taker', () => {
     initUI();   
 });
+
+

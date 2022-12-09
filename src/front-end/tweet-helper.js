@@ -1,6 +1,17 @@
 import { getTweetsByTopicId, updateTweet } from "../db/content-management";
+import { setTheme } from "./theme-util";
 
 let tweetContainer = document.getElementById('tweets');
+
+// Function: displayTweets
+//
+// Shows the tweets for the given topicId
+//
+// Parameters:
+//      topicId - the topic id string for the tweets
+//
+// Returns:
+//      None
 
 function displayTweets(topicId) {
     getTweetsByTopicId(topicId, (dbObj) => {
@@ -21,8 +32,23 @@ function displayTweets(topicId) {
                 updateTweet(tweetId, e.target.innerText.trim(), '', '', console.log)
             }
         })
+        setTheme();
     })
 }
+
+// Function: _createTweetHTMLElement
+//
+// Creates an html element for a tweet. This should not be called outside of tweet-helper
+//
+// Parameters:
+//      id - tweet id string
+//      title - title string
+//      content - tweet content string
+//      topicID topic id string
+//
+// Returns:
+//      String that defines html elements.
+//
 
 function _createTweetHTMLElement(id, title, content, topicId) {
     return `

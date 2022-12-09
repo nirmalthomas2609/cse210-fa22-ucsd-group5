@@ -1,5 +1,6 @@
 @use "sass:map";
-@use "./theme4";
+@use "./theme1";
+@use "./theme2";
 
 // Import Bootstrap's CSS
 // scss-docs-start import-stack
@@ -31,25 +32,32 @@
 // scss-docs-end import-stack
 
 
-$custom-theme-colors: (
-    "background-color": theme4.$background-color,
-    "primary-color": theme4.$primary-color, 
-    "dark-accent-color": theme4.$dark-accent-color,
-    "light-accent-color": theme4.$light-accent-color,
-    "light-background-color": theme4.$light-background-color,
-    "card-colors": theme4.$card-colors
-);
-
 .topic {
-    background-color: tint-color(map.get($custom-theme-colors, "light-background-color"), 80%);
-    color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
-
     cursor: pointer;
-
     user-select: none;
 
-    &.active {
-        background-color: map.get($custom-theme-colors, "light-background-color") !important;
+    &.theme-1 {
+        // background-color: tint-color(map.get($custom-theme-colors, "light-background-color"), 80%);
+        // color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+        background-color: tint-color(theme1.$light-background-color, 80%);
+        color: color-contrast(theme1.$light-background-color);
+
+        &.active {
+            // background-color: map.get($custom-theme-colors, "light-background-color") !important;
+            background-color: theme1.$light-background-color !important;
+        }
+    }
+
+    &.theme-2 {
+        // background-color: tint-color(map.get($custom-theme-colors, "light-background-color"), 80%);
+        // color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+        background-color: tint-color(theme2.$light-background-color, 20%);
+        color: color-contrast(theme2.$light-background-color);
+
+        &.active {
+            // background-color: map.get($custom-theme-colors, "light-background-color") !important;
+            background-color: theme2.$light-background-color !important;
+        }
     }
 
     &:hover{
@@ -71,18 +79,39 @@ $custom-theme-colors: (
 
 .card {
     cursor: pointer;
-    color: color-contrast(map.get($custom-theme-colors, "dark-accent-color"));
-    background-color: map.get($custom-theme-colors, "dark-accent-color");
 
-    .card-header {
-        cursor: text;
-        background-color: map.get($custom-theme-colors, "light-background-color");
-        color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+    &.theme-1 {
+        color: color-contrast(theme1.$dark-accent-color);
+        background-color: theme1.$dark-accent-color;
+
+        .card-header {
+            cursor: text;
+    
+            background-color: theme1.$light-background-color;
+            color: color-contrast(theme1.$light-background-color);
+        }
+    
+        p {
+            background-color: theme1.$dark-accent-color;
+            cursor: text;
+        }
     }
 
-    p {
-        background-color: tint-color(map.get($custom-theme-colors, "dark-accent-color"), 0%);
-        cursor: text;
+    &.theme-2 {
+        color: color-contrast(theme2.$dark-accent-color);
+        background-color: theme2.$dark-accent-color;
+
+        .card-header {
+            cursor: text;
+    
+            background-color: theme2.$light-background-color;
+            color: color-contrast(theme2.$light-background-color);
+        }
+    
+        p {
+            background-color: theme2.$dark-accent-color;
+            cursor: text;
+        }
     }
 
     &:hover{
@@ -99,6 +128,14 @@ $custom-theme-colors: (
 }
 
 body {
-    color: color-contrast(map.get($custom-theme-colors, "background-color"));
-    background-color: map.get($custom-theme-colors, "background-color");
+
+    &.theme-1 {
+        color: color-contrast(theme1.$background-color);
+        background-color: theme1.$background-color;
+    }
+
+    &.theme-2 {
+        color: color-contrast(theme2.$background-color);
+        background-color: theme2.$background-color;
+    }
 }

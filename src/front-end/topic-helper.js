@@ -2,6 +2,7 @@ import { createTopic, updateTweet, updateTopic } from "../db/content-management"
 
 import DOMPurify from "dompurify";
 import { displayTweets } from "./tweet-helper";
+import { setTheme } from "./theme-util";
 
 // Function: openTopic
 // 
@@ -31,7 +32,18 @@ function openTopic(topicId) {
         curActive.scrollIntoView(false);
         displayTweets(topicId);
     }
+    setTheme();
 }
+
+// Function: removeTopicHTML
+//
+// Removes the topic and related tweets from the UI
+//
+// Parameters:
+//      topicID - the topic id string
+//
+// Returns:
+//      None
 
 function removeTopicHTML(topicId) {
     let container = document.getElementById(topicId);
@@ -41,7 +53,6 @@ function removeTopicHTML(topicId) {
     }
     container.remove();
     topicItems = topicItems.filter(topic => topic.id !== topicId);
-    console.log('????', topicId, container, topicItems)
 }
 
 // Function: addTopics
@@ -69,7 +80,6 @@ function addTopics(dbObj) {
 //      None
 
 function displayTopics(activeObj) {
-    console.log(activeObj)
     let tempString = DOMPurify.sanitize(topicItems.map(topicObj => 
         _createTopicHTMLElement(topicObj)).join(''));
     document.getElementById('topics').innerHTML = tempString;
