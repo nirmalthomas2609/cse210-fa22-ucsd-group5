@@ -1,7 +1,7 @@
 name: Code Coverage Summary Report
 
 # Triggers the workflow on push or pull request events on any of the branches
-on: push
+on: pull_request
     
 jobs:
   # This workflow contains a single job called build
@@ -10,17 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v1
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        id: coverage
         with:
-          node-version: 16
-
-      - run: npm install
-      - run: npm i c8 -g
-
-      # Using the Code Coverage Action from https://github.com/marketplace/actions/code-coverage-summary
-      - name: Code Coverage Summary
-        run: npm run coverage
-
+            output: report-markdown
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+            message: ${{ steps.coverage.outputs.report }}
