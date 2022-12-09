@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("del",["Function"],[["deleteTopic",,[[,,,,0,"File:db/content-management.js:deleteTopic"]]],["deleteTweet",,[[,,,,0,"File:db/content-management.js:deleteTweet"]]]]);
