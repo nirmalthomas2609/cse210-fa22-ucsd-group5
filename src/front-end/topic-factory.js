@@ -3,8 +3,10 @@ import { TOPICS } from "../configure";
 import { AbstractMenuItem } from "./abstract-menu-item";
 import { sortElements } from "./util";
 
+// Class: TopicFactory
+// Class TopicFactory is for creating, reading, updating, and deleting topics
+
 class TopicFactory extends AbstractMenuItem {
-    // Class TopicFactory is for creating, reading, updating, and deleting topics
 
     // TopicFactory constructor depends on the Menu object  
     constructor(menuItemContainer) {
@@ -19,15 +21,19 @@ class TopicFactory extends AbstractMenuItem {
 
     // Function: load
     //
-    // Loads in all the topics and tweets created by the user to display
+    // *Loads in all the topics and tweets created by the user to display. If list of topics is empty create a default topic*
     //
     // Parameters:
     //
     //  None
     // 
-    //  Returns:
+    // Returns:
     //
-    //      None
+    //  None
+    // 
+    // See Also:
+    //  
+    //  Calls functions <getAllTopics> and <createTopic>
 
     load() {
         getAllTopics((topicEvent) => {
@@ -50,7 +56,7 @@ class TopicFactory extends AbstractMenuItem {
 
     // Function: renameEvent
     //
-    // Renames topic on webpage when user makes name change
+    // *Renames topic on webpage when user makes a name change*
     //
     // Parameters:
     //
@@ -59,6 +65,11 @@ class TopicFactory extends AbstractMenuItem {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <updateTopic>
+
     renameEvent() {
         updateTopic(this.selectedId, this.selectedTitle, () => {
             this.notify({
@@ -79,6 +90,11 @@ class TopicFactory extends AbstractMenuItem {
     //  Returns:
     //
     //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <deleteTopic>
+
     deleteEvent(data) {
         deleteTopic(data.deleteId, () => {
             this.notify({
@@ -99,6 +115,10 @@ class TopicFactory extends AbstractMenuItem {
     //  Returns:
     //
     //      None
+    // 
+    // See Also:
+    //  
+    //  Calls functions <createTopic>
 
     newEvent() {
         if(this.selectedMenuItem) {

@@ -26,20 +26,26 @@ function displayTopics(activeObj) {
     document.getElementById('topics').innerHTML = tempString;
     document.getElementById('tweets').innerHTML ='';
     for(let topic of document.querySelectorAll('.topic')) {
+        topic.ondragstart = function(e) {
+            e.dataTransfer.setData('text/plain', `,${this.id}`)
+        }
         topic.ondragover = function(e) {
             e.preventDefault();
-            if(!e.dataTransfer.getData('text')) return;
+            let [tweetId, topicId] = e.dataTransfer.getData('text').split(',');
+            console.log(tweetId, topicId)
+            if(tweetId === '') return;
             this.classList.add('drag-over');
         }
         topic.ondragleave = function(e) {
             e.preventDefault();
-            if(!e.dataTransfer.getData('text')) return;
+            let [tweetId, topicId] = e.dataTransfer.getData('text').split(',');
+            if(tweetId === '') return;
             this.classList.remove('drag-over');
         }
         topic.ondrop = function(e) {
-            if(!e.dataTransfer.getData('text')) return;
-            this.classList.remove('drag-over');
             let [tweetId, topicId] = e.dataTransfer.getData('text').split(',');
+            if(tweetId === '') return;
+            this.classList.remove('drag-over');
             if(this.id !== topicId) {
                 let tweet =  document.getElementById(tweetId);
                 updateTweet(tweetId, '', '', this.id, () => {
@@ -199,25 +205,36 @@ function setEventListeners() {
     let trashBtn = document.getElementById('trash-btn');
     trashBtn.ondragover = function(e) {
         e.preventDefault();
-        if(!e.dataTransfer.getData('text')) return;
         this.classList.add('drag-over');
     }
     trashBtn.ondragleave = function(e) {
         e.preventDefault();
-        if(!e.dataTransfer.getData('text')) return;
         this.classList.remove('drag-over');
     }
     trashBtn.ondrop = (e) => {
         console.log(e.dataTransfer.getData('text'));
         trashBtn.classList.remove('drag-over');
         let [tweetId, topicId] = e.dataTransfer.getData('text').split(',');
-        let container = document.getElementById(tweetId);
-        deleteTweet(tweetId, () => {
-            while(container.firstChild) {
-                container.removeChild(container.firstChild)
-            }
-            container.remove();
-        });
+        if(tweetId ==='') {
+            let container = document.getElementById(topicId);
+            deleteTopic(topicId, () => {
+                container = container.parentElement;
+                while(container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                container.remove();
+            })
+        }
+        else {
+            let container = document.getElementById(tweetId);
+            deleteTweet(tweetId, () => {
+                while(container.firstChild) {
+                    container.removeChild(container.firstChild)
+                }
+                container.remove();
+            });    
+        }
+        
     }
     trashBtn.onclick = () => {
         console.log('???')

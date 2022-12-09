@@ -5,8 +5,10 @@ import { TweetFactory } from "./tweet-factory";
 import { TOPICS, TWEETS } from "../configure";
 import { TextEditor } from "./text-editor";
 
+// Class: Menu
+// Class Menu is the homepage interface for the user
+
 class Menu extends AbstractMenuItem {
-    // Class Menu is the homepage interface for the user
 
 	// Menu constructor does not depend on any objects
     constructor() {
@@ -27,7 +29,7 @@ class Menu extends AbstractMenuItem {
 
     // Function: _topicItemUpdate
     //
-    // makes appropriate update to topic based on parameter
+    // *makes appropriate update to topic based on parameter*
     //
     // Parameters:
     //
@@ -35,7 +37,12 @@ class Menu extends AbstractMenuItem {
     //                    to a topic item
     //  Returns:
     //
-    //      Nothing
+    //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <updateTweet>, <createTweet>, <deleteTweet> and <tweetFactory.load>
+
     _topicItemUpdate(menuItemEvent) {
         // changes view to new Topic upon event from user
 
@@ -105,9 +112,14 @@ class Menu extends AbstractMenuItem {
     //
     //  menuItemEvent  - either  delete, rename, loaded, context-start, select, or new to make the appropriate update 
     //                    to a tweet item
-    //  Returns:
+    // Returns:
     //
-    //      Nothing
+    //      None
+    //
+    // See Also:
+    //  
+    //  Calls functions <updateTweet>, <getTweetById>, <textEditor.start>, <textEditor.reset> and <textEditor.setTitle>
+
     _tweetItemUpdate(menuItemEvent) {
 
         // close editor if tweet has been delete 

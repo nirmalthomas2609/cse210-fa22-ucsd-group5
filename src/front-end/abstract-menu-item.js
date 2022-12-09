@@ -3,8 +3,10 @@ import { AbstractObserverPattern } from "./abstract-observer";
 import { createMenuItemHTML, makeTitleUnique, setMenuItemTitle } from "./util";
 let NAME_CLASS = 'name-label';
 
+// Class: AbstractMenuItem
+// Class AbstractMenuItem defines the methods available for a menu item in the front end
+
 class AbstractMenuItem extends AbstractObserverPattern {
-    // Class AbstractMenuItem defines the methods available for a menu item in the front end
 
     static contextMenuStatus = {
         showMenu: false,
@@ -86,7 +88,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: add
     //
-    // Creates a new menu item with id and title
+    // *Creates a new menu item with id and title*
     //
     // Parameters:
     //
@@ -95,7 +97,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
 
     add(id, title) {
         let menuItem = createMenuItemHTML(title, this.isDraggable);
@@ -116,7 +118,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: initializeItem
     //
-    // Configures the new menuItem with the correct options
+    // *Configures the new menuItem with the correct options*
     //
     // Parameters:
     //
@@ -124,7 +126,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
 
     initializeItem(menuItem) {
         let nameLbl = menuItem.querySelector(`.${NAME_CLASS}`);
@@ -153,7 +155,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: addMenuEvents
     //
-    // Shows menu options upon click
+    // *Shows menu options upon click*
     //
     // Parameters:
     //
@@ -161,7 +163,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
 
     addMenuEvents(menuItem) {
         menuItem.onclick = () => {
@@ -177,7 +179,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
     // Function: addContextMenu
     //
-    // Displays the options when the user clicks to expand the menu
+    // *Displays the options when the user clicks to expand the menu*
     //
     // Parameters:
     //
@@ -185,7 +187,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
     addContextMenu(menuItem) {
         let contextMenu = document.getElementById('context-menu')
     
@@ -218,7 +220,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     }
     // Function: deleteSelectedMenuItem
     //
-    // Deletes a menu item from the HTML container
+    // *Deletes a menu item from the HTML container*
     //
     // Parameters:
     //
@@ -226,7 +228,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
     deleteSelectedMenuItem() {
         let menuItem = this.selectedMenuItem;
         let deletedId = menuItem.id;
@@ -239,7 +241,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: setItemTitleById
     //
-    // Sets title of menu item
+    // *Sets title of menu item*
     //
     // Parameters:
     //
@@ -248,7 +250,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     //  Returns:
     //
-    //      Nothing
+    //      None
     setItemTitleById(id, title) {
         let titleElm = document.getElementById(id);
         if(!titleElm) { 
@@ -260,7 +262,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: clearMenuItemContainer
     //
-    // Clears all menu items in a container
+    // *Clears all menu items in a container*
     //
     // Parameters:
     //
@@ -268,7 +270,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
     clearMenuItemContainer() {
         while (this.menuItemContainer.firstChild) {
             this.menuItemContainer.removeChild(this.menuItemContainer.firstChild);
@@ -277,7 +279,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: _makeEditable
     //
-    // Configures an html element to be editable
+    // *Configures an html element to be editable*
     //
     // Parameters:
     //
@@ -287,7 +289,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     //
     // Returns:
     //
-    //      Nothing
+    //      None
     _makeEditable(htmlElement, isEditable) {
         // Configures an html element to be editable
         htmlElement.contentEditable = isEditable;
@@ -295,7 +297,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: addMenuEvents
     //
-    // Shows menu options upon click
+    // *Shows menu options upon click*
     //
     // Parameters:
     //
@@ -305,7 +307,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     //
     // Returns:
     //
-    //      Nothing
+    //      None
     activate(event, data) {
         // Activates a menu item by adding listeners for events on an item
         if(event === 'context-start') {
@@ -339,7 +341,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
 
     // Function: configureDraggable
     //
-    // Configures a menu item as draggable
+    // *Configures a menu item as draggable*
     //
     // Parameters:
     //
@@ -347,7 +349,7 @@ class AbstractMenuItem extends AbstractObserverPattern {
     // 
     // Returns:
     //
-    //      Nothing
+    //      None
     configureDraggable(menuItem) {
         if(!this.isDraggable) {
             menuItem.ondragover = (e) => {
