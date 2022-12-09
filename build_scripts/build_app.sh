@@ -24,8 +24,16 @@ echo "Attempt 1"
 
 pkg -t node12-linux,node14-linux,node14-win dist/index.html
 
-echo "Attempt 2"
+# echo "Attempt 2"
 
-pkg -t node12-linux,node14-linux,node14-win dist/bundle.js
+# pkg -t node12-linux,node14-linux,node14-win dist/bundle.js
 
 echo "Script Complete"
+
+ls dist/
+
+echo "Trying random stuff"
+
+npx pkg -t linux,macos,win . --out-path dist
+
+ls dist/
