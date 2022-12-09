@@ -10,16 +10,52 @@ $custom-theme-colors: (
     "dark-accent-color": theme4.$dark-accent-color,
     "light-accent-color": theme4.$light-accent-color,
     "light-background-color": theme4.$light-background-color,
-    "lh": $line-height-lg,
     "card-colors": theme4.$card-colors
 );
 
 .topic {
-    background-color: tint-color(red, 80%);
+    background-color: tint-color(map.get($custom-theme-colors, "light-background-color"), 80%);
+    color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+
     cursor: pointer;
 
+    user-select: none;
+
     &.active {
-        background-color: red !important;
+        background-color: map.get($custom-theme-colors, "light-background-color") !important;
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }
+
+}
+
+.drag-over {
+    cursor: none !important;
+    transform: scale(1.05);
+    border-color: black;
+    filter: brightness(75%);
+
+    &#trash-btn {
+        background-color: red;
+    }
+}
+
+.card {
+    cursor: pointer;
+    color: color-contrast(map.get($custom-theme-colors, "dark-accent-color"));
+    background-color: map.get($custom-theme-colors, "dark-accent-color");
+
+    .card-header {
+        cursor: text;
+        background-color: map.get($custom-theme-colors, "light-background-color");
+        color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+    }
+
+    p {
+        background-color: tint-color(map.get($custom-theme-colors, "dark-accent-color"), 0%);
+        cursor: text;
     }
 
     &:hover{
@@ -27,133 +63,26 @@ $custom-theme-colors: (
     }
 }
 
-.card {
-    &:hover{
-        transform: scale(1.05);
-    }
+.modal {
+    color: black;
 }
 
 .hidden {
     display: none;
 }
 
-// body {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: map.get($custom-theme-colors, "background-color");
-//     overflow: hidden;
-//     height: 100vh;
-//     width: 100vw;
-//     font-family: "Brush Script MT", cursive;
-// }
+body {
+    color: color-contrast(map.get($custom-theme-colors, "background-color"));
+    background-color: map.get($custom-theme-colors, "background-color");
+    font-family: "Brush Script MT", cursive;
+}
 
-// input  {
-//     display: none;
-// }
+// @each $num, $color in map.get($custom-theme-colors, "card-colors") {
+//     .card-#{$num} {
+//         background-color: $color;
+//     }
 
-// .container {
-//     height: 100%;
-//     max-width: 0px;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     transform-style: preserve-3d;
-//     flex-direction: column;
-
-//     .cards {
-//         position: absolute;
-//         width: 430px;
-//         perspective: 1000px;
-//         transform-style: preserve-3d;
-//         height: 30vh;
-
-//         label {
-//             position: absolute;
-//             left: 0;
-//             right: 0;
-//             height: 100%;
-//             cursor: pointer;
-//             transition: transform 0.55s ease;
-
-//             .card-header {
-//                 padding-top: 0;
-//                 padding-bottom: 0;
-//                 font-size: $h2-font-size;
-//                 font-weight: $font-weight-bold;
-//                 background-color: map.get($custom-theme-colors, "light-background-color");
-//             }
-
-//             .card {
-//                 position: relative;
-//                 height: 100%;
-//                 border-color: map.get($custom-theme-colors, "dark-accent-color");
-
-//                 &:hover{
-//                     transform: scale(1.05);
-//                 }
-//             }
-//         }
-        
-//         &:hover {
-//             transform: scale(1.05);
-//         }
+//     .card-#{$num} {
+//         color: color-contrast($color);
 //     }
 // }
-
-@each $num, $color in map.get($custom-theme-colors, "card-colors") {
-    .card-#{$num} {
-        background-color: $color;
-    }
-
-    .card-#{$num} {
-        color: color-contrast($color);
-        line-height: map.get($custom-theme-colors, "lh");
-    }
-}
-
-#s1:checked~.cards #slide4,
-#s2:checked~.cards #slide5,
-#s3:checked~.cards #slide1,
-#s4:checked~.cards #slide2,
-#s5:checked~.cards #slide3  {
-    box-shadow: 0 15px 30px rgba(0,0, 0, 45%);
-    transform: translate3d(-70%, 0, -220px);
-}
-
-#s1:checked~.cards #slide5,
-#s2:checked~.cards #slide1,
-#s3:checked~.cards #slide2,
-#s4:checked~.cards #slide3,
-#s5:checked~.cards #slide4  {
-    box-shadow: 0 20px 40px rgba(0,0, 0, 45%);
-    transform: translate3d(-35%, 0, -120px);
-}
-
-#s1:checked~.cards #slide1,
-#s2:checked~.cards #slide2,
-#s3:checked~.cards #slide3,
-#s4:checked~.cards #slide4,
-#s5:checked~.cards #slide5  {
-    box-shadow: 0 25px 50px rgba(0,0, 0, 50%);
-    transform: translate3d(0, 0, 0);
-}
-
-#s1:checked~.cards #slide2,
-#s2:checked~.cards #slide3,
-#s3:checked~.cards #slide4,
-#s4:checked~.cards #slide5,
-#s5:checked~.cards #slide1  {
-    box-shadow: 0 20px 40px rgba(0,0, 0, 45%);
-    transform: translate3d(35%, 0, -120px);
-}
-
-#s1:checked~.cards #slide3,
-#s2:checked~.cards #slide4,
-#s3:checked~.cards #slide5,
-#s4:checked~.cards #slide1,
-#s5:checked~.cards #slide2  {
-    box-shadow: 0 15px 30px rgba(0,0, 0, 45%);
-    transform: translate3d(70%, 0, -220px);
-}
