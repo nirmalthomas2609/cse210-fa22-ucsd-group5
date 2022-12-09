@@ -10,7 +10,8 @@ npm run build
 
 echo "Build succeeded"
 
-zip -r greco_notes_app.zip dist
+mv dist greco_notes_app
+zip -r greco_notes_app.zip greco_notes_app
 
 echo "Zip complete"
 
@@ -26,22 +27,8 @@ npm install -g pkg
 
 echo "Attempt 1"
 
-pkg -t node12-linux,node14-linux,node14-win dist/index.html
-
-# echo "Attempt 2"
-
-# pkg -t node12-linux,node14-linux,node14-win dist/bundle.js
+pkg -t latest-linux,latest-win,latest-macos greco_notes_app/index.html
 
 echo "Script Complete"
 
-ls dist/
-
-echo "Checking everything"
-
 ls
-
-echo "Trying random stuff"
-
-npx pkg -t linux,macos,win . --out-path dist
-
-ls dist/
