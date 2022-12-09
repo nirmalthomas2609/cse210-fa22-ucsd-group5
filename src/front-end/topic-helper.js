@@ -12,6 +12,13 @@ import { setTheme } from "./theme-util";
 //
 // Parameter:
 //      topicId - string representing the topic id
+//
+// Returns:
+//      None
+//
+// See Also:
+//      Calls <setTheme> and <displayTweets>
+
 
 function openTopic(topicId) {
     let curActive = topicsContainer.querySelector('.active');

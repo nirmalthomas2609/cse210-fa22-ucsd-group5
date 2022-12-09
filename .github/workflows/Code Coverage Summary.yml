@@ -13,12 +13,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v1
+        with:
+          node-version: latest
+
       # Using the Code Coverage Action from https://github.com/marketplace/actions/code-coverage-summary
       - name: Code Coverage Summary
-        uses: irongut/CodeCoverageSummary@v1.3.0
-        with:
-          filename: src/*.js
-          badge: true
-          format: markdown
-          output: both
+        run: npm run coverage
 
