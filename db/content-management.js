@@ -347,3 +347,4 @@ function deleteTopic(topicId, statusCallback) {
 
 // module.exports = {setupDB, createTweet, getTweetsByTopicId, updateTweet, updateTopic, getAllTopics, createTopic, deleteTweet, deleteTopic, getTweetById};
 
+

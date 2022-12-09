@@ -1,0 +1,27 @@
+
+# name: Testing - Windows
+
+# # Triggers the workflow on push or pull request events on any of the branches
+# on: [push, pull_request]
+    
+# jobs:
+#   # This workflow contains a single job called "test"
+#  test:
+#     # The type of runner that the job will run on Windows
+#     runs-on: windows-latest
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v3
+
+#       #Install fakeindexed-db
+#       - name: Install fakeindexed-db
+#         run: npm install --save-dev fake-indexeddb
+
+#       #Install jest
+#       - name: Jest for Unit testing 
+#         run: npm install --save-dev jest
+      
+#       #Run the unit tests
+#       - name: Backend Unit Tests
+#         run: npx jest --runInBand db.test.js

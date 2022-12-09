@@ -1,0 +1,141 @@
+@use "sass:map";
+@use "./theme1";
+@use "./theme2";
+
+// Import Bootstrap's CSS
+// scss-docs-start import-stack
+// Configuration
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Layout & components
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/modal";
+
+// Helpers
+@import "~bootstrap/scss/helpers";
+
+// Utilities
+@import "~bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
+
+
+.topic {
+    cursor: pointer;
+    user-select: none;
+
+    &.theme-1 {
+        // background-color: tint-color(map.get($custom-theme-colors, "light-background-color"), 80%);
+        // color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+        background-color: tint-color(theme1.$light-background-color, 80%);
+        color: color-contrast(theme1.$light-background-color);
+
+        &.active {
+            // background-color: map.get($custom-theme-colors, "light-background-color") !important;
+            background-color: theme1.$light-background-color !important;
+        }
+    }
+
+    &.theme-2 {
+        // background-color: tint-color(map.get($custom-theme-colors, "light-background-color"), 80%);
+        // color: color-contrast(map.get($custom-theme-colors, "light-background-color"));
+        background-color: tint-color(theme2.$light-background-color, 20%);
+        color: color-contrast(theme2.$light-background-color);
+
+        &.active {
+            // background-color: map.get($custom-theme-colors, "light-background-color") !important;
+            background-color: theme2.$light-background-color !important;
+        }
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }
+
+}
+
+.drag-over {
+    cursor: none !important;
+    transform: scale(1.05);
+    border-color: black;
+    filter: brightness(75%);
+
+    &#trash-btn {
+        background-color: red;
+    }
+}
+
+.card {
+    cursor: pointer;
+
+    &.theme-1 {
+        color: color-contrast(theme1.$dark-accent-color);
+        background-color: theme1.$dark-accent-color;
+
+        .card-header {
+            cursor: text;
+    
+            background-color: theme1.$light-background-color;
+            color: color-contrast(theme1.$light-background-color);
+        }
+    
+        p {
+            background-color: theme1.$dark-accent-color;
+            cursor: text;
+        }
+    }
+
+    &.theme-2 {
+        color: color-contrast(theme2.$dark-accent-color);
+        background-color: theme2.$dark-accent-color;
+
+        .card-header {
+            cursor: text;
+    
+            background-color: theme2.$light-background-color;
+            color: color-contrast(theme2.$light-background-color);
+        }
+    
+        p {
+            background-color: theme2.$dark-accent-color;
+            cursor: text;
+        }
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.modal {
+    color: black;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+
+    &.theme-1 {
+        color: color-contrast(theme1.$background-color);
+        background-color: theme1.$background-color;
+    }
+
+    &.theme-2 {
+        color: color-contrast(theme2.$background-color);
+        background-color: theme2.$background-color;
+    }
+}

@@ -1,0 +1,28 @@
+
+# name: Code Coverage Summary Report
+
+# # Triggers the workflow on push or pull request events on any of the branches
+# on: push
+    
+# jobs:
+#   # This workflow contains a single job called build
+#  build:
+#     # The type of runner that the job will run on ubuntu OS
+#     runs-on: ubuntu-latest
+#     # Steps represent a sequence of tasks that will be executed as part of the job
+#     steps:
+#       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#       - uses: actions/checkout@v3
+
+#       # Using the Code Coverage Action from https://github.com/marketplace/actions/code-coverage-summary
+#       - name: Code Coverage Summary
+#         uses: irongut/CodeCoverageSummary@v1.3.0
+#         with:
+#           filename: documentation/index.html
+#           badge: true
+#           format: markdown
+#           hide_branch_rate: false
+#           hide_complexity: true
+#           indicators: true
+#           output: console
+
