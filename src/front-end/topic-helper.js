@@ -52,6 +52,7 @@ function openTopic(topicId) {
 // Returns:
 //      None
 
+
 function removeTopicHTML(topicId) {
     let container = document.getElementById(topicId);
     container = container.parentElement;
@@ -70,7 +71,7 @@ function removeTopicHTML(topicId) {
 //      dbObj - The return from getAllTopics
 //
 // See Also:
-// <getAllTopics>
+//      Calls <getAllTopics>
 
 function addTopics(dbObj) {
     topicItems.push(...dbObj.topicsList);

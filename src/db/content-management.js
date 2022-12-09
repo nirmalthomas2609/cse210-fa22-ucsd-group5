@@ -54,10 +54,6 @@ function setupDB(namespace, callback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <TweetFactory.newEvent> and <Menu._topicItemUpdate>
 
 
 function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
@@ -90,10 +86,6 @@ function createTweet(tweetText, tweetTitle, topicId, statusCallback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <TweetFactory.renameEvent>, <Menu._tweetItemUpdate> and <Menu._topicItemUpdate>
 
 function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
@@ -138,10 +130,6 @@ function updateTweet(tweetId, tweetTitle, tweetText, topicId, statusCallback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <TweetFactory.deleteEvent> and <Menu._topicItemUpdate>
 
 
 function deleteTweet(tweetId, statusCallback) {
@@ -168,10 +156,6 @@ function deleteTweet(tweetId, statusCallback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <TopicFactory.load> and <TopicFactory.newEvent>
 
 
 function createTopic(topicName, statusCallback) {
@@ -202,10 +186,6 @@ function createTopic(topicName, statusCallback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <TopicFactory.renameEvent>
 
 function updateTopic(topicId, topicName, statusCallback) {
     const objStore = db.transaction([DB.topicStoreName], "readwrite").objectStore(DB.topicStoreName);
@@ -245,7 +225,7 @@ function updateTopic(topicId, topicName, statusCallback) {
 //
 // See Also:
 //  
-//  Called by <TweetFactory.load>
+//  Called by <displayTweets>
 
 function getTweetsByTopicId(topicId, displayTweetsCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readwrite").objectStore(DB.tweetStoreName);
@@ -270,10 +250,7 @@ function getTweetsByTopicId(topicId, displayTweetsCallback) {
 //  displayTopicsCallback - Listener fucntion from fontend to be executed on transaction complete
 // 
 // Returns:
-//
-// See Also:
-//  
-//  Called by <TopicFactory.load>
+//      None
 
 function getAllTopics(displayTopicsCallback) {
 
@@ -310,10 +287,6 @@ function getAllTopics(displayTopicsCallback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <Menu._tweetItemUpdate>
 
 function getTweetById(tweetId, displayTweetCallback) {
     const objStore = db.transaction([DB.tweetStoreName], "readonly").objectStore(DB.tweetStoreName);
@@ -344,10 +317,6 @@ function getTweetById(tweetId, displayTweetCallback) {
 // Returns:
 //
 //      None
-//
-// See Also:
-//  
-//  Called by <TopicFactory.deleteEvent>
 
 function deleteTopic(topicId, statusCallback) {
     const successReturnObj = {status: DB.OK_STATUS};
