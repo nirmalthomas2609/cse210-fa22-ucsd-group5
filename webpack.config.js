@@ -9,8 +9,9 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
     },
-    plugins: [new MiniCssExtractPlugin({filename: "[name].css"}), new HtmlWebpackPlugin({
-        template: 'src/index.html'
+    plugins: [new MiniCssExtractPlugin({filename: "[name].css"}), 
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
         })],
     module: {
         rules: [
