@@ -1,1 +1,0 @@
-﻿NDSearch.OnPrefixDataLoaded("upd",["Function"],[["updateTopic",,[[,,,,0,"File:db/content-management.js:updateTopic"]]],["updateTweet",,[[,,,,0,"File:db/content-management.js:updateTweet"]]]]);
