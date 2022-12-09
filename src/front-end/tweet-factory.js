@@ -68,7 +68,6 @@ class TweetFactory extends AbstractMenuItem {
     //  Calls functions <createTweet>
 
     newEvent() {
-        // Creates a new tweet within a topic when user wants to add a tweet
         if (this.selectedMenuItem) {
             createTweet('', this.selectedTitle, this.topicid, (dbObj) => {
                 this.notify({
