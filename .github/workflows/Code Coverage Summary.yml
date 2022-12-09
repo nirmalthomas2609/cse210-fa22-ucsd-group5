@@ -20,7 +20,7 @@ jobs:
         with:
           filename: documentation/styles/main.js
           badge: true
-          format: markdown
+          format: text
           hide_branch_rate: false
           hide_complexity: true
           indicators: true
