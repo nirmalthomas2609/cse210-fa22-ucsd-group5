@@ -25,7 +25,7 @@ echo "ND downloaded"
 git rm -r docs/naturaldocs/*
 mkdir docs/naturaldocs/
 
-mono NaturalDocs/Natural\ Docs/NaturalDocs.exe nd_config -o docs/naturaldocs/
+mono NaturalDocs/Natural\ Docs/NaturalDocs.exe nd_config --output html docs/naturaldocs/
 
 git add docs/*
 
