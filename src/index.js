@@ -1,7 +1,7 @@
 import "./scss/main.scss";
 
 // You can specify which plugins you need
-import { Tooltip, Toast, Popover } from 'bootstrap';
+import { Popover } from 'bootstrap';
 
 import { setupDB, getAllTopics, getTweetsByTopicId, deleteTweet, deleteTopic, createTopic, createTweet, updateTweet, updateTopic } from "./db/content-management";
 import DOMPurify from "dompurify";
@@ -235,9 +235,6 @@ function setEventListeners() {
             });    
         }
         
-    }
-    trashBtn.onclick = () => {
-        console.log('???')
     }
 }
 
