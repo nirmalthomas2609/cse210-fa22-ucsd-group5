@@ -15,7 +15,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: latest
+          node-version: 16
 
       # Using the Code Coverage Action from https://github.com/marketplace/actions/code-coverage-summary
       - name: Code Coverage Summary
