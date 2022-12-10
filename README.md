@@ -55,6 +55,10 @@ If either are not installed, use the directions here: https://docs.npmjs.com/dow
 
 `npm run dev`
 
+After this open localhost:3000 on your browser to launch the application.
+
+This is different from how the app is built for the user to allow more developer flexibility. npm run dev allows you to make live changes and see that happen in the app without having to rebuild.
+
 *In case any of this does not work please push your code to your branch and our CI/CD pipeline will create a build for you. This build is generated within 1 minute of the push can can be downloaded from [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)*
 
 Now, you are fully set up with a local, development version of Tweet Manager. Congrats!
