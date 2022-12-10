@@ -25,6 +25,7 @@
 | [ADR-1001](1001-app-mode.md)              | Application Mode              |
 | [ADR-1002](1002-multi-user-support.md)    | Multiple User Support         |
 | [ADR-1003](1003-frontend-language.md)     | Frontend Language             |
+| [ADR-1004](1004-scss-usage.md)            | SCSS for styling              |
 
 ### UI/UX
 
