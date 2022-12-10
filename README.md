@@ -51,9 +51,9 @@ If either are not installed, use the directions here: https://docs.npmjs.com/dow
 
 4. Then run the following commands from the root of the repo
 
-`chown +x ./build_scripts/build_app.sh`
+`npm install -d`
 
-`./build_scripts/build_app.sh`
+`npm run dev`
 
 *In case any of this does not work please push your code to your branch and our CI/CD pipeline will create a build for you. This build is generated within 1 minute of the push can can be downloaded from [Releases](https://github.com/nirmalthomas2609/cse210-fa22-ucsd-group5/releases)*
 
